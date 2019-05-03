@@ -1,0 +1,4 @@
+THINGS TO DISCUSS
+* Where to put "typedef Rnvector"?
+* Should "step0" be called "step"?
+* How to use namespaces?

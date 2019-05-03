@@ -7,7 +7,6 @@ class BaseEquation{
 		double tfin;
 		EquationFunction f;
 		Rnvector x0;
-		BaseSolver solver;
 	public:
 		double get_tfin() const;
 		EquationFunction get_f() const;
