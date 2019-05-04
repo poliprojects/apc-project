@@ -1,3 +1,6 @@
+#ifndef BASEEQUATION_HPP
+#define BASEEQUATION_HPP
+
 #include"utils.hpp"
 
 class BaseEquation{
@@ -18,4 +21,6 @@ class BaseEquation{
 		// void set_f();
 		// void set_x0();
 
-}
+};
+
+#endif

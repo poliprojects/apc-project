@@ -2,11 +2,12 @@
 #include"BaseSolver.hpp"
 #include"BaseEquation.hpp"
 #include"utils.hpp"
+#include"FESolver.hpp"
 
 int main() {
 
   double final_time = 1;
-  EquationFunction_1 fun;
+  EquationFunction fun;
   Rnvector initial_condition(0);
   BaseEquation equation(final_time, fun, initial_condition);
 
