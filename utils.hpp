@@ -2,15 +2,47 @@
 #define UTILS_HPP
 
 #include<vector>
+#include<string>
 #include<cmath>
 
 typedef double real;
 typedef std::vector<real> Rnvector;
+// Solution: the first index is time, the second is the variable
+typedef std::vector<Rnvector> SolutionType;
 
-struct EquationFunction{
-  Rnvector operator() (const double & t, const Rnvector & x) const{
-    return x;
-  }
-};
+// struct EquationFunction
+// {
+//   Rnvector operator() (const double & t, const Rnvector & y) const{
+//     return y;
+//   }
+//   //f(t,y(t)) to be printed on screen in the summary
+//   std::string f_string = "y(t)";
+// };
+
+
+#if defined TEST_1
+  struct EquationFunction
+  {
+    Rnvector operator() (const double & t, Rnvector y) const{
+      for( auto & i : y )
+        i = 5*i - 3;
+      return y;
+    }
+    //f(t,y(t)) to be printed on screen in the summary
+    std::string f_string = "5y(t) - 3";
+  };
+
+#elif defined TEST_2
+  struct EquationFunction
+  {
+    Rnvector operator() (const double & t, Rnvector & y) const{
+      for( auto & i : y )
+        i = 5 * std::cos( 2*i );
+      return y;
+    }
+    //f(t,y(t)) to be printed on screen in the summary
+    std::string f_string = "5cos(2y(t))";
+  };
+#endif
 
 #endif
