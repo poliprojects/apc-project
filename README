@@ -1,0 +1,7 @@
+1) In Makefile select TEST_1 or TEST_2 in CPPFLAGS
+2) Compile and run. Info about the equation solved appear on screen, solution is saved in solution_<#test>.txt
+3) Run check_solutions.m in Matlab to see a plot of exact and computed solution
+
+To add new tests:
+1) In utils.hpp add a new EquationFunction
+2) In main.cpp set final time, intial condition and integration step
