@@ -1,14 +1,13 @@
-clear all
-close all
-
-
 %% Test 1
 % Equation:
 % y'(t) = 5*y(t) - 3   in [ 0, 1 ]
 %  y(0) = 0
 % Discretization:
-% h = 0.001
-% Nh = 1000
+% h = 0.01
+% Nh = 100
+
+clear all
+close all
 
 fileID = fopen( 'solution_1.txt', 'r' );
 u_n = fscanf( fileID, '%f' );
@@ -17,7 +16,7 @@ t = linspace( 0, 1, length(u_n) );
 plot( t, u_n )
 hold on
 plot( t, u_ex(t) )
-
+legend( 'Computed', 'Exact' )
 
 %% Test 2
 % Equation:
@@ -29,6 +28,9 @@ plot( t, u_ex(t) )
 %
 % NB:  if h<2     ==>   u->0 as t->inf
 %      otherwise  ==>   u diverges
+
+clear all
+close all
 
 fileID = fopen( 'solution_2.txt', 'r' );
 u_n = fscanf( fileID, '%f' );
@@ -44,8 +46,11 @@ legend( 'Computed', 'Exact' )
 % y'(t) = t - y(t)   in [ -1, 5 ]
 % y(-1) = 1
 % Discretization:
-% h = 0.001
-% Nh = 1000
+% h = ?
+% Nh = ?
+
+clear all
+close all
 
 fileID = fopen( 'solution_3.txt', 'r' );
 u_n = fscanf( fileID, '%f' );
@@ -54,3 +59,4 @@ t = linspace( -1, 5, length(u_n) );
 plot( t, u_n )
 hold on
 plot( t, u_ex(t) )
+legend( 'Computed', 'Exact' )

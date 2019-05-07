@@ -24,7 +24,7 @@ int main()
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};
-    double initial_step = 0.01;
+    double initial_step = 0.1;
   #endif
 
   //Initialization of the solver

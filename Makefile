@@ -1,5 +1,5 @@
 CXXFLAGS += -Wall -std=c++11
-CPPFLAGS += -DTEST_2
+CPPFLAGS += -DTEST_3
 
 EXE = main
 OBJS = main.o FESolver.o BaseSolver.o

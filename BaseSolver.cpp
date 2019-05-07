@@ -6,7 +6,7 @@ BaseSolver::BaseSolver(double step, const BaseEquation & eq):
   //The solution at t=0 coincides with the initial condition
   solution.push_back(equation.get_x0());
   //Number of time steps, assuming h divides exactly tfin
-  Nh = equation.get_tfin() / h;
+  Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
 void BaseSolver::print() const
@@ -32,6 +32,7 @@ void BaseSolver::save_sol_to_file(const std::string & file_name) const
     std::cerr << "Can't open input file: \"" << file_name << "\"" << std::endl;
     return;
   }
+  //Save the computed solution
   for( auto u_n : solution )
   {
     for( auto val : u_n )
