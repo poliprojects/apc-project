@@ -24,8 +24,8 @@ typedef std::vector<Rnvector> SolutionType;
   struct EquationFunction
   {
     Rnvector operator() (const double & t, Rnvector y) const{
-      for( auto & i : y )
-        i = 5*i - 3;
+      for( auto & y_i : y )
+        y_i = 5*y_i - 3;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
@@ -35,13 +35,25 @@ typedef std::vector<Rnvector> SolutionType;
 #elif defined TEST_2
   struct EquationFunction
   {
-    Rnvector operator() (const double & t, Rnvector & y) const{
-      for( auto & i : y )
-        i = 5 * std::cos( 2*i );
+    Rnvector operator() (const double & t, Rnvector y) const{
+      for( auto & y_i : y )
+        y_i = - y_i;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
-    std::string f_string = "5cos(2y(t))";
+    std::string f_string = "-y(t)";
+  };
+
+#elif defined TEST_3
+  struct EquationFunction
+  {
+    Rnvector operator() (const double & t, Rnvector y) const{
+      for( auto & y_i : y )
+        y_i = t - y_i;
+      return y;
+    }
+    //f(t,y(t)) to be printed on screen in the summary
+    std::string f_string = "t - y(t)";
   };
 #endif
 

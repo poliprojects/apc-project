@@ -21,16 +21,36 @@ plot( t, u_ex(t) )
 
 %% Test 2
 % Equation:
-% y'(t) = 5cos(2y(t))   in [ 0, 10 ]
-%  y(0) = 0
+% y'(t) = -y(t)   in [ 0, 30 ]
+%  y(0) = 1
+% Discretization:
+% h = ?     
+% Nh = ?
+%
+% NB:  if h<2     ==>   u->0 as t->inf
+%      otherwise  ==>   u diverges
+
+fileID = fopen( 'solution_2.txt', 'r' );
+u_n = fscanf( fileID, '%f' );
+u_ex = @(t) exp(-t);
+t = linspace( 0, 30, length(u_n) );
+plot( t, u_n )
+hold on
+plot( t, u_ex(t) )
+legend( 'Computed', 'Exact' )
+
+%% Test 3
+% Equation:
+% y'(t) = t - y(t)   in [ -1, 5 ]
+% y(-1) = 1
 % Discretization:
 % h = 0.001
 % Nh = 1000
 
-fileID = fopen( 'solution_2.txt', 'r' );
+fileID = fopen( 'solution_3.txt', 'r' );
 u_n = fscanf( fileID, '%f' );
-u_ex = @(t) 0.5*asin((exp(20.*t)-1)./(exp(20.*t)+1));
-t = linspace( 0, 10, length(u_n) );
+u_ex = @(t) t - 1 + 3*exp(-(t+1));
+t = linspace( -1, 5, length(u_n) );
 plot( t, u_n )
 hold on
 plot( t, u_ex(t) )
