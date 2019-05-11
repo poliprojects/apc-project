@@ -3,28 +3,32 @@
 
 #include<iostream>
 #include<fstream>
-#include"BaseEquation.hpp"
-#include"utils.hpp"
+#include "BaseEquation.hpp"
+#include "utils.hpp"
 
 class BaseSolver
 {
-	protected:
+	protected: //or private???
 		double h;
 		unsigned Nh;
 		BaseEquation equation;
-		SolutionType solution;	//default constructed as an empty vector of vectors
+		SolutionType solution; // default constructed as empty vector of vectors
 
 	public:
-		BaseSolver(double step, const BaseEquation & eq);
+		// Constructor
+		BaseSolver(double step, const BaseEquation &eq);
 
+		// Getters
 		unsigned get_Nh() const { return Nh; };
 		SolutionType get_solution() const { return solution; };
 
-		void print() const;
-		void save_sol_to_file(const std::string & file_name) const;
-
+		// Solving tools
 		virtual double step() const = 0;
 		virtual void solve() = 0;
+
+		// Solution output
+		void print() const;
+		void save_sol_to_file(const std::string &file_name) const;
 };
 
-#endif
+#endif // BASESOLVER_HPP

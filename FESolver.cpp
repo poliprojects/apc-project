@@ -27,7 +27,10 @@ void FESolver::solve()
   {
     Rnvector f_eval = f( times[n], u_n );
     for( std::size_t i = 0; i < u_n.size(); i++ )
-      u_n1.push_back( u_n[i] + h*f_eval[i] );
+    {
+      double hn = step();
+      u_n1.push_back( u_n[i] + hn*f_eval[i] );
+    }
 
     solution.push_back( u_n1 );
     u_n = u_n1;

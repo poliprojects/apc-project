@@ -1,4 +1,7 @@
 THINGS TO DISCUSS
-* Where to put "typedef Rnvector"?
-* Should "step0" be called "step"?
 * How to use namespaces?
+* Getters and setters
+* Indentation
+
+* Returning same vector y in utils.hpp
+* Dependences in the Makefile

@@ -1,26 +1,26 @@
 #include<iostream>
-#include"BaseSolver.hpp"
-#include"BaseEquation.hpp"
-#include"FESolver.hpp"
-#include"utils.hpp"
+#include "BaseSolver.hpp"
+#include "BaseEquation.hpp"
+#include "FESolver.hpp"
+#include "utils.hpp"
 
 int main()
 {
   //Initialization of test specific features
   #if defined TEST_1
-    std::cout << "Running Test 1" << '\n';
+    std::cout << "Running Test 1" << std::endl;
     double initial_time = 0;
     double final_time = 1;
     Rnvector initial_condition{0};
     double initial_step = 0.01;
   #elif defined TEST_2
-    std::cout << "Running Test 2" << '\n';
+    std::cout << "Running Test 2" << std::endl;
     double initial_time = 0;
     double final_time = 30;
     Rnvector initial_condition{1};
     double initial_step = 0.5;
   #elif defined TEST_3
-    std::cout << "Running Test 3" << '\n';
+    std::cout << "Running Test 3" << std::endl;
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};

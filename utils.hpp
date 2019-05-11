@@ -23,20 +23,20 @@ typedef std::vector<Rnvector> SolutionType;
 #if defined TEST_1
   struct EquationFunction
   {
-    Rnvector operator() (const double & t, Rnvector y) const{
-      for( auto & y_i : y )
+    Rnvector operator() (const double &t, Rnvector y) const {
+      for( auto &y_i : y )
         y_i = 5*y_i - 3;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
-    std::string f_string = "5y(t) - 3";
+    std::string f_string = "5*y(t) - 3";
   };
 
 #elif defined TEST_2
   struct EquationFunction
   {
-    Rnvector operator() (const double & t, Rnvector y) const{
-      for( auto & y_i : y )
+    Rnvector operator() (const double &t, Rnvector y) const {
+      for( auto &y_i : y )
         y_i = - y_i;
       return y;
     }
@@ -47,8 +47,8 @@ typedef std::vector<Rnvector> SolutionType;
 #elif defined TEST_3
   struct EquationFunction
   {
-    Rnvector operator() (const double & t, Rnvector y) const{
-      for( auto & y_i : y )
+    Rnvector operator() (const double &t, Rnvector y) const {
+      for( auto &y_i : y )
         y_i = t - y_i;
       return y;
     }
@@ -57,4 +57,4 @@ typedef std::vector<Rnvector> SolutionType;
   };
 #endif
 
-#endif
+#endif //UTILS_HPP
