@@ -5,6 +5,7 @@ double FESolver::step() const
   return h;
 }
 
+
 void FESolver::solve()
 {
   //Initialization of time instants

@@ -1,5 +1,6 @@
 #include "BaseSolver.hpp"
 
+
 BaseSolver::BaseSolver(double step, const BaseEquation &eq):
   h(step), equation(eq)
 {

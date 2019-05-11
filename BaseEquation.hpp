@@ -3,6 +3,7 @@
 
 #include "utils.hpp"
 
+
 class BaseEquation
 {
 	private:

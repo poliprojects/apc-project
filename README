@@ -6,3 +6,4 @@ is saved in solution_<#test>.txt
 To add new tests:
 1) In utils.hpp add a new EquationFunction
 2) In main.cpp set final time, intial condition and integration step
+

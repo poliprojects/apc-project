@@ -5,6 +5,7 @@
 #include<string>
 #include<cmath>
 
+
 typedef double real;
 typedef std::vector<real> Rnvector;
 // Solution: the first index is time, the second is the variable

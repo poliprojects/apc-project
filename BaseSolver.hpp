@@ -6,6 +6,7 @@
 #include "BaseEquation.hpp"
 #include "utils.hpp"
 
+
 class BaseSolver
 {
 	protected: //or private???
