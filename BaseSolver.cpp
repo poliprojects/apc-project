@@ -35,9 +35,9 @@ void BaseSolver::save_sol_to_file(const std::string & file_name) const
     return;
   }
   //Save the computed solution
-  for( auto u_n : solution )
+  for( auto un : solution )
   {
-    for( auto val : u_n )
+    for( auto val : un )
       output_stream << val << " ";
     output_stream << std::endl;
   }

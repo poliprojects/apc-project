@@ -9,7 +9,7 @@
 
 class BaseSolver
 {
-	protected: //or private???
+	protected:
 		double h;
 		unsigned Nh;
 		BaseEquation equation;
@@ -21,6 +21,7 @@ class BaseSolver
 
 		// Getters
 		unsigned get_Nh() const { return Nh; };
+		BaseEquation get_equation() const { return equation; };
 		SolutionType get_solution() const { return solution; };
 
 		// Solving tools
