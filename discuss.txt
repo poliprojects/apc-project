@@ -1,8 +1,5 @@
 THINGS TO DISCUSS
 * How to use namespaces?
-* Getters and setters
 * Indentation
 
 * Returning same vector y in utils.hpp
-* Dependences in the Makefile
-
