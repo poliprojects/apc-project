@@ -2,7 +2,8 @@ CXXFLAGS += -Wall -std=c++11
 CPPFLAGS += -DTEST_3
 
 EXE = main
-OBJS = main.o FESolver.o BaseSolver.o
+SOLVERS = BaseSolver.o FESolver.o AdaptiveFESolver.o
+OBJS = $(SOLVERS) main.o
 
 .PHONY: all clean distclean
 
@@ -11,9 +12,10 @@ all: $(EXE)
 $(EXE): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ $(OUTPUT_OPTION)
 
-main.o: FESolver.hpp BaseSolver.hpp BaseEquation.hpp utils.hpp
-FESolver.o: FESolver.hpp BaseSolver.hpp BaseEquation.hpp utils.hpp
-BaseSolver.o: BaseSolver.hpp BaseEquation.hpp utils.hpp
+$(OBJS): BaseEquation.hpp BaseSolver.hpp utils.hpp
+main.o: FESolver.hpp AdaptiveFESolver.o
+FESolver.o: FESolver.hpp
+AdaptiveFESolver.o: FESolver.hpp AdaptiveFESolver.hpp
 
 clean:
 	$(RM) *.o
