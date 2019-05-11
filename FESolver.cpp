@@ -1,4 +1,4 @@
-#include"FESolver.hpp"
+#include "FESolver.hpp"
 
 double FESolver::step() const
 {
@@ -19,22 +19,20 @@ void FESolver::solve()
   }
 
   //Take solution at time 0 and function f from data
-  Rnvector u_n = solution[0];
+  Rnvector un = solution[0];
   EquationFunction f = equation.get_f();
 
   //Solution loop
-  Rnvector u_n1; //solution at time n+1
+  Rnvector un1( un.size() ); //solution at time n+1
   for( unsigned n = 0; n < Nh; n++ )
   {
-    Rnvector f_eval = f( times[n], u_n );
-    for( std::size_t i = 0; i < u_n.size(); i++ )
-    {
-      double hn = step();
-      u_n1.push_back( u_n[i] + hn*f_eval[i] );
-    }
+    Rnvector f_eval = f( times[n], un );
+    un1 = un + h*f_eval;
+    //for( std::size_t i = 0; i < un.size(); i++ )
+    //  un1.push_back( un[i] + h*f_eval[i] );
 
-    solution.push_back( u_n1 );
-    u_n = u_n1;
-    u_n1.clear();
+    solution.push_back( un1 );
+    un = un1;
+    un1.clear();
   }
 }

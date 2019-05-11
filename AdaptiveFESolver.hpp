@@ -9,12 +9,13 @@ class AdaptiveFESolver: public FESolver{
 	private:
 		double tol;
 		double hmin;
+		// in this class, h is the starting value for the step
 
 	public:
 		// Constructors
-		AdaptiveFESolver(double step, const BaseEquation &eq, double tolerance,
-			double minimum_step):
-			BaseSolver(step, eq), tol(tolerance), hmin(minimum_step) {}
+		AdaptiveFESolver(double start_step, const BaseEquation &eq,
+			double tolerance, double minimum_step):
+			BaseSolver(start_step, eq), tol(tolerance), hmin(minimum_step) {}
 		AdaptiveFESolver(double step, const BaseEquation &eq):
 			AdaptiveFESolver(step, eq, 1e-3, step/100) {}
 
