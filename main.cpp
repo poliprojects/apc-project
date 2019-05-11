@@ -32,20 +32,26 @@ int main()
   //NB: the actual definition of fun depends on the test chosen (see utils.hpp)
   EquationFunction fun;
   BaseEquation equation(initial_time, final_time, fun, initial_condition);
-  FESolver problem(initial_step, equation);
+  FESolver FEProblem(initial_step, equation);
+  AdaptiveFESolver AdaptiveProblem(initial_step, equation);
 
   //Solves the problem
-  problem.solve();
+  FEProblem.solve();
+  AdaptiveProblem.solve();
 
   //Prints problem characteristics on screen
-  problem.print();
+  FEProblem.print();
+  AdaptiveProblem.print();
 
   #if defined TEST_1
-    problem.save_sol_to_file("solution_1.txt");
+    FEProblem.save_sol_to_file("solution_1.txt");
+    AdaptiveProblem.save_sol_to_file("solution_1_adap.txt");
   #elif defined TEST_2
-    problem.save_sol_to_file("solution_2.txt");
+    FEProblem.save_sol_to_file("solution_2.txt");
+    AdaptiveProblem.save_sol_to_file("solution_2_adap.txt");
   #elif defined TEST_3
-    problem.save_sol_to_file("solution_3.txt");
+    FEProblem.save_sol_to_file("solution_3.txt");
+    AdaptiveProblem.save_sol_to_file("solution_3_adap.txt");
   #endif
 
   return 0;

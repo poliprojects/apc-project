@@ -23,4 +23,3 @@ clean:
 distclean: clean
 	$(RM) $(EXE)
 	$(RM) *~
-
