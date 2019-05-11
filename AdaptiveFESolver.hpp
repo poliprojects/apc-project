@@ -4,6 +4,7 @@
 #include "BaseSolver.hpp"
 #include "utils.hpp"
 
+
 class AdaptiveFESolver: public FESolver{
 	private:
 		double tol;

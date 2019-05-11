@@ -1,5 +1,6 @@
 #include "AdaptiveFESolver.hpp"
 
+
 double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 	const Rnvector &fubar) const
 {
