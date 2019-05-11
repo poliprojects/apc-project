@@ -1,15 +1,50 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include<vector>
-#include<string>
-#include<cmath>
+#include <vector>
+#include <string>
+#include <cmath>
+#include <cassert>
 
-
-typedef double real;
-typedef std::vector<real> Rnvector;
+typedef std::vector<double> Rnvector;
 // Solution: the first index is time, the second is the variable
 typedef std::vector<Rnvector> SolutionType;
+
+// Vector operators
+Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
+{
+  assert( x.size() == y.size() );
+  Rnvector z( x.size() );
+  for(std::size_t i = 0; i < x.size(); i++)
+    z[i] = x[i] + y[i];
+  return z;
+}
+
+Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
+{
+  assert( x.size() == y.size() );
+  Rnvector z( x.size() );
+  for(std::size_t i = 0; i < x.size(); i++)
+    z[i] = x[i] - y[i];
+  return z;
+}
+
+Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
+{
+  Rnvector z( x.size() );
+  for(std::size_t i = 0; i < x.size(); i++)
+    z[i] = lambda * x[i];
+  return z;
+}
+
+
+Rnvector abs(const Rnvector &x)
+{
+  Rnvector z( x.size() );
+  for(std::size_t i = 0; i < x.size(); i++)
+    z[i] = std::abs(x[i]);
+  return z;
+}
 
 // struct EquationFunction
 // {
@@ -25,8 +60,8 @@ typedef std::vector<Rnvector> SolutionType;
   struct EquationFunction
   {
     Rnvector operator() (const double &t, Rnvector y) const {
-      for( auto &y_i : y )
-        y_i = 5*y_i - 3;
+      for(auto &yi : y)
+        yi = 5*yi - 3;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
@@ -37,8 +72,8 @@ typedef std::vector<Rnvector> SolutionType;
   struct EquationFunction
   {
     Rnvector operator() (const double &t, Rnvector y) const {
-      for( auto &y_i : y )
-        y_i = - y_i;
+      for(auto &yi : y)
+        yi = - yi;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
@@ -49,8 +84,8 @@ typedef std::vector<Rnvector> SolutionType;
   struct EquationFunction
   {
     Rnvector operator() (const double &t, Rnvector y) const {
-      for( auto &y_i : y )
-        y_i = t - y_i;
+      for(auto &yi : y)
+        yi = t - yi;
       return y;
     }
     //f(t,y(t)) to be printed on screen in the summary
