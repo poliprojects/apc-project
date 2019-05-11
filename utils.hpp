@@ -1,14 +1,17 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <vector>
-#include <string>
-#include <cmath>
+#include <algorithm>
 #include <cassert>
+#include <cmath>
+#include <string>
+#include <vector>
+
 
 typedef std::vector<double> Rnvector;
 // Solution: the first index is time, the second is the variable
 typedef std::vector<Rnvector> SolutionType;
+
 
 // Vector operators
 Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
@@ -37,8 +40,7 @@ Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
   return z;
 }
 
-
-Rnvector abs(const Rnvector &x)
+Rnvector abs(const Rnvector &x) // vector of absolute values
 {
   Rnvector z( x.size() );
   for(std::size_t i = 0; i < x.size(); i++)
@@ -46,6 +48,7 @@ Rnvector abs(const Rnvector &x)
   return z;
 }
 
+// Fac-simile for EquationFunction:
 // struct EquationFunction
 // {
 //   Rnvector operator() (const double & t, const Rnvector & y) const{
