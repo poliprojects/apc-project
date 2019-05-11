@@ -6,7 +6,6 @@ double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 {
   
 	double hn = h; // initialize adaptive step to starting step
-	const std::size_t n = ubar.size();
 	bool stop = false;
 
 	// Adaptive loop
@@ -17,7 +16,8 @@ double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 		Rnvector uh2 = ubar + (hn / 2) * fubar;
 
 		// Compute error in infinity norm
-		double error = std::max_element( abs(uh - uh2) );
+    Rnvector diff = abs(uh - uh2);
+		double error = *std::max_element( diff.cbegin(), diff.cend() );
 
 		// Termination criterion
 		(error < tol/2) ? (stop = true) : (hn = hn/2);
@@ -45,7 +45,7 @@ void AdaptiveFESolver::solve()
     Rnvector f_eval = f( times[n], un );
 
     double hn = step(times[n], un, f_eval); // compute adaptive step
-    un1 = un + h*f_eval;
+    un1 = un + hn*f_eval;
     //for( std::size_t i = 0; i < un.size(); i++ )
     //  un1.push_back( un[i] + hn*f_eval[i] );
 

@@ -1,10 +1,9 @@
 #ifndef BASESOLVER_HPP
 #define BASESOLVER_HPP
 
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include "BaseEquation.hpp"
-#include "utils.hpp"
 
 
 class BaseSolver

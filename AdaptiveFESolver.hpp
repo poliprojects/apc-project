@@ -1,11 +1,11 @@
 #ifndef ADAPTIVEFESOLVER_HPP
 #define ADAPTIVEFESOLVER_HPP
 
-#include "BaseSolver.hpp"
-#include "utils.hpp"
+#include "FESolver.hpp"
 
 
-class AdaptiveFESolver: public FESolver{
+class AdaptiveFESolver: public FESolver
+{
 	private:
 		double tol;
 		double hmin;
@@ -15,7 +15,7 @@ class AdaptiveFESolver: public FESolver{
 		// Constructors
 		AdaptiveFESolver(double start_step, const BaseEquation &eq,
 			double tolerance, double minimum_step):
-			BaseSolver(start_step, eq), tol(tolerance), hmin(minimum_step) {}
+			FESolver(start_step, eq), tol(tolerance), hmin(minimum_step) {}
 		AdaptiveFESolver(double step, const BaseEquation &eq):
 			AdaptiveFESolver(step, eq, 1e-3, step/100) {}
 
@@ -23,6 +23,6 @@ class AdaptiveFESolver: public FESolver{
 		double step(const double tbar, const Rnvector &ubar,
 			const Rnvector &fubar) const;
 		void solve();
-}
+};
 
 #endif // ADAPTIVEFESOLVER_HPP
