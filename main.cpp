@@ -28,8 +28,8 @@ int main()
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};
-    double initial_step = 0.2;
-    double tolerance = 1e-1;
+    double initial_step = 0.1;
+    double tolerance = 1e-2;
   #endif
 
   //Initialization of the solver
@@ -38,7 +38,7 @@ int main()
   BaseEquation equation(initial_time, final_time, fun, initial_condition);
   FESolver FEProblem(initial_step, equation);
   AdaptiveFESolver AdaptiveFEProblem(initial_step, equation, tolerance,
-    initial_step / 20);
+    initial_step / 10);
 
   //Solves the problem
   FEProblem.solve();

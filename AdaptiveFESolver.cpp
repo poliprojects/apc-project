@@ -13,10 +13,8 @@ void AdaptiveFESolver::solve()
   unsigned n = 0;
   double hn = h;
   double tn = times[0];
-  bool stop = false;
 
-  // Solution loop
-  while( tn < tfin )
+  while( tn+hn < tfin )
   {
     // Single iteration with step hn
     Rnvector uh1 = un + hn*f(tn, un);
@@ -47,6 +45,7 @@ void AdaptiveFESolver::solve()
   }
 
   for(auto &ti:times) std::cout << ti << " "; //DEBUG
+  std::cout << std::endl; //DEBUG
 }
 
 void AdaptiveFESolver::print_solver_spec() const
