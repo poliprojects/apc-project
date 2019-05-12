@@ -7,6 +7,10 @@ FESolver::FESolver(double step, const BaseEquation &eq):
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
+double FESolver::step() const
+{
+  return h;
+}
 
 void FESolver::solve()
 {

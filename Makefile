@@ -1,5 +1,5 @@
 CXXFLAGS += -Wall -std=c++11
-CPPFLAGS += -DTEST_3
+CPPFLAGS += -DTEST_1
 
 EXE = main
 SOLVERS = BaseSolver.o FESolver.o AdaptiveFESolver.o RKSolver.o
@@ -26,30 +26,3 @@ clean:
 distclean: clean
 	$(RM) $(EXE)
 	$(RM) *~
-
-# CXXFLAGS += -Wall -std=c++11
-# CPPFLAGS += -DTEST_3
-#
-# EXE = testRKmain
-# SOLVERS = BaseSolver.o RKSolver.o
-# OBJS = $(SOLVERS) testRKmain.o utils.o
-#
-# .PHONY: all clean distclean
-#
-# all: $(EXE)
-#
-# $(EXE): $(OBJS)
-# 	$(CXX) $(CXXFLAGS) $^ $(OUTPUT_OPTION)
-#
-# $(OBJS): BaseEquation.hpp BaseSolver.hpp utils.hpp
-# utils.o: utils.hpp
-# testRKmain.o: RKSolver.hpp
-#
-#
-#
-# clean:
-# 	$(RM) *.o
-#
-# distclean: clean
-# 	$(RM) $(EXE)
-# 	$(RM) *~

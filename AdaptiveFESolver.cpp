@@ -9,7 +9,7 @@ void AdaptiveFESolver::solve()
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
   EquationFunction f = equation.get_f();
-  
+
   unsigned n = 0;
   double hn = h;
   double tn = times[0];
@@ -44,8 +44,8 @@ void AdaptiveFESolver::solve()
 
   }
 
-  for(auto &ti:times) std::cout << ti << " "; //DEBUG
-  std::cout << std::endl; //DEBUG
+  // for(auto &ti:times) std::cout << ti << " "; //DEBUG
+  // std::cout << std::endl; //DEBUG
 }
 
 void AdaptiveFESolver::print_solver_spec() const

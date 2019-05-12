@@ -18,6 +18,14 @@ int main()
     double initial_step = 0.01;
     // Only for adaptive methods
     double tolerance = 1e-2;
+    // Only for RK (RK2 = Heun)
+    std::vector<std::vector<double>> a;
+    std::vector<double> a1{ 0, 0 };
+    std::vector<double> a2{ 1, 0 };
+    a.push_back( a1 );
+    a.push_back( a2 );
+    std::vector<double> b{ 0.5, 0.5 };
+    std::vector<double> c{ 0, 1 };
   #elif defined TEST_2
     std::cout << std::endl << "Running Test 2" << std::endl << std::endl;
     double initial_time = 0;
@@ -26,6 +34,14 @@ int main()
     double initial_step = 0.5;
     // Only for adaptive methods
     double tolerance = 1e-2;
+    // Only for RK (RK2 = Heun)
+    std::vector<std::vector<double>> a;
+    std::vector<double> a1{ 0, 0 };
+    std::vector<double> a2{ 1, 0 };
+    a.push_back( a1 );
+    a.push_back( a2 );
+    std::vector<double> b{ 0.5, 0.5 };
+    std::vector<double> c{ 0, 1 };
   #elif defined TEST_3
     std::cout << std::endl << "Running Test 3" << std::endl << std::endl;
     double initial_time = -1;
@@ -67,9 +83,11 @@ int main()
   #if defined TEST_1
     FEProblem.save_sol_to_file("solution_1.txt");
     AdaptiveFEProblem.save_sol_to_file("solution_1_adap.txt");
+    RKProblem.save_sol_to_file("solution_1_RK.txt");
   #elif defined TEST_2
     FEProblem.save_sol_to_file("solution_2.txt");
     AdaptiveFEProblem.save_sol_to_file("solution_2_adap.txt");
+    RKProblem.save_sol_to_file("solution_2_RK.txt");
   #elif defined TEST_3
     FEProblem.save_sol_to_file("solution_3.txt");
     AdaptiveFEProblem.save_sol_to_file("solution_3_adap.txt");
