@@ -29,7 +29,7 @@ class BaseSolver
 
 		// Solution output
 		virtual void print() const;
-		void save_sol_to_file(const std::string &file_name) const;
+		virtual void save_sol_to_file(const std::string &file_name) const;
 };
 
 #endif // BASESOLVER_HPP
