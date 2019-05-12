@@ -8,11 +8,6 @@ FESolver::FESolver(double step, const BaseEquation &eq):
 }
 
 
-double FESolver::step() const
-{
-  return h;
-}
-
 void FESolver::solve()
 {
   //Initialization of time instants
@@ -25,18 +20,15 @@ void FESolver::solve()
     tn += h;
   }
 
-  //Take solution at time 0 and function f from data
-  Rnvector un = solution[0];
+  Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
+  Rnvector un1( un.size() ); // solution at (n+1)-th time
   EquationFunction f = equation.get_f();
 
-  //Solution loop
-  Rnvector un1( un.size() ); //solution at time n+1
+  // Solution loop
   for( unsigned n = 0; n < Nh; n++ )
   {
     Rnvector f_eval = f( times[n], un );
     un1 = un + h*f_eval;
-    //for( std::size_t i = 0; i < un.size(); i++ )
-    //  un1.push_back( un[i] + h*f_eval[i] );
 
     solution.push_back( un1 );
     un = un1;
