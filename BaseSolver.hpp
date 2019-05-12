@@ -18,7 +18,7 @@ class BaseSolver
 		BaseSolver(double step, const BaseEquation &eq);
 
 		// Getters
-		double get_h() const { return h };
+		double get_h() const { return h; };
 		BaseEquation get_equation() const { return equation; };
 		SolutionType get_solution() const { return solution; };
 
