@@ -15,18 +15,21 @@ int main()
     double final_time = 1;
     Rnvector initial_condition{0};
     double initial_step = 0.01;
+    double tolerance = 1e-2;
   #elif defined TEST_2
     std::cout << "Running Test 2" << std::endl;
     double initial_time = 0;
     double final_time = 30;
     Rnvector initial_condition{1};
     double initial_step = 0.5;
+    double tolerance = 1e-2;
   #elif defined TEST_3
     std::cout << "Running Test 3" << std::endl;
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};
-    double initial_step = 0.1;
+    double initial_step = 0.2;
+    double tolerance = 1e-1;
   #endif
 
   //Initialization of the solver
@@ -34,7 +37,8 @@ int main()
   EquationFunction fun;
   BaseEquation equation(initial_time, final_time, fun, initial_condition);
   FESolver FEProblem(initial_step, equation);
-  AdaptiveFESolver AdaptiveFEProblem(initial_step, equation);
+  AdaptiveFESolver AdaptiveFEProblem(initial_step, equation, tolerance,
+    initial_step / 20);
 
   //Solves the problem
   FEProblem.solve();
