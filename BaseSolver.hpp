@@ -28,7 +28,7 @@ class BaseSolver
 		virtual void solve() = 0;
 
 		// Solution output
-		void print() const;
+		virtual void print() const;
 		void save_sol_to_file(const std::string &file_name) const;
 };
 
