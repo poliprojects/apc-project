@@ -19,8 +19,16 @@ double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
     Rnvector diff = abs(uh - uh2);
 		double error = *std::max_element( diff.cbegin(), diff.cend() );
 
-		// Termination criterion
-		(error < tol/2) ? (stop = true) : (hn = hn/2);
+		if( error < tol/2 ) // termination criterion
+    {
+      stop = true;
+      //std::cout << "tol\n"; //DEBUG
+    }
+    else
+    {
+      hn = hn/2;
+      //std::cout << "half\n"; //DEBUG
+    }
 	}
 
 	return hn/2;
@@ -30,9 +38,9 @@ double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 void AdaptiveFESolver::solve()
 {
   // Initialization of the time instants vector
-  std::vector<double> times( Nh+1 );
-  double tn = equation.get_tin();
-  times[0] = tn;
+  std::vector<double> times;
+  times.push_back( equation.get_tin() );
+  double tfin = equation.get_tfin();
 
   // Take solution at time 0 and function f from data
   Rnvector un = solution[0];
@@ -40,17 +48,45 @@ void AdaptiveFESolver::solve()
 
   // Solution loop
   Rnvector un1( un.size() ); // solution at time n+1
-  for( unsigned n = 0; n < Nh; n++ )
+  unsigned n = 0;
+  bool stop = false;
+
+  while( !stop )
   {
     Rnvector f_eval = f( times[n], un );
-
     double hn = step(times[n], un, f_eval); // compute adaptive step
-    un1 = un + hn*f_eval;
-    //for( std::size_t i = 0; i < un.size(); i++ )
-    //  un1.push_back( un[i] + hn*f_eval[i] );
 
-    solution.push_back( un1 );
-    un = un1;
-    un1.clear();
+    if( times[n] + hn > tfin ) // out of range
+      stop = true;
+    else
+    {
+      times.push_back( times[n] + hn );
+      un1 = un + hn*f_eval;
+      solution.push_back( un1 );
+
+      un = un1;
+      un1.clear();
+      n++;
+    }
+
   }
+
+  //for(auto &ti:times) std::cout << ti << " "; //DEBUG
+}
+
+void AdaptiveFESolver::print() const
+{
+  //Print the equation
+  std::cout << "Equation:" << std::endl;
+  std::cout << "y'(t) = " << equation.get_f().f_string << "\t in [" <<
+    equation.get_tin() << "," << equation.get_tfin() << "]" << std::endl;
+  std::cout << "y(" << equation.get_tin() << ") = ";
+  for( auto i : equation.get_x0() )
+    std::cout << i << " ";
+  std::cout << std::endl;
+  //Print the solver specifications
+  std::cout << "Discretization:" << std::endl;
+  std::cout << "Starting h = " << h    << std::endl;
+  std::cout << "Minimum h  = " << hmin << std::endl;
+  std::cout << "Tolerance  = " << tol  << std::endl;
 }
