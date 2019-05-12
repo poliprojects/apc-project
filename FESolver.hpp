@@ -13,8 +13,10 @@ class FESolver: public BaseSolver
 		// Constructors
 		FESolver(double step, const BaseEquation &eq);
 
-		// Solving tools
-		double step() const override;
+		// Getters
+		unsigned get_Nh() const { return Nh; };
+
+		// Solving tool
 		void solve() override;
 
 		//Solution output

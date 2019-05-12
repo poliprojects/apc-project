@@ -21,9 +21,7 @@ class AdaptiveFESolver: public FESolver
 		AdaptiveFESolver(double step, const BaseEquation &eq):
 			AdaptiveFESolver(step, eq, 1e-2, step/10) {} // keep?
 
-		// Solving tools
-		double step(const double tbar, const Rnvector &ubar,
-			const Rnvector &fubar) const;
+		// Solving tool
 		void solve();
 
 		//Solution output

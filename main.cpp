@@ -31,9 +31,9 @@ int main()
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};
-    double initial_step = 0.2;
+    double initial_step = 0.1;
     // Only for adaptive methods
-    double tolerance = 1e-1;
+    double tolerance = 1e-2;
     // Only for RK (RK2 = Heun)
     std::vector<std::vector<double>> a;
     std::vector<double> a1{ 0, 0 };
@@ -51,7 +51,7 @@ int main()
   BaseEquation equation(initial_time, final_time, fun, initial_condition);
   FESolver FEProblem(initial_step, equation);
   AdaptiveFESolver AdaptiveFEProblem(initial_step, equation, tolerance,
-    initial_step / 20);
+    initial_step / 10);
   RKSolver RKProblem(initial_step, equation, a, b, c);
 
   //Solves the problem
