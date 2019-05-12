@@ -9,8 +9,8 @@
 clear all
 close all
 
-fileID = fopen( 'solution_1.txt', 'r' );
-u_n = fscanf( fileID, '%f' );
+FEFileID = fopen( 'solution_1.txt', 'r' );
+u_n = fscanf( FEFileID, '%f' );
 u_ex = @(t) -3/5 * exp(5*t) + 3/5;
 t = linspace( 0, 1, length(u_n) );
 plot( t, u_n )
@@ -32,8 +32,8 @@ legend( 'Computed', 'Exact' )
 clear all
 close all
 
-fileID = fopen( 'solution_2.txt', 'r' );
-u_n = fscanf( fileID, '%f' );
+FEFileID = fopen( 'solution_2.txt', 'r' );
+u_n = fscanf( FEFileID, '%f' );
 u_ex = @(t) exp(-t);
 t = linspace( 0, 30, length(u_n) );
 plot( t, u_n )
@@ -52,11 +52,23 @@ legend( 'Computed', 'Exact' )
 clear all
 close all
 
-fileID = fopen( 'solution_3.txt', 'r' );
-u_n = fscanf( fileID, '%f' );
+% Read files
+FEFileID = fopen( 'solution_3.txt', 'r' );
+AdapFileID = fopen( 'solution_3_adap.txt', 'r' );
+TimesAdapFileID = fopen( 'times_solution_3_adap.txt', 'r' );
+
+% Numerical and exact solutions
+u_n_FE = fscanf( FEFileID, '%f' );
+u_n_adap = fscanf( AdapFileID, '%f' );
 u_ex = @(t) t - 1 + 3*exp(-(t+1));
-t = linspace( -1, 5, length(u_n) );
-plot( t, u_n )
+
+% Time vectors
+t = linspace( -1, 5, length(u_n_FE) );
+t_adap = fscanf ( TimesAdapFileID, '%f' );
+
+% Plot solutions
+plot( t, u_n_FE )
 hold on
+plot( t_adap, u_n_adap )
 plot( t, u_ex(t) )
-legend( 'Computed', 'Exact' )
+legend( 'FE',  'Adaptive FE', 'Exact' )
