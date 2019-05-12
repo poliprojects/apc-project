@@ -1,4 +1,4 @@
-#include "AdaptiveFESolver.hpp"
+#include "AdaptiveFESolver.hpp"      
 
 
 double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
@@ -38,7 +38,6 @@ double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 void AdaptiveFESolver::solve()
 {
   // Initialization of the time instants vector
-  std::vector<double> times;
   times.push_back( equation.get_tin() );
   double tfin = equation.get_tfin();
 
@@ -89,4 +88,27 @@ void AdaptiveFESolver::print() const
   std::cout << "Starting h = " << h    << std::endl;
   std::cout << "Minimum h  = " << hmin << std::endl;
   std::cout << "Tolerance  = " << tol  << std::endl;
+}
+
+void AdaptiveFESolver::save_sol_to_file(const std::string &file_name) const
+{
+  std::string times_file_name = "times_" + file_name;
+
+  std::ofstream solution_stream{file_name};
+  std::ofstream times_stream{times_file_name};
+  if( !solution_stream or !times_stream )
+  {
+    std::cerr << "Cannot open an input file(s)." << std::endl;
+    return;
+  }
+  //Save the computed solution
+  for( auto un : solution )
+  {
+    for( auto val : un )
+      solution_stream << val << " ";
+    solution_stream << std::endl;
+  }
+  // Save time instants
+  for( auto tn : times )
+    times_stream << tn << "\n";
 }
