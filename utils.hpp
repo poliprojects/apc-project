@@ -13,8 +13,9 @@ typedef std::vector<double> Rnvector;
 typedef std::vector<Rnvector> SolutionType;
 
 
-// Vector operators
-inline Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
+// VECTOR OPERATORS
+// Vector sum:
+inline Rnvector operator+(const Rnvector &x, const Rnvector &y)
 {
   assert( x.size() == y.size() );
   Rnvector z( x.size() );
@@ -23,7 +24,8 @@ inline Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
   return z;
 }
 
-inline Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
+// Vector difference:
+inline Rnvector operator-(const Rnvector &x, const Rnvector &y)
 {
   assert( x.size() == y.size() );
   Rnvector z( x.size() );
@@ -32,7 +34,8 @@ inline Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector differ
   return z;
 }
 
-inline Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
+// Product by scalar:
+inline Rnvector operator*(const double lambda, const Rnvector &x)
 {
   Rnvector z( x.size() );
   for(std::size_t i = 0; i < x.size(); i++)
@@ -40,7 +43,8 @@ inline Rnvector operator*(const double lambda, const Rnvector &x) // product by 
   return z;
 }
 
-inline Rnvector abs(const Rnvector &x) // vector of absolute values
+// Vector of absolute values:
+inline Rnvector abs(const Rnvector &x)
 {
   Rnvector z( x.size() );
   for(std::size_t i = 0; i < x.size(); i++)
