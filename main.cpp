@@ -3,6 +3,7 @@
 #include "BaseEquation.hpp"
 #include "FESolver.hpp"
 #include "utils.hpp"
+#include "AdaptiveFESolver.hpp"
 
 
 int main()
@@ -33,25 +34,25 @@ int main()
   EquationFunction fun;
   BaseEquation equation(initial_time, final_time, fun, initial_condition);
   FESolver FEProblem(initial_step, equation);
-  AdaptiveFESolver AdaptiveProblem(initial_step, equation);
+  AdaptiveFESolver AdaptiveFEProblem(initial_step, equation);
 
   //Solves the problem
   FEProblem.solve();
-  AdaptiveProblem.solve();
+  AdaptiveFEProblem.solve();
 
   //Prints problem characteristics on screen
   FEProblem.print();
-  AdaptiveProblem.print();
+  AdaptiveFEProblem.print();
 
   #if defined TEST_1
     FEProblem.save_sol_to_file("solution_1.txt");
-    AdaptiveProblem.save_sol_to_file("solution_1_adap.txt");
+    AdaptiveFEProblem.save_sol_to_file("solution_1_adap.txt");
   #elif defined TEST_2
     FEProblem.save_sol_to_file("solution_2.txt");
-    AdaptiveProblem.save_sol_to_file("solution_2_adap.txt");
+    AdaptiveFEProblem.save_sol_to_file("solution_2_adap.txt");
   #elif defined TEST_3
     FEProblem.save_sol_to_file("solution_3.txt");
-    AdaptiveProblem.save_sol_to_file("solution_3_adap.txt");
+    AdaptiveFEProblem.save_sol_to_file("solution_3_adap.txt");
   #endif
 
   return 0;

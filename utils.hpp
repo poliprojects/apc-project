@@ -14,7 +14,7 @@ typedef std::vector<Rnvector> SolutionType;
 
 
 // Vector operators
-Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
+inline Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
 {
   assert( x.size() == y.size() );
   Rnvector z( x.size() );
@@ -23,7 +23,7 @@ Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
   return z;
 }
 
-Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
+inline Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
 {
   assert( x.size() == y.size() );
   Rnvector z( x.size() );
@@ -32,7 +32,7 @@ Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
   return z;
 }
 
-Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
+inline Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
 {
   Rnvector z( x.size() );
   for(std::size_t i = 0; i < x.size(); i++)
@@ -40,23 +40,13 @@ Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
   return z;
 }
 
-Rnvector abs(const Rnvector &x) // vector of absolute values
+inline Rnvector abs(const Rnvector &x) // vector of absolute values
 {
   Rnvector z( x.size() );
   for(std::size_t i = 0; i < x.size(); i++)
     z[i] = std::abs(x[i]);
   return z;
 }
-
-// Fac-simile for EquationFunction:
-// struct EquationFunction
-// {
-//   Rnvector operator() (const double & t, const Rnvector & y) const{
-//     return y;
-//   }
-//   //f(t,y(t)) to be printed on screen in the summary
-//   std::string f_string = "y(t)";
-// };
 
 
 #if defined TEST_1
