@@ -17,7 +17,6 @@ void FESolver::solve()
 {
   //Initialization of time instants
   std::vector<double> times( Nh+1 );
-
   double tn = equation.get_tin();
   for( std::size_t i = 0; i < Nh+1; i++ )
   {
@@ -35,9 +34,6 @@ void FESolver::solve()
   {
     Rnvector f_eval = f( times[n], un );
     un1 = un + h*f_eval;
-    //for( std::size_t i = 0; i < un.size(); i++ )
-    //  un1.push_back( un[i] + h*f_eval[i] );
-
     solution.push_back( un1 );
     un = un1;
     un1.clear();
