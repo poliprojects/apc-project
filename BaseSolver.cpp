@@ -6,8 +6,6 @@ BaseSolver::BaseSolver(double step, const BaseEquation &eq):
 {
   //The solution at t=0 coincides with the initial condition
   solution.push_back(equation.get_x0());
-  //Number of time steps, assuming h divides exactly tfin
-  Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
 void BaseSolver::print() const
@@ -21,9 +19,7 @@ void BaseSolver::print() const
     std::cout << i << " ";
   std::cout << std::endl;
   //Print the solver specifications
-  std::cout << "Discretization:" << std::endl;
-  std::cout << "h  = " << h << std::endl;
-  std::cout << "Nh = " << Nh << std::endl;
+  print_solver_spec();
 }
 
 void BaseSolver::save_sol_to_file(const std::string & file_name) const

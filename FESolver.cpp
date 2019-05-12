@@ -1,6 +1,13 @@
 #include "FESolver.hpp"
 
 
+FESolver::FESolver(double step, const BaseEquation &eq):
+  BaseSolver(step, eq)
+{
+  Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+}
+
+
 double FESolver::step() const
 {
   return h;
@@ -35,4 +42,12 @@ void FESolver::solve()
     un = un1;
     un1.clear();
   }
+}
+
+void FESolver::print_solver_spec() const
+{
+  std::cout << "Solved using: Forward Euler" << std::endl;
+  std::cout << "h  = " << h << std::endl;
+  std::cout << "Nh = " << Nh << std::endl;
+  std::cout << std::endl;;
 }

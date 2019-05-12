@@ -26,7 +26,8 @@ class AdaptiveFESolver: public FESolver
 			const Rnvector &fubar) const;
 		void solve();
 
-		void print() const override;
+		//Solution output
+		void print_solver_spec() const override;
 		void save_sol_to_file(const std::string &file_name) const override;
 };
 

@@ -10,21 +10,21 @@ int main()
 {
   //Initialization of test specific features
   #if defined TEST_1
-    std::cout << "Running Test 1" << std::endl;
+    std::cout << std::endl << "Running Test 1" << std::endl << std::endl;
     double initial_time = 0;
     double final_time = 1;
     Rnvector initial_condition{0};
     double initial_step = 0.01;
     double tolerance = 1e-2;
   #elif defined TEST_2
-    std::cout << "Running Test 2" << std::endl;
+    std::cout << std::endl << "Running Test 2" << std::endl << std::endl;
     double initial_time = 0;
     double final_time = 30;
     Rnvector initial_condition{1};
     double initial_step = 0.5;
     double tolerance = 1e-2;
   #elif defined TEST_3
-    std::cout << "Running Test 3" << std::endl;
+    std::cout << std::endl << "Running Test 3" << std::endl << std::endl;
     double initial_time = -1;
     double final_time = 5;
     Rnvector initial_condition{1};

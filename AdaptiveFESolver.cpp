@@ -1,10 +1,10 @@
-#include "AdaptiveFESolver.hpp"      
+#include "AdaptiveFESolver.hpp"
 
 
 double AdaptiveFESolver::step(const double tbar, const Rnvector &ubar,
 	const Rnvector &fubar) const
 {
-  
+
 	double hn = h; // initialize adaptive step to starting step
 	bool stop = false;
 
@@ -73,21 +73,13 @@ void AdaptiveFESolver::solve()
   //for(auto &ti:times) std::cout << ti << " "; //DEBUG
 }
 
-void AdaptiveFESolver::print() const
+void AdaptiveFESolver::print_solver_spec() const
 {
-  //Print the equation
-  std::cout << "Equation:" << std::endl;
-  std::cout << "y'(t) = " << equation.get_f().f_string << "\t in [" <<
-    equation.get_tin() << "," << equation.get_tfin() << "]" << std::endl;
-  std::cout << "y(" << equation.get_tin() << ") = ";
-  for( auto i : equation.get_x0() )
-    std::cout << i << " ";
-  std::cout << std::endl;
-  //Print the solver specifications
-  std::cout << "Discretization:" << std::endl;
+	std::cout << "Solved using: Adaptive Forward Euler" << std::endl;
   std::cout << "Starting h = " << h    << std::endl;
   std::cout << "Minimum h  = " << hmin << std::endl;
   std::cout << "Tolerance  = " << tol  << std::endl;
+	std::cout << std::endl;
 }
 
 void AdaptiveFESolver::save_sol_to_file(const std::string &file_name) const
