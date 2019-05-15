@@ -14,8 +14,9 @@ class BaseSolver
 		SolutionType solution; // default constructed as empty vector of vectors
 
 	public:
-		// Constructor
+		// Constructors and destructors
 		BaseSolver(double step, const BaseEquation &eq);
+		virtual ~BaseSolver() = default;
 
 		// Getters
 		BaseEquation get_equation() const { return equation; };

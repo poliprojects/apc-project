@@ -1,6 +1,27 @@
 #include "utils.hpp"
 
 
+Rnvector EquationFunction_1::operator() (const double &t, Rnvector y) const
+{
+  for(auto &yi : y)
+    yi = 5*yi - 3;
+  return y;
+}
+
+Rnvector EquationFunction_2::operator() (const double &t, Rnvector y) const
+{
+  for(auto &yi : y)
+    yi = - yi;
+  return y;
+}
+
+Rnvector EquationFunction_3::operator() (const double &t, Rnvector y) const
+{
+  for(auto &yi : y)
+    yi = t - yi;
+  return y;
+}
+
 // Vector operators
 Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
 {

@@ -16,12 +16,12 @@ close all
 % y'(t) = t - y(t)   in [ -1, 5 ]
 % y(-1) = 1
 %
-Test = 3;
+Test = 1;
 
 % Read files
-FEFileID = fopen( ['solution_',num2str(Test),'.txt'], 'r' );
-AdapFileID = fopen( ['solution_',num2str(Test),'_adap.txt'], 'r' );
-TimesAdapFileID = fopen( ['times_solution_',num2str(Test),'_adap.txt'], 'r' );
+FEFileID = fopen( ['solution_',num2str(Test),'_FE.txt'], 'r' );
+AdapFileID = fopen( ['solution_',num2str(Test),'_adapFE.txt'], 'r' );
+TimesAdapFileID = fopen( ['times_solution_',num2str(Test),'_adapFE.txt'], 'r' );
 RKFileID = fopen( ['solution_',num2str(Test),'_RK.txt'], 'r' );
 
 % Numerical and exact solutions
@@ -59,4 +59,3 @@ plot( t_adap, u_n_adap )
 plot( t_RK, u_n_RK )
 
 legend( 'Exact', 'FE', 'Adaptive FE', 'RK' )
-

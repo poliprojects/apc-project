@@ -25,7 +25,7 @@ void FESolver::solve()
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
   Rnvector un1( un.size() ); // solution at (n+1)-th time
-  EquationFunction f = equation.get_f();
+  EquationFunction & f = equation.get_f();
 
   // Solution loop
   for( unsigned n = 0; n < Nh; n++ )

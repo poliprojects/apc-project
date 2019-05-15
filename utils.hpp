@@ -20,41 +20,68 @@ Rnvector operator*(const double lambda, const Rnvector &x); // product by scalar
 Rnvector abs(const Rnvector &x); // vector of absolute values
 
 
-#if defined TEST_1
-  struct EquationFunction
-  {
-    Rnvector operator() (const double &t, Rnvector y) const {
-      for(auto &yi : y)
-        yi = 5*yi - 3;
-      return y;
-    }
-    //f(t,y(t)) to be printed on screen in the summary
-    std::string f_string = "5*y(t) - 3";
-  };
+struct EquationFunction
+{
+  EquationFunction(const std::string f_expr): f_string(f_expr) {}
+  EquationFunction() = default;
+  virtual ~EquationFunction() = default;
+  virtual Rnvector operator()(const double & t, Rnvector y) const = 0;
+  std::string f_string;
+};
 
-#elif defined TEST_2
-  struct EquationFunction
-  {
-    Rnvector operator() (const double &t, Rnvector y) const {
-      for(auto &yi : y)
-        yi = - yi;
-      return y;
-    }
-    //f(t,y(t)) to be printed on screen in the summary
-    std::string f_string = "-y(t)";
-  };
+struct EquationFunction_1: public EquationFunction
+{
+  Rnvector operator()(const double & t, Rnvector y) const override;
+  EquationFunction_1(): EquationFunction("5*y(t) - 3") {}
+};
 
-#elif defined TEST_3
-  struct EquationFunction
-  {
-    Rnvector operator() (const double &t, Rnvector y) const {
-      for(auto &yi : y)
-        yi = t - yi;
-      return y;
-    }
-    //f(t,y(t)) to be printed on screen in the summary
-    std::string f_string = "t - y(t)";
-  };
-#endif
+struct EquationFunction_2: public EquationFunction
+{
+  Rnvector operator()(const double & t, Rnvector y) const override;
+  EquationFunction_2(): EquationFunction("-y(t)") {}
+};
+
+struct EquationFunction_3: public EquationFunction
+{
+  Rnvector operator()(const double & t, Rnvector y) const override;
+  EquationFunction_3(): EquationFunction("t - y(t)") {}
+};
+
+// #if defined TEST_1
+//   // struct EquationFunction
+//   // {
+//   //   Rnvector operator() (const double &t, Rnvector y) const {
+//   //     for(auto &yi : y)
+//   //       yi = 5*yi - 3;
+//   //     return y;
+//   //   }
+//   //   //f(t,y(t)) to be printed on screen in the summary
+//   //   std::string f_string = "5*y(t) - 3";
+//   // };
+//
+// #elif defined TEST_2
+//   struct EquationFunction
+//   {
+//     Rnvector operator() (const double &t, Rnvector y) const {
+//       for(auto &yi : y)
+//         yi = - yi;
+//       return y;
+//     }
+//     //f(t,y(t)) to be printed on screen in the summary
+//     std::string f_string = "-y(t)";
+//   };
+//
+// #elif defined TEST_3
+//   struct EquationFunction
+//   {
+//     Rnvector operator() (const double &t, Rnvector y) const {
+//       for(auto &yi : y)
+//         yi = t - yi;
+//       return y;
+//     }
+//     //f(t,y(t)) to be printed on screen in the summary
+//     std::string f_string = "t - y(t)";
+//   };
+// #endif
 
 #endif //UTILS_HPP

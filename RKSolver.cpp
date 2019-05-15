@@ -33,7 +33,7 @@ void RKSolver::solve()
 
   //Take solution at time 0 and function f from data
   Rnvector un = solution[0];
-  EquationFunction f = equation.get_f();
+  EquationFunction & f = equation.get_f();
 
   //Solution loop
   Rnvector un1( un.size() ); // solution at time n+1

@@ -8,7 +8,7 @@ void AdaptiveFESolver::solve()
   double tfin = equation.get_tfin();
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
-  EquationFunction f = equation.get_f();
+  EquationFunction & f = equation.get_f();
 
   unsigned n = 0;
   double hn = h;

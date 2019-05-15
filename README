@@ -1,9 +1,21 @@
-1) In Makefile select one of TEST_1, TEST_2, etc in CPPFLAGS
-2) Compile and run. Info about the equation solved appear on screen, solution
-is saved in solution_<#test>.txt
-3) Run check_solutions.m in Matlab to see a plot of exact and computed solution
+INSTRUCTIONS:
+
+i)    Compile typing make
+
+ii)   Run main providing the following parameters:
+      1) test number [ 1, 2, 3 ]
+      2) solver identification code [ FE, adapFE, RK ]
+      and optionally:
+      3) initial step [ any double, default set to 0.1 ]
+      4) tolerance [ any double, default set to 0.01 ]
+
+      Info about the equation solved appear on screen
+      Solution saved in solution_<#test>_<method>.txt
+      Time instants saved in solution_times_<#test>_<method>.txt
+
+iii)  Run check_solutions.m in Matlab selecting the number of the test
+      to see a plot of exact and computed solution
 
 To add new tests:
-1) In utils.hpp add a new EquationFunction
-2) In main.cpp set final time, intial condition and integration step
-
+1) In utils.hpp and utils.cpp add a new EquationFunction
+2) In main.cpp ...
