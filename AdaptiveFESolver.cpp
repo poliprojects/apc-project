@@ -56,26 +56,3 @@ void AdaptiveFESolver::print_solver_spec() const
   std::cout << "Tolerance  = " << tol  << std::endl;
 	std::cout << std::endl;
 }
-
-void AdaptiveFESolver::save_sol_to_file(const std::string &file_name) const
-{
-  std::string times_file_name = "times_" + file_name;
-
-  std::ofstream solution_stream{file_name};
-  std::ofstream times_stream{times_file_name};
-  if( !solution_stream or !times_stream )
-  {
-    std::cerr << "Cannot open an input file(s)." << std::endl;
-    return;
-  }
-  //Save the computed solution
-  for( auto un : solution )
-  {
-    for( auto val : un )
-      solution_stream << val << " ";
-    solution_stream << std::endl;
-  }
-  // Save time instants
-  for( auto tn : times )
-    times_stream << tn << "\n";
-}

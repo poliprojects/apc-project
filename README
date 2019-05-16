@@ -10,8 +10,7 @@ ii)   Run main providing the following parameters:
       4) tolerance [ any double, default set to 0.01 ]
 
       Info about the equation solved appear on screen
-      Solution saved in solution_<#test>_<method>.txt
-      Time instants saved in solution_times_<#test>_<method>.txt
+      Solution and time instants saved in solution_<#test>_<method>.txt
 
 iii)  Run check_solutions.m in Matlab selecting the number of the test
       to see a plot of exact and computed solution

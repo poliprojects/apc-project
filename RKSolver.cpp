@@ -23,7 +23,7 @@ double RKSolver::step() const
 void RKSolver::solve()
 {
   //Initialization of time instants
-  std::vector<double> times( Nh+1 );
+  times.resize( Nh+1 );
   double tn = equation.get_tin();
   for( std::size_t i = 0; i < Nh+1; i++ )
   {

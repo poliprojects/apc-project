@@ -12,6 +12,7 @@ class BaseSolver
 		double h; //assumption: h divides Tf-T0 exactly
 		BaseEquation equation;
 		SolutionType solution; // default constructed as empty vector of vectors
+		std::vector<double> times; // at the end contains the time instants
 
 	public:
 		// Constructors and destructors

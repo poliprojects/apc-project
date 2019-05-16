@@ -31,10 +31,16 @@ void BaseSolver::save_sol_to_file(const std::string & file_name) const
     return;
   }
   //Save the computed solution
+  output_stream << "Solution:" << std::endl;
   for( auto un : solution )
   {
     for( auto val : un )
       output_stream << val << " ";
     output_stream << std::endl;
   }
+  // Save time instants
+  output_stream << "Time instants:" << std::endl;
+  for( auto tn : times )
+    output_stream << tn << " ";
+  output_stream << std::endl;
 }

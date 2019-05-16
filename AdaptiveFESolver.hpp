@@ -9,9 +9,7 @@ class AdaptiveFESolver: public FESolver
 	private:
 		double tol;
 		double hmin;
-		// in this class, h is the starting value for the step and Nh has no
-		// meaning
-		std::vector<double> times;
+		// h is the starting value for the step and Nh has no meaning
 
 	public:
 		// Constructors
@@ -26,7 +24,6 @@ class AdaptiveFESolver: public FESolver
 
 		//Solution output
 		void print_solver_spec() const override;
-		void save_sol_to_file(const std::string &file_name) const override;
 };
 
 #endif // ADAPTIVEFESOLVER_HPP

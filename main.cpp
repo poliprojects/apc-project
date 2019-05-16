@@ -57,8 +57,6 @@ int main( int argc, char * argv[] )
   {
     if ( argc > 3 )
       initial_step = atof( argv[3] );
-    std::cout << initial_step << '\n';
-    std::cout << argv[3] << '\n';
     problem_ptr = new FESolver( initial_step, equation );
   }
   else if ( strcmp(argv[2], "adapFE") == 0 )

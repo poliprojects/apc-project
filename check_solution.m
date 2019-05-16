@@ -16,18 +16,21 @@ close all
 % y'(t) = t - y(t)   in [ -1, 5 ]
 % y(-1) = 1
 %
-Test = 1;
+Test = 3;
 
-% Read files
-FEFileID = fopen( ['solution_',num2str(Test),'_FE.txt'], 'r' );
-AdapFileID = fopen( ['solution_',num2str(Test),'_adapFE.txt'], 'r' );
-TimesAdapFileID = fopen( ['times_solution_',num2str(Test),'_adapFE.txt'], 'r' );
-RKFileID = fopen( ['solution_',num2str(Test),'_RK.txt'], 'r' );
+methods = [ "FE", "adapFE", "RK" ];
 
-% Numerical and exact solutions
-u_n_FE = fscanf( FEFileID, '%f' );
-u_n_adap = fscanf( AdapFileID, '%f' );
-u_n_RK = fscanf( RKFileID, '%f' );
+% Read computed solution and time instants from file
+for i = 1 : length( methods )
+    method = methods(i);
+    FileID = fopen( ['solution_',num2str(Test),'_',char(method),'.txt'], 'r' );
+    buff = fscanf( FileID, '%s', 1 ); % Solution: 
+    un{i} = fscanf( FileID, '%f' );
+    buff = fscanf( FileID, '%s', 2 ); % Time instants:
+    tn{i} = fscanf( FileID, '%f' );
+end
+
+% Exact solution
 if( Test == 1 )
     u_ex = @(t) -3/5 * exp(5*t) + 3/5;
 elseif( Test == 2 )
@@ -36,26 +39,12 @@ elseif( Test == 3 )
     u_ex = @(t) t - 1 + 3*exp(-(t+1));
 end
 
-% Time vectors
-if( Test == 1 )
-    t_in = 0;
-    t_fin = 1;
-elseif( Test == 2 )
-    t_in = 0;
-    t_fin = 30;
-elseif( Test == 3 )
-    t_in = -1;
-    t_fin = 5;
-end
-t_FE = linspace( t_in, t_fin, length(u_n_FE) );
-t_RK = linspace( t_in, t_fin, length(u_n_RK) );
-t_adap = fscanf ( TimesAdapFileID, '%f' ); % with adaptive methods time is read from file
-
-% Plot solutions
-plot( t_FE, u_ex(t_FE) )
+% Plot
+figure
 hold on
-plot( t_FE, u_n_FE )
-plot( t_adap, u_n_adap )
-plot( t_RK, u_n_RK )
+plot( tn{1}, u_ex(tn{1}) )
+for i = 1 : length( methods )
+    plot( tn{i}, un{i} )
+end
+legend( 'Exact', char(methods(1)), char(methods(2)), char(methods(3)) )
 
-legend( 'Exact', 'FE', 'Adaptive FE', 'RK' )
