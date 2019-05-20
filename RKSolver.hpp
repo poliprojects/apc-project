@@ -14,7 +14,7 @@ class RKSolver: public BaseSolver
   protected:
     // Butcher array
     // (the vectors are of size s, the first element of c is zero;
-    // the matrix is sxs with the upper triangular part equal to zero)
+    // the matrix is s-by-s with the upper triangular part equal to zero)
     std::vector<std::vector<double>> a;
     std::vector<double> b;
     std::vector<double> c;
