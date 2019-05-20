@@ -3,7 +3,7 @@ INSTRUCTIONS:
 i)    Compile typing make
 
 ii)   Run main providing the following parameters:
-      1) test number [ 1, 2, 3 ]
+      1) test number [ 1, 2, 3, 4 ]
       2) solver identification code [ FE, adapFE, RK ]
       and optionally:
       3) initial step [ any double, default set to 0.1 ]

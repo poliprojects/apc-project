@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include <string.h> // strcmp
 #include <string>
 #include <stdlib.h> // atof
@@ -44,6 +45,15 @@ int main( int argc, char * argv[] )
     fun_ptr = new EquationFunction_3;
     initial_time = -1;
     final_time = 5;
+    initial_condition.push_back(1);
+  }
+  else if ( strcmp(argv[1], "4") == 0  )
+  {
+    std::cout << std::endl << "Running Test 4" << std::endl << std::endl;
+    fun_ptr = new EquationFunction_4;
+    initial_time = 0;
+    final_time = 10;
+    initial_condition.push_back(1);
     initial_condition.push_back(1);
   }
   // Equation initialization using test dependent data

@@ -22,6 +22,15 @@ Rnvector EquationFunction_3::operator() (const double &t, Rnvector y) const
   return y;
 }
 
+Rnvector EquationFunction_4::operator() (const double &t, Rnvector y) const
+{
+  assert( y.size() == 2 );
+  Rnvector y_old{y};
+  y[0] = - 3*y_old[0] -   y_old[1] + sin(t);
+  y[1] =     y_old[0] - 5*y_old[1] - 2;
+  return y;
+}
+
 // Vector operators
 Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
 {

@@ -47,6 +47,13 @@ struct EquationFunction_3: public EquationFunction
   EquationFunction_3(): EquationFunction("t - y(t)") {}
 };
 
+struct EquationFunction_4: public EquationFunction
+{
+  Rnvector operator()(const double & t, Rnvector y) const override;
+  EquationFunction_4(): EquationFunction("[-3 -1; 1 -5] y(t) + [sin(t); -2]") {}
+// TODO
+};
+
 // #if defined TEST_1
 //   // struct EquationFunction
 //   // {
