@@ -15,7 +15,7 @@ $(EXE): $(OBJS)
 
 $(OBJS): BaseEquation.hpp BaseSolver.hpp utils.hpp
 utils.o: utils.hpp
-main.o: FESolver.hpp AdaptiveFESolver.hpp RKSolver.hpp
+main.o: FESolver.hpp AdaptiveFESolver.hpp RKSolver.hpp AdaptiveRKSolver.hpp
 FESolver.o: FESolver.hpp
 AdaptiveFESolver.o: FESolver.hpp AdaptiveFESolver.hpp
 RKSolver.o: RKSolver.hpp
