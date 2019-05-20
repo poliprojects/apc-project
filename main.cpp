@@ -17,6 +17,15 @@
 // argv[4] = tolerance (default to 1e-2)
 int main( int argc, char * argv[] )
 {
+  // Check of minimum number of parameters required to execute the program
+  if( argc < 3 )
+  {
+    std::cerr << "Missing mandatory parameters; at least test number and " <<
+    "solver ID are required." << std::endl <<
+    "Example: ./main 2 FE" << std::endl <<
+    "For more information, please refer to the README file." << std::endl;
+    exit(1);
+  }
   // Initialization of test dependent data
   // NB: the actual definition of fun depends on the test chosen (see utils.hpp)
   EquationFunction* fun_ptr = nullptr;
