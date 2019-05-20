@@ -47,7 +47,7 @@ int main( int argc, char * argv[] )
     initial_condition.push_back(1);
   }
   // Equation initialization using test dependent data
-  BaseEquation equation( initial_time, final_time, *fun_ptr, initial_condition );
+  BaseEquation equation(initial_time, final_time, *fun_ptr, initial_condition);
 
   // Initialization of the solver
   BaseSolver* problem_ptr = nullptr;
@@ -98,7 +98,7 @@ int main( int argc, char * argv[] )
   // NB: the name of the file depends on the arguments passed at runtime
   std::string test_number = argv[1];
   std::string method_name = argv[2];
-  std::string file_name = "solution_" + test_number + "_" + method_name + ".txt";
+  std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
   // std::cout << file_name << '\n';
   problem.save_sol_to_file( file_name );
 

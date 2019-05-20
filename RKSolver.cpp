@@ -11,7 +11,8 @@ RKSolver::RKSolver(double step, const BaseEquation & eq,
   assert( b.size() == c.size() && a.size() == a[0].size() );
   // Set number of stages for every step
   n_stages = b.size();
-  // Set total number of steps (known a priori only in RK, no meaning in adaptive case)
+  // Set total number of steps (known a priori only in RK; has no meaning in
+  // adaptive case)
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
