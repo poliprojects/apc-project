@@ -32,26 +32,27 @@ struct EquationFunction
 struct EquationFunction_1: public EquationFunction
 {
   Rnvector operator()(const double & t, Rnvector y) const override;
-  EquationFunction_1(): EquationFunction("5*y(t) - 3") {}
+  EquationFunction_1(): EquationFunction("y'(t) = 5*y(t) - 3") {}
 };
 
 struct EquationFunction_2: public EquationFunction
 {
   Rnvector operator()(const double & t, Rnvector y) const override;
-  EquationFunction_2(): EquationFunction("-y(t)") {}
+  EquationFunction_2(): EquationFunction("y'(t) = -y(t)") {}
 };
 
 struct EquationFunction_3: public EquationFunction
 {
   Rnvector operator()(const double & t, Rnvector y) const override;
-  EquationFunction_3(): EquationFunction("t - y(t)") {}
+  EquationFunction_3(): EquationFunction("y'(t) = t - y(t)") {}
 };
 
 struct EquationFunction_4: public EquationFunction
 {
   Rnvector operator()(const double & t, Rnvector y) const override;
-  EquationFunction_4(): EquationFunction("[-3 -1; 1 -5] y(t) + [sin(t); -2]") {}
-// TODO
+  EquationFunction_4(): EquationFunction(
+    "y1'(t) = -3*y1(t) -   y2(t) + sin(t)\ny2'(t) =    y1(t) - 5*y2(t) - 2\t")
+  {} //TODO
 };
 
 // #if defined TEST_1

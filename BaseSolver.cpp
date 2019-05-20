@@ -12,7 +12,7 @@ void BaseSolver::print() const
 {
   //Print the equation
   std::cout << "Equation:" << std::endl;
-  std::cout << "y'(t) = " << equation.get_f().f_string << "\t in [" <<
+  std::cout << equation.get_f().f_string << "\t in [" <<
     equation.get_tin() << "," << equation.get_tfin() << "]" << std::endl;
   std::cout << "y(" << equation.get_tin() << ") = ";
   for( auto i : equation.get_x0() )

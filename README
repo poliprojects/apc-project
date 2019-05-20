@@ -4,10 +4,11 @@ i)    Compile typing make
 
 ii)   Run main providing the following parameters:
       1) test number [ 1, 2, 3, 4 ]
-      2) solver identification code [ FE, adapFE, RK ]
+      2) solver identification code [ FE, adapFE, RK, adapRK ]
       and optionally:
       3) initial step [ any double, default set to 0.1 ]
       4) tolerance [ any double, default set to 0.01 ]
+      Example: ./main 3 RK 0.2 1e-3
 
       Info about the equation solved appear on screen
       Solution and time instants saved in solution_<#test>_<method>.txt
