@@ -26,6 +26,7 @@ int main( int argc, char * argv[] )
     "For more information, please refer to the README file." << std::endl;
     exit(1);
   }
+  
   // Initialization of test dependent data
   // NB: the actual definition of fun depends on the test chosen (see utils.hpp)
   EquationFunction* fun_ptr = nullptr;
