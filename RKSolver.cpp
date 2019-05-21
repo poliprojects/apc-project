@@ -21,6 +21,29 @@ double RKSolver::step() const
   return h;
 }
 
+Rnvector RKSolver::single_step(const double tn, const Rnvector &un,
+  const double h) const
+{
+  std::vector<Rnvector> K( n_stages ); // vector of K_i
+  Rnvector un1 = un;
+  EquationFunction &f = equation.get_f();
+  K[0] = f( tn, un );
+  un1 = un1 + h * b[0] * K[0];
+  for( unsigned i = 1; i < n_stages; i++ )
+  {
+    Rnvector sum_aij_Kj( equation.get_dimension(), 0 );
+    for( unsigned j = 0; j < i; j++ )
+    {
+      sum_aij_Kj = sum_aij_Kj + a[i][j] * K[j];
+    }
+    // std::cout << "/* fine ciclo j */" << '\n'; // DEBUG
+    K[i] = f( tn + c[i] * h, un + h * sum_aij_Kj );
+    un1 = un1 + h * b[i] * K[i];
+  }
+  // std::cout << "/* fine ciclo i */" << '\n'; // DEBUG
+  return un1;
+}
+
 void RKSolver::solve()
 {
   //Initialization of time instants
@@ -34,34 +57,17 @@ void RKSolver::solve()
 
   //Take solution at time 0 and function f from data
   Rnvector un = solution[0];
-  EquationFunction & f = equation.get_f();
 
   //Solution loop
   Rnvector un1( un.size() ); // solution at time n+1
-  std::vector<Rnvector> K( n_stages ); // vector of K_i
   for( unsigned n = 0; n < Nh; n++ )
   {
-    un1 = un;
-    K[0] = f( times[n], un );
-    un1 = un1 + h * b[0] * K[0];
-    for( unsigned i = 1; i < n_stages; i++ )
-    {
-      Rnvector sum_aij_Kj( equation.get_dimension(), 0 );
-      for( unsigned j = 0; j < i; j++ )
-      {
-        sum_aij_Kj = sum_aij_Kj + a[i][j] * K[j];
-      }
-      // std::cout << "/* fine cilco j */" << '\n'; // DEBUG
-      K[i] = f( times[n] + c[i] * h, un + h * sum_aij_Kj );
-      un1 = un1 + h * b[i] * K[i];
-    }
-    // std::cout << "/* fine cilco i */" << '\n'; // DEBUG
+    un1 = single_step(times[n], un, h);
     solution.push_back( un1 );
     un = un1;
     un1.clear();
-    // K.clear();
   }
-}
+} // TODO: can we just use BaseSolver::solve()?
 
 void RKSolver::print_solver_spec() const
 {

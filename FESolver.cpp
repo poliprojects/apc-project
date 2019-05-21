@@ -12,6 +12,15 @@ double FESolver::step() const
   return h;
 }
 
+Rnvector FESolver::single_step(const double tn, const Rnvector &un,
+  const double h) const
+{
+  EquationFunction &f = equation.get_f();
+  Rnvector f_eval = f( tn, un );
+  Rnvector un1 = un + h*f_eval;
+  return un1;
+}
+
 void FESolver::solve()
 {
   //Initialization of time instants
@@ -25,13 +34,11 @@ void FESolver::solve()
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
   Rnvector un1( un.size() ); // solution at (n+1)-th time
-  EquationFunction & f = equation.get_f();
 
   // Solution loop
   for( unsigned n = 0; n < Nh; n++ )
   {
-    Rnvector f_eval = f( times[n], un );
-    un1 = un + h*f_eval;
+    un1 = single_step(times[n], un, h);
     solution.push_back( un1 );
     un = un1;
     un1.clear();
