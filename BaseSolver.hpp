@@ -24,7 +24,9 @@ class BaseSolver
 		SolutionType get_solution() const { return solution; };
 
 		// Solving tools
-		virtual double step() const = 0;
+		virtual double step() const = 0; // TODO change name?
+		virtual Rnvector single_step(const double tn, const Rnvector &un,
+			const double h) const = 0;
 		virtual void solve() = 0;
 
 		// Solution output
