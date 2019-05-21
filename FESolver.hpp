@@ -9,6 +9,11 @@ class FESolver: public BaseSolver
 	private:
 		unsigned Nh; //number of steps: ( Tf - T0 ) / h;
 
+	protected:
+		// Solving tools
+		Rnvector single_step(const double tn, const Rnvector &un,
+			const double h) const override;
+
 	public:
 		// Constructors
 		FESolver(double step, const BaseEquation &eq);
@@ -18,8 +23,6 @@ class FESolver: public BaseSolver
 
 		// Solving tool
 		double step() const override;
-		Rnvector single_step(const double tn, const Rnvector &un,
-			const double h) const override;
 		void solve() override;
 
 		//Solution output

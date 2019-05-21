@@ -14,6 +14,10 @@ class BaseSolver
 		SolutionType solution; // default constructed as empty vector of vectors
 		std::vector<double> times; // at the end contains the time instants
 
+		// Solving tools
+		virtual Rnvector single_step(const double tn, const Rnvector &un,
+			const double h) const = 0;
+
 	public:
 		// Constructors and destructors
 		BaseSolver(double step, const BaseEquation &eq);
@@ -25,8 +29,6 @@ class BaseSolver
 
 		// Solving tools
 		virtual double step() const = 0; // TODO change name?
-		virtual Rnvector single_step(const double tn, const Rnvector &un,
-			const double h) const = 0;
 		virtual void solve() = 0;
 
 		// Solution output

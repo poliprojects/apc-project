@@ -22,6 +22,10 @@ class RKSolver: public BaseSolver
     // Stages
     unsigned n_stages;
 
+    // Solving tools
+    Rnvector single_step(const double tn, const Rnvector &un,
+      const double h) const override;
+
   public:
     // Constructors
     RKSolver(double step, const BaseEquation &eq,
@@ -31,8 +35,6 @@ class RKSolver: public BaseSolver
 
     // Solving tools
   	double step() const override;
-    Rnvector single_step(const double tn, const Rnvector &un,
-      const double h) const override;
   	void solve() override;
 
     //Solution output
