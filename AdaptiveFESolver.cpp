@@ -8,7 +8,6 @@ void AdaptiveFESolver::solve()
   double tfin = equation.get_tfin();
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
-  EquationFunction & f = equation.get_f();
 
   unsigned n = 0;
   double hn = h;
@@ -17,11 +16,11 @@ void AdaptiveFESolver::solve()
   while( tn+hn < tfin )
   {
     // Single iteration with step hn
-    Rnvector uh1 = un + hn*f(tn, un);
+    Rnvector uh1 = FESolver::single_step( tn, un, hn );
 
     // Double iteration with step hn/2
-    Rnvector utemp = un + (hn/2)*f(tn, un);
-    Rnvector uh2   = utemp + (hn/2)*f(tn + hn/2, utemp);
+    Rnvector utemp = FESolver::single_step( tn, un, hn/2 );
+    Rnvector uh2   = FESolver::single_step( tn+hn/2, utemp, hn/2 );
 
     // Compute error in infinity norm
     Rnvector diff = abs( uh2 - uh1 );
