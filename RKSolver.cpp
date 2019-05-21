@@ -67,7 +67,7 @@ void RKSolver::solve()
     un = un1;
     un1.clear();
   }
-} // TODO: can we just use BaseSolver::solve()?
+}
 
 void RKSolver::print_solver_spec() const
 {
