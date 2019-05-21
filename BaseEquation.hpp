@@ -31,7 +31,7 @@ class BaseEquation
 		void set_f(EquationFunction & fun) { f = fun; };
 		void set_tin(const double &initial_time) { tfin = initial_time; };
 		void set_tfin(const double &final_time) { tfin = final_time; };
-		void set_x0(const Rnvector &cond) { x0 = cond; dimension = x0.size() };
+		void set_x0(const Rnvector &cond) { x0 = cond; dimension = x0.size(); };
 };
 
 #endif //BASEEQUATION_HPP
