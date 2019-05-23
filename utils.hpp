@@ -15,8 +15,9 @@ typedef std::vector<Rnvector> SolutionType;
 
 // Vector operators
 Rnvector operator+(const Rnvector &x, const Rnvector &y); // vector sum
-Rnvector operator-(const Rnvector &x, const Rnvector &y); // vector difference
 Rnvector operator*(const double lambda, const Rnvector &x); // product by scalar
+Rnvector operator-(const Rnvector &x, const Rnvector &y); // vector difference
+Rnvector operator+(const Rnvector &x, const double lambda); // sum with scalar
 Rnvector abs(const Rnvector &x); // vector of absolute values
 
 
