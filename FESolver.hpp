@@ -22,7 +22,6 @@ class FESolver: public BaseSolver
 		unsigned get_Nh() const { return Nh; };
 
 		// Solving tool
-		double step() const override;
 		void solve() override;
 
 		//Solution output

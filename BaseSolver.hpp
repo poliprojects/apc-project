@@ -24,11 +24,11 @@ class BaseSolver
 		virtual ~BaseSolver() = default;
 
 		// Getters
+		double get_h() const { return h; };
 		BaseEquation get_equation() const { return equation; };
 		SolutionType get_solution() const { return solution; };
 
 		// Solving tools
-		virtual double step() const = 0; // TODO change name?
 		virtual void solve() = 0;
 
 		// Solution output

@@ -7,10 +7,6 @@ FESolver::FESolver(double step, const BaseEquation &eq):
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
-double FESolver::step() const
-{
-  return h;
-}
 
 Rnvector FESolver::single_step(const double tn, const Rnvector &un,
   const double h) const

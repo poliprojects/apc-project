@@ -34,7 +34,6 @@ class RKSolver: public BaseSolver
       const std::vector<double> & c_);
 
     // Solving tools
-  	double step() const override;
   	void solve() override;
 
     //Solution output

@@ -16,10 +16,6 @@ RKSolver::RKSolver(double step, const BaseEquation & eq,
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
-double RKSolver::step() const
-{
-  return h;
-}
 
 Rnvector RKSolver::single_step(const double tn, const Rnvector &un,
   const double h) const
