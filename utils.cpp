@@ -31,6 +31,12 @@ Rnvector operator+(const Rnvector &x, const double lambda) // sum with scalar
   return x + y;
 }
 
+Rnvector operator-(const Rnvector &x, const double lambda) // diff with scalar
+{
+  Rnvector y( x.size(), lambda );
+  return x + (-1)*y;
+}
+
 
 Rnvector abs(const Rnvector &x) // vector of absolute values
 {
