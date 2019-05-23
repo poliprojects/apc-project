@@ -51,23 +51,17 @@ Rnvector abs(const Rnvector &x) // vector of absolute values
 
 Rnvector EquationFunction_1::operator() (const double &t, Rnvector y) const
 {
-  for(auto &yi : y)
-    yi = 5*yi - 3;
-  return y;
+  return 5*y - 3;
 }
 
 Rnvector EquationFunction_2::operator() (const double &t, Rnvector y) const
 {
-  for(auto &yi : y)
-    yi = - yi;
-  return y;
+  return (-1.0)*y;
 }
 
 Rnvector EquationFunction_3::operator() (const double &t, Rnvector y) const
 {
-  for(auto &yi : y)
-    yi = t - yi;
-  return y;
+  return (-1.0)*y + t;
 }
 
 Rnvector EquationFunction_4::operator() (const double &t, Rnvector y) const
