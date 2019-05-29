@@ -1,4 +1,7 @@
 TODO LIST
 * Indentation
 * Methods complexities
-* Split utils.*pp into multiple files?
+* Split utils.*pp into multiple files
+* Parallel RK with MPI
+* Documentation
+* Slides
