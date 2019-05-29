@@ -4,7 +4,7 @@ CPPFLAGS += -DTEST_1
 EXE = main
 SOLVERS = BaseSolver.o FESolver.o AdaptiveFESolver.o RKSolver.o \
 	AdaptiveRKSolver.o
-OBJS = $(SOLVERS) main.o utils.o
+OBJS = $(SOLVERS) main.o utils.o equations.o
 
 .PHONY: all clean distclean
 
@@ -13,8 +13,7 @@ all: $(EXE)
 $(EXE): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ $(OUTPUT_OPTION)
 
-$(OBJS): BaseEquation.hpp BaseSolver.hpp utils.hpp
-utils.o: utils.hpp
+$(OBJS): BaseEquation.hpp BaseSolver.hpp equations.hpp
 main.o: FESolver.hpp AdaptiveFESolver.hpp RKSolver.hpp AdaptiveRKSolver.hpp
 FESolver.o: FESolver.hpp
 AdaptiveFESolver.o: FESolver.hpp AdaptiveFESolver.hpp

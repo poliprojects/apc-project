@@ -1,7 +1,7 @@
 #ifndef BASEEQUATION_HPP
 #define BASEEQUATION_HPP
 
-#include "utils.hpp"
+#include "equations.hpp"
 
 
 class BaseEquation

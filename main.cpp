@@ -3,12 +3,14 @@
 #include <string.h> // strcmp
 #include <string>
 #include <stdlib.h> // atof
+#include "equations.hpp"
 #include "BaseSolver.hpp"
 #include "BaseEquation.hpp"
 #include "FESolver.hpp"
-#include "utils.hpp"
 #include "AdaptiveFESolver.hpp"
 #include "RKSolver.hpp"
+#include "AdaptiveRKSolver.hpp"
+
 
 // Expected arguments:
 // argv[1] = test number
@@ -28,7 +30,8 @@ int main( int argc, char * argv[] )
   }
   
   // Initialization of test dependent data
-  // NB: the actual definition of fun depends on the test chosen (see utils.hpp)
+  // NB: the actual definition of fun depends on the test chosen (see
+  // equations.hpp and equations.cpp files)
   EquationFunction* fun_ptr = nullptr;
   double initial_time;
   double final_time;
