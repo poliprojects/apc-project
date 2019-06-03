@@ -8,7 +8,6 @@ void AdaptiveRKSolver::solve()
   double tfin = equation.get_tfin();
 
   Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
-  EquationFunction & f = equation.get_f();
 
   unsigned n = 0;
   double hn = h;
@@ -16,27 +15,27 @@ void AdaptiveRKSolver::solve()
 
   while( tn+hn < tfin )
   {
-    // RK algorithm below
-    // // Single iteration with step hn
-    // Rnvector uh1 = un + hn*f(tn, un);
+    // Single iteration with step hn
+    Rnvector uh1 = RKSolver::single_step( tn, un, hn );
 
-    // // Double iteration with step hn/2
-    // Rnvector utemp = un + (hn/2)*f(tn, un);
-    // Rnvector uh2   = utemp + (hn/2)*f(tn + hn/2, utemp);
+    // Double iteration with step hn/2
+    Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
+    Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );
 
     // Compute error in infinity norm
     Rnvector diff = abs( uh2 - uh1 );
     double error = *std::max_element( diff.cbegin(), diff.cend() ) /
-      ( pow(2,p+1) - 1 );
+      ( pow(2,n_stages+1) - 1 ); // TODO: order p instead of n_stages
 
-    if( error < tol/2 or hn < hmin ) // termination criteria
+    if( error < tol or hn < hmin ) // termination criteria
     {
       times.push_back( tn + hn );
       tn += hn;
       solution.push_back( uh2 );
       un = uh2;
 
-      hn *= 2;
+      if( error < tol / pow(2,n_stages+1) ) // TODO: order p instead of n_stages
+        hn *= 2;
       n++;
     }
     else

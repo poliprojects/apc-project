@@ -1,7 +1,7 @@
 #ifndef BASEEQUATION_HPP
 #define BASEEQUATION_HPP
 
-#include "utils.hpp"
+#include "equations.hpp"
 
 
 class BaseEquation
@@ -43,8 +43,7 @@ class BaseEquation
 		void set_f(EquationFunction & fun) { f = fun; };
 		void set_tin(const double &initial_time) { tfin = initial_time; };
 		void set_tfin(const double &final_time) { tfin = final_time; };
-		void set_x0(const Rnvector &initial_cond) { x0 = initial_cond; };
-		void set_dimension(const double & dim) { dimension = dim; };
+		void set_x0(const Rnvector &cond) { x0 = cond; dimension = x0.size(); };
 };
 
 #endif //BASEEQUATION_HPP

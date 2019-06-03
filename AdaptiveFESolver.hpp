@@ -11,6 +11,9 @@ class AdaptiveFESolver: public FESolver
 		double hmin;
 		// h is the starting value for the step and Nh has no meaning
 
+	// TODO Note: a single_step() specialization could be implemented for this
+	// class for usage in solve(), but it would be computationally inefficient
+
 	public:
 		// Constructors
 		AdaptiveFESolver(double start_step, const BaseEquation &eq,

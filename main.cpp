@@ -3,12 +3,14 @@
 #include <string.h> // strcmp
 #include <string>
 #include <stdlib.h> // atof
+#include "equations.hpp"
 #include "BaseSolver.hpp"
 #include "BaseEquation.hpp"
 #include "FESolver.hpp"
-#include "utils.hpp"
 #include "AdaptiveFESolver.hpp"
 #include "RKSolver.hpp"
+#include "AdaptiveRKSolver.hpp"
+
 
 // Expected arguments:
 // argv[1] = test number
@@ -28,7 +30,8 @@ int main( int argc, char * argv[] )
   }
   
   // Initialization of test dependent data
-  // NB: the actual definition of fun depends on the test chosen (see utils.hpp)
+  // NB: the actual definition of fun depends on the test chosen (see
+  // equations.hpp and equations.cpp files)
   EquationFunction* fun_ptr = nullptr;
   double initial_time;
   double final_time;
@@ -104,7 +107,18 @@ int main( int argc, char * argv[] )
   }
   else if ( strcmp(argv[2], "adapRK") == 0 )
   {
-      // ...
+    if( argc > 3 )
+      initial_step = atof( argv[3] );
+    // Heun method
+    std::vector<std::vector<double>> a;
+    std::vector<double> a1{ 0, 0 };
+    std::vector<double> a2{ 1, 0 };
+    a.push_back( a1 );
+    a.push_back( a2 );
+    std::vector<double> b{ 0.5, 0.5 };
+    std::vector<double> c{ 0, 1 };
+    problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
+                                        tolerance, tolerance );
   }
   BaseSolver & problem = *problem_ptr;
 

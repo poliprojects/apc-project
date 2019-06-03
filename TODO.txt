@@ -1,0 +1,8 @@
+TODO LIST
+* Indentation
+* Methods complexities
+* Fix some ";;" in a couple of files
+* Parallel RK with MPI
+* Documentation
+* Slides
+* Migrate all includes in the main to an appropriate file?

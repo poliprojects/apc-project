@@ -1,5 +1,0 @@
-THINGS TO DISCUSS
-* How to use namespaces?
-* Indentation
-
-* Returning same vector y in utils.hpp

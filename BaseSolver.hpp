@@ -14,17 +14,21 @@ class BaseSolver
 		SolutionType solution; // default constructed as empty vector of vectors
 		std::vector<double> times; // at the end contains the time instants
 
+		// Solving tools
+		virtual Rnvector single_step(const double tn, const Rnvector &un,
+			const double h) const = 0;
+
 	public:
 		// Constructors and destructors
 		BaseSolver(double step, const BaseEquation &eq);
 		virtual ~BaseSolver() = default;
 
 		// Getters
+		double get_h() const { return h; };
 		BaseEquation get_equation() const { return equation; };
 		SolutionType get_solution() const { return solution; };
 
 		// Solving tools
-		virtual double step() const = 0;
 		virtual void solve() = 0;
 
 		// Solution output
