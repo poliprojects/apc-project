@@ -8,35 +8,42 @@
 
 class RKSolver: public BaseSolver
 {
+
   private:
-    unsigned Nh; //number of steps: ( Tf - T0 ) / h;
+
+    //! Total number of time steps (known a priori, useless in adaptive version)
+    unsigned Nh;
 
   protected:
-    // Butcher array
+    // Butcher tableau
     // (the vectors are of size s, the first element of c is zero;
     // the matrix is s-by-s with the upper triangular part equal to zero)
+    //! a coefficients of the Butcher tableau
     std::vector<std::vector<double>> a;
+    //! b coefficients of the Butcher tableau
     std::vector<double> b;
+    //! c coefficients of the Butcher tableau
     std::vector<double> c;
 
-    // Stages
+    //! Number of stages
     unsigned n_stages;
 
-    // Solving tools
+    //! One step of time integration, called by solve()
     Rnvector single_step(const double tn, const Rnvector &un,
       const double h) const override;
 
   public:
+    
     // Constructors
     RKSolver(double step, const BaseEquation &eq,
       const std::vector<std::vector<double>> & a_,
       const std::vector<double> & b_,
       const std::vector<double> & c_);
 
-    // Solving tools
+    //! Main solver based on Runge Kutta method
   	void solve() override;
 
-    //Solution output
+    //! Prints the characteristics of the Runge Kutta solver
 		void print_solver_spec() const override;
 };
 

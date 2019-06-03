@@ -8,19 +8,31 @@
 
 class BaseSolver
 {
-	protected:
-		double h; //assumption: h divides Tf-T0 exactly
-		BaseEquation equation;
-		SolutionType solution; // default constructed as empty vector of vectors
-		std::vector<double> times; // at the end contains the time instants
 
-		// Solving tools
+	protected:
+
+		//! Integration step (starting value in adaptive methods)
+		double h;
+
+		//! Equation to be solved
+		BaseEquation equation;
+
+		//! Solution (to be filled by solve())
+		SolutionType solution;
+
+		//! Time instants (to be filled by solve())
+		std::vector<double> times;
+
+		//! One step of time integration
 		virtual Rnvector single_step(const double tn, const Rnvector &un,
 			const double h) const = 0;
 
 	public:
-		// Constructors and destructors
+
+		// Constructors
 		BaseSolver(double step, const BaseEquation &eq);
+
+		// Destructor
 		virtual ~BaseSolver() = default;
 
 		// Getters
@@ -28,12 +40,15 @@ class BaseSolver
 		BaseEquation get_equation() const { return equation; };
 		SolutionType get_solution() const { return solution; };
 
-		// Solving tools
+		//! Main solver
 		virtual void solve() = 0;
 
-		// Solution output
+		//! Prints the equation and calls print_solver_spec()
 		virtual void print() const;
+		//! Prints the characteristics of the solver chosen
 		virtual void print_solver_spec() const = 0;
+
+		//! Saves solution and time instants in a .txt file
 		virtual void save_sol_to_file(const std::string &file_name) const;
 };
 

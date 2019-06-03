@@ -7,7 +7,10 @@ FESolver::FESolver(double step, const BaseEquation &eq):
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
 }
 
-
+/// \param   tn   Present time instant
+/// \param   un   Present value of the solution
+/// \param   h    Step size
+/// \return  un1  Solution at the following time instant
 Rnvector FESolver::single_step(const double tn, const Rnvector &un,
   const double h) const
 {

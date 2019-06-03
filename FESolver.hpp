@@ -6,25 +6,30 @@
 
 class FESolver: public BaseSolver
 {
+
 	private:
-		unsigned Nh; //number of steps: ( Tf - T0 ) / h;
+
+		//! Total number of time steps (known a priori, useless in adaptive version)
+		unsigned Nh;
 
 	protected:
-		// Solving tools
+
+		//! One step of time integration, called by solve()
 		Rnvector single_step(const double tn, const Rnvector &un,
 			const double h) const override;
 
 	public:
+
 		// Constructors
 		FESolver(double step, const BaseEquation &eq);
 
 		// Getters
 		unsigned get_Nh() const { return Nh; };
 
-		// Solving tool
+		//! Main solver based on Forward Euler method
 		void solve() override;
 
-		//Solution output
+		//! Prints the characteristics of the Forward Euler solver
 		void print_solver_spec() const override;
 };
 
