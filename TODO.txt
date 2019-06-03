@@ -4,5 +4,4 @@ TODO LIST
 * Parallel RK with MPI
 * Documentation
 * Slides
-* RK object in the main
 * Migrate all includes in the main to an appropriate file?
