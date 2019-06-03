@@ -6,14 +6,26 @@
 
 class BaseEquation
 {
+
 	private:
+
+		//! Inital time
 		double tin;
+
+		//! Final time
 		double tfin;
+
+		//! Right hand side f(x,t)
 		EquationFunction & f;
+
+		//! Initial condition
 		Rnvector x0;
-		unsigned dimension; // dimension of the system (x0.size())
+
+		//! Dimension of the system (x0.size())
+		unsigned dimension;
 
 	public:
+
 		// Constructors
 		BaseEquation(const double &initial_time, const double &final_time,
 			EquationFunction &fun, const Rnvector &initial_cond):
