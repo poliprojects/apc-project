@@ -49,5 +49,5 @@ void FESolver::print_solver_spec() const
 	std::cout << "Solved using: Forward Euler" << std::endl;
 	std::cout << "h  = " << h << std::endl;
 	std::cout << "Nh = " << Nh << std::endl;
-	std::cout << std::endl;;
+	std::cout << std::endl;
 }

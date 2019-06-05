@@ -1,8 +1,18 @@
 TODO LIST
-* Indentation
 * Methods complexities
-* Fix some ";;" in a couple of files
 * Parallel RK with MPI
-* Documentation
 * Slides
 * Migrate all includes in the main to an appropriate file?
+* Nh integer?
+
+STUFF TO PUT IN THE SLIDES
+* single_step() for adap methos is possible, but inefficient b/c...
+* Finding parallelizable RK methods was hard
+
+BIBLIOGRAPHY
+* Quarteroni, Sacco, Saleri, Gervasio, "Matematica numerica"
+* Quarteroni, Saleri, "Calcolo scientifico"
+* Solodushkin, Iumanova, "Parallel Numerical Methods for Ordinary Differential
+	Equations: a Survey" (paper)
+* Podhaisky, "Parallel two-step Runge-Kutta methods" (slides)
+* http://masters.donntu.org/2007/fvti/shumeykin/library/st5/index.htm
