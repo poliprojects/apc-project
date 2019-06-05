@@ -1,4 +1,4 @@
-TODO LIST
+TO DO LIST
 * Methods complexities
 * Parallel RK with MPI
 * Slides
