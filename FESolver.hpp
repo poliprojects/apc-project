@@ -9,7 +9,7 @@ class FESolver: public BaseSolver
 
 	private:
 
-		//! Total number of time steps (known a priori, useless in adaptive version)
+		//! Number of time steps (known a priori, useless in adaptive version)
 		unsigned Nh;
 
 	protected:

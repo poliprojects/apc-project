@@ -3,57 +3,52 @@
 
 void AdaptiveRKSolver::solve()
 {
-  // Initialization of the time instants vector
-  times.push_back( equation.get_tin() );
-  double tfin = equation.get_tfin();
+	// Initialization of the time instants vector
+	times.push_back( equation.get_tin() );
+	double tfin = equation.get_tfin();
 
-  Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
+	Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
 
-  unsigned n = 0;
-  double hn = h;
-  double tn = times[0];
+	unsigned n = 0;
+	double hn = h;
+	double tn = times[0];
 
-  while( tn+hn < tfin )
-  {
-    // Single iteration with step hn
-    Rnvector uh1 = RKSolver::single_step( tn, un, hn );
+	while( tn+hn < tfin )
+	{
+		// Single iteration with step hn
+		Rnvector uh1 = RKSolver::single_step( tn, un, hn );
 
-    // Double iteration with step hn/2
-    Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
-    Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );
+		// Double iteration with step hn/2
+		Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
+		Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );
 
-    // Compute error in infinity norm
-    Rnvector diff = abs( uh2 - uh1 );
-    double error = *std::max_element( diff.cbegin(), diff.cend() ) /
-      ( pow(2,n_stages+1) - 1 ); // TODO: order p instead of n_stages
+		// Compute error in infinity norm
+		Rnvector diff = abs( uh2 - uh1 );
+		double error = *std::max_element( diff.cbegin(), diff.cend() ) /
+			( pow(2,n_stages+1) - 1 ); // TODO: order p instead of n_stages
 
-    if( error < tol or hn < hmin ) // termination criteria
-    {
-      times.push_back( tn + hn );
-      tn += hn;
-      solution.push_back( uh2 );
-      un = uh2;
+		if( error < tol or hn < hmin ) // termination criteria
+		{
+			times.push_back( tn + hn );
+			tn += hn;
+			solution.push_back( uh2 );
+			un = uh2;
 
-      if( error < tol / pow(2,n_stages+1) ) // TODO: order p instead of n_stages
-        hn *= 2;
-      n++;
-    }
-    else
-    {
-      hn = hn/2;
-    }
-
-  }
-
-  // for(auto &ti:times) std::cout << ti << " "; //DEBUG
-  // std::cout << std::endl; //DEBUG
+			if( error < tol / pow(2,n_stages+1) )
+			// TODO: order p instead of n_stages
+				hn *= 2;
+			n++;
+		}
+		else
+			hn = hn / 2;
+	}
 }
 
 void AdaptiveRKSolver::print_solver_spec() const
 {
 	std::cout << "Solved using: Adaptive Runge Kutta" << std::endl;
-  std::cout << "Starting h = " << h    << std::endl;
-  std::cout << "Minimum h  = " << hmin << std::endl;
-  std::cout << "Tolerance  = " << tol  << std::endl;
+	std::cout << "Starting h = " << h    << std::endl;
+	std::cout << "Minimum h  = " << hmin << std::endl;
+	std::cout << "Tolerance  = " << tol  << std::endl;
 	std::cout << std::endl;
 }
