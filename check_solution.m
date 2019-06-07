@@ -16,7 +16,12 @@ close all
 % y'(t) = t - y(t)   in [ -1, 5 ]
 % y(-1) = 1
 %
-Test = 3;
+% Test 4:
+% y1'(t) = -3*y1(t) -   y2(t) + sin(t)
+% y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
+% y(0) = 1 1
+
+Test = 1;
 
 methods = [ "FE", "adapFE", "RK", "adapRK", "RK4" ]; % RK4
 colors = [ [      0    0.4470    0.7410 ]
