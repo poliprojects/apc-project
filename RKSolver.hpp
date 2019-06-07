@@ -8,12 +8,6 @@
 
 class RKSolver: public BaseSolver
 {
-
-	private:
-
-		//! Number of time steps (known a priori, useless in adaptive version)
-		unsigned Nh;
-
 	protected:
 		// Butcher tableau
 		// (the vectors are of size s, the first element of c is zero;
@@ -27,6 +21,9 @@ class RKSolver: public BaseSolver
 
 		//! Number of stages
 		unsigned n_stages;
+
+		//! Number of time steps (known a priori, useless in adaptive version)
+		unsigned Nh;
 
 		//! One step of time integration, called by solve()
 		Rnvector single_step(const double tn, const Rnvector &un,

@@ -1,9 +1,8 @@
 TO DO LIST
 * Methods complexities
-* Implement arallel RK with MPI
+* Implement parallel RK with MPI
 * Migrate all includes in the main to an appropriate file?
 * Can we lift the assumption that h evenly divides the time interval?
-* Remove -DTEST_1 etc flags?
 
 STUFF TO PUT IN THE SLIDES
 * single_step() for adap methos is possible, but inefficient b/c...
