@@ -10,6 +10,7 @@
 #include "AdaptiveFESolver.hpp"
 #include "RKSolver.hpp"
 #include "AdaptiveRKSolver.hpp"
+#include "RK4Solver.hpp"
 
 
 // Expected arguments:
@@ -121,6 +122,12 @@ int main( int argc, char * argv[] )
 		std::vector<double> c{ 0, 1 };
 		problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
 			tolerance, tolerance );
+	}
+	else if ( strcmp(argv[2], "RK4") == 0 )
+	{
+		if ( argc > 3 )
+			initial_step = atof( argv[3] );
+		problem_ptr = new RK4Solver( initial_step, equation );
 	}
 
 	BaseSolver & problem = *problem_ptr;
