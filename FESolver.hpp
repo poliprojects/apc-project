@@ -7,11 +7,6 @@
 class FESolver: public BaseSolver
 {
 
-	private:
-
-		//! Total number of time steps (known a priori, useless in adaptive version)
-		unsigned Nh;
-
 	protected:
 
 		//! One step of time integration, called by solve()

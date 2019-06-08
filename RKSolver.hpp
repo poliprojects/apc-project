@@ -9,11 +9,6 @@
 class RKSolver: public BaseSolver
 {
 
-  private:
-
-    //! Total number of time steps (known a priori, useless in adaptive version)
-    unsigned Nh;
-
   protected:
     // Butcher tableau
     // (the vectors are of size s, the first element of c is zero;
@@ -32,8 +27,11 @@ class RKSolver: public BaseSolver
     Rnvector single_step(const double tn, const Rnvector &un,
       const double h) const override;
 
+    //! Checks if the method is implicit looking at its Butcher tableau
+    bool is_implicit() const;
+
   public:
-    
+
     // Constructors
     RKSolver(double step, const BaseEquation &eq,
       const std::vector<std::vector<double>> & a_,

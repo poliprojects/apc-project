@@ -8,7 +8,7 @@ RKSolver::RKSolver(double step, const BaseEquation & eq,
   BaseSolver(step, eq), a(a_), b(b_), c(c_)
 {
   // Check dimensions consintency
-  assert( b.size() == c.size() && a.size() == a[0].size() );
+  assert( b.size() == c.size() && a.size() == a[0].size() && b.size() == a.size() );
   // Set number of stages for every step
   n_stages = b.size();
   // Set total number of steps (known a priori only in RK; has no meaning in
@@ -41,6 +41,19 @@ Rnvector RKSolver::single_step(const double tn, const Rnvector &un,
   }
   // std::cout << "/* fine ciclo i */" << '\n'; // DEBUG
   return un1;
+}
+
+bool RKSolver::is_implicit() const
+{
+  bool is_impl = false;
+  for( size_t i = 0; i < a.size(); i++ )
+    for( size_t j = i; j < a.size(); j++ )
+      if( a[i][j] != 0 )
+        {
+          is_impl = true;
+          break;
+        }
+  return is_impl;
 }
 
 void RKSolver::solve()

@@ -14,6 +14,9 @@ class BaseSolver
 		//! Integration step (starting value in adaptive methods)
 		double h;
 
+		//! Total number of time steps (known a priori, useless in adaptive version)
+		unsigned Nh;
+
 		//! Equation to be solved
 		BaseEquation equation;
 
