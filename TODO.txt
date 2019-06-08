@@ -1,8 +1,7 @@
 TO DO LIST
-* Methods complexities
-* Implement parallel RK with MPI
 * Migrate all includes in the main to an appropriate file?
 * Can we lift the assumption that h evenly divides the time interval?
+* Display file name after running solve()
 
 STUFF TO PUT IN THE SLIDES
 * single_step() for adap methos is possible, but inefficient b/c...
