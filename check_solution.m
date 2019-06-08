@@ -16,9 +16,14 @@ close all
 % y'(t) = t - y(t)   in [ -1, 5 ]
 % y(-1) = 1
 %
-Test = 4;
+% Test 4:
+% y1'(t) = -3*y1(t) -   y2(t) + sin(t)
+% y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
+% y(0) = 1 1
 
-methods = [ "FE", "adapFE", "RK" ];
+Test = 1;
+
+methods = [ "FE", "adapFE", "RK", "adapRK", "RK4" ]; % RK4
 colors = [ [      0    0.4470    0.7410 ]
            [ 0.8500    0.3250    0.0980 ];
            [ 0.9290    0.6940    0.1250 ];
@@ -28,7 +33,8 @@ colors = [ [      0    0.4470    0.7410 ]
 % Read computed solution and time instants from file
 for i = 1 : length( methods )
     method = methods(i);
-    FileID = fopen( ['solution_',num2str(Test),'_',char(method),'.txt'], 'r' );
+    FileID = fopen( ['solution_',num2str(Test),'_',char(method), ...
+        '.txt'], 'r' );
     buff = fscanf( FileID, '%s', 1 ); % Solution: 
     [ un_to_be_formatted, un_count ] = fscanf( FileID, '%f' );
     buff = fscanf( FileID, '%s', 2 ); % Time instants:
@@ -52,8 +58,10 @@ elseif( Test == 3 )
     u_ex = @(t) t - 1 + 3*exp(-(t+1));
     u = u_ex( t );
 elseif( Test == 4 )
-    u_ex = @(t) deal( (2223*exp(-4*t))/2312 - (15*t.*exp(-4*t))/34 - (7514^(1/2)*cos(t + atan(83/25)))/289 + 1/8, ...
-                       (3243*exp(-4*t))/2312 - cos(t + atan(15/8))/17 - (15*t.*exp(-4*t))/34 - 3/8 );
+    u_ex = @(t) deal( (2223*exp(-4*t))/2312 - (15*t.*exp(-4*t))/34 - ...
+        (7514^(1/2)*cos(t + atan(83/25)))/289 + 1/8, ...
+                       (3243*exp(-4*t))/2312 - cos(t + atan(15/8))/17 - ...
+                       (15*t.*exp(-4*t))/34 - 3/8 );
     [ u(1,:), u(2,:) ] = u_ex( t );
 end
 
@@ -61,16 +69,19 @@ end
 figure
 hold on
 h = plot( t, u, 'color', [0,0,0] );
-set(get(get(h(1:n-1),'Annotation'),'LegendInformation'),'IconDisplayStyle','off'); % To set legend properly
+set(get(get(h(1:n-1),'Annotation'),'LegendInformation'), ...
+    'IconDisplayStyle','off'); % To set legend properly
 for i = 1 : length( methods )
     h = plot( tn{i}, un{i}, 'color', colors(i,:) );
     % Set legend properly
     if( length(h) > 1 )
         for i = 2 : n
-            set(get(get(h(i),'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
+            set(get(get(h(i),'Annotation'),'LegendInformation'), ...
+                'IconDisplayStyle','off');
         end
     end
 %     legend( h(1), char(methods(i)) )
 end
-legend( 'Exact', char(methods(1)), char(methods(2)), char(methods(3)) )
+legend( 'Exact', char(methods(1)), char(methods(2)), char(methods(3)), ...
+    char(methods(4)), char(methods(5)) )
 title( 'ODE solution' )

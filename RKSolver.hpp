@@ -38,10 +38,10 @@ class RKSolver: public BaseSolver
       const std::vector<double> & b_,
       const std::vector<double> & c_);
 
-    //! Main solver based on Runge Kutta method
-  	void solve() override;
+		//! Main solver based on Runge Kutta method
+		void solve() override;
 
-    //! Prints the characteristics of the Runge Kutta solver
+		//! Prints the characteristics of the Runge Kutta solver
 		void print_solver_spec() const override;
 };
 
