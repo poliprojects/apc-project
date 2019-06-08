@@ -41,6 +41,13 @@ void AdaptiveRKSolver::solve()
 		else
 			hn = hn / 2;
 	}
+
+	// Last time instant is exactly equal to tfin
+	hn = tfin - tn;
+	times.push_back( tfin );
+	Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
+	Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );
+	solution.push_back( uh2 );
 }
 
 void AdaptiveRKSolver::print_solver_spec() const
