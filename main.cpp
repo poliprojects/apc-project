@@ -94,20 +94,24 @@ int main( int argc, char * argv[] )
 		problem_ptr = new AdaptiveFESolver( initial_step, equation,
 			tolerance, tolerance );
 	}
-	else if ( strcmp(argv[2], "RK") == 0 )
-	{
-		if ( argc > 3 )
-			initial_step = atof( argv[3] );
-		// Heun method
-		std::vector<std::vector<double>> a;
-		std::vector<double> a1{ 0, 0 };
-		std::vector<double> a2{ 1, 0 };
-		a.push_back( a1 );
-		a.push_back( a2 );
-		std::vector<double> b{ 0.5, 0.5 };
-		std::vector<double> c{ 0, 1 };
-		problem_ptr = new RKSolver( initial_step, equation, a, b, c );
-	}
+  else if ( strcmp(argv[2], "RK") == 0 )
+  {
+    if ( argc > 3 )
+      initial_step = atof( argv[3] );
+    // Iserles-Nørsett method
+    std::vector<std::vector<double>> a;
+    std::vector<double> a1{ 1/3.0,      0,         0,         0 };
+    std::vector<double> a2{ 1/3.0,  1/3.0,         0,         0 };
+    std::vector<double> a3{     0,      0,  0.594788,         0 };
+    std::vector<double> a4{     0,      0, -0.189576,  0.594788 };
+    a.push_back( a1 );
+    a.push_back( a2 );
+    a.push_back( a3 );
+    a.push_back( a4 );
+    std::vector<double> b{ 1.978094,  1.978094, -1.478094, -1.478093 };
+    std::vector<double> c{    1/3.0,     2/3.0,  0.594788,  0.405212 };
+    problem_ptr = new RKSolver( initial_step, equation, a, b, c );
+  }
 	else if ( strcmp(argv[2], "adapRK") == 0 )
 	{
 		if( argc > 3 )

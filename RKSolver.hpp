@@ -3,6 +3,7 @@
 
 #include<vector>
 #include<cassert>
+#include<cstdlib>
 #include "BaseSolver.hpp"
 
 
@@ -23,12 +24,22 @@ class RKSolver: public BaseSolver
     //! Number of stages
     unsigned n_stages;
 
+    //! Tolerance for fixed point iterations (in case of implicit method)
+    double fixed_point_tol = 0.001;
+
     //! One step of time integration, called by solve()
     Rnvector single_step(const double tn, const Rnvector &un,
       const double h) const override;
 
-    //! Checks if the method is implicit looking at its Butcher tableau
-    bool is_implicit() const;
+    //! Computes the K-th coefficient for an implicit method
+    Rnvector fixed_point(const EquationFunction &f, const double tn,
+      const Rnvector & un, const Rnvector & sum_aij_Kj, const size_t i) const;
+
+    //! Computes the error at a certain iteration of the fixed point algorithm
+    double compute_error(const Rnvector & K0, const Rnvector & K1) const;
+
+    //! Checks if the K-th coefficient computation is implicit looking at A
+    bool is_implicit(const size_t K_index) const;
 
   public:
 

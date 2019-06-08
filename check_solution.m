@@ -21,7 +21,7 @@ close all
 % y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
 % y(0) = 1 1
 
-Test = 1;
+Test = 3;
 
 methods = [ "FE", "adapFE", "RK", "adapRK", "RK4" ]; % RK4
 colors = [ [      0    0.4470    0.7410 ]
@@ -55,7 +55,7 @@ elseif( Test == 2 )
     u_ex = @(t) exp(-t);
     u = u_ex( t );
 elseif( Test == 3 )
-    u_ex = @(t) t - 1 + 3*exp(-(t+1));
+    u_ex = @(t) t - 1 + 3*exp(-(t+1)); 
     u = u_ex( t );
 elseif( Test == 4 )
     u_ex = @(t) deal( (2223*exp(-4*t))/2312 - (15*t.*exp(-4*t))/34 - ...
