@@ -15,9 +15,6 @@ class AdaptiveFESolver: public FESolver
 		//! Minimum step size
 		double hmin;
 
-	// TODO Note: a single_step() specialization could be implemented for this
-	// class for usage in solve(), but it would be computationally inefficient
-
 	public:
 
 		// Constructors

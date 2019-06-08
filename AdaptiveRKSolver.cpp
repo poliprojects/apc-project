@@ -25,7 +25,7 @@ void AdaptiveRKSolver::solve()
 		// Compute error in infinity norm
 		Rnvector diff = abs( uh2 - uh1 );
 		double error = *std::max_element( diff.cbegin(), diff.cend() ) /
-			( pow(2,n_stages+1) - 1 ); // TODO: order p instead of n_stages
+			( pow(2,n_stages+1) - 1 );
 
 		if( error < tol or hn < hmin ) // termination criteria
 		{
@@ -35,7 +35,6 @@ void AdaptiveRKSolver::solve()
 			un = uh2;
 
 			if( error < tol / pow(2,n_stages+1) )
-			// TODO: order p instead of n_stages
 				hn *= 2;
 			n++;
 		}

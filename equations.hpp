@@ -38,7 +38,7 @@ struct EquationFunction_4: public EquationFunction
 	Rnvector operator()(const double & t, Rnvector y) const override;
 	EquationFunction_4(): EquationFunction(
 	"y1'(t) = -3*y1(t) -   y2(t) + sin(t)\ny2'(t) =    y1(t) - 5*y2(t) - 2\t")
-	{} //TODO
+	{}
 };
 
 #endif // EQUATIONS_HPP
