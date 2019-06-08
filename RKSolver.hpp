@@ -4,6 +4,7 @@
 #include<vector>
 #include<cassert>
 #include<cstdlib>
+#include<string>
 #include "BaseSolver.hpp"
 
 
@@ -23,6 +24,9 @@ class RKSolver: public BaseSolver
 
     //! Number of stages
     unsigned n_stages;
+
+    //! Name of the RK method
+    std::string method_name;
 
     //! Tolerance for fixed point iterations (in case of implicit method)
     double fixed_point_tol = 0.001;
@@ -48,6 +52,7 @@ class RKSolver: public BaseSolver
       const std::vector<std::vector<double>> & a_,
       const std::vector<double> & b_,
       const std::vector<double> & c_);
+    RKSolver(double step, const BaseEquation &eq, const std::string name);
 
 		//! Main solver based on Runge Kutta method
 		void solve() override;

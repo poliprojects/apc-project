@@ -14,6 +14,54 @@ RKSolver::RKSolver(double step, const BaseEquation & eq,
   // Set total number of steps (known a priori only in RK; has no meaning in
   // adaptive case)
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+	// User defined version of RK (to be printed on screen)
+	method_name = "User defined";
+}
+
+RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
+	BaseSolver(step, eq)
+{
+	if( name == "Heun" )
+	{
+		a = { {   0,   0 },
+				  {   1,   0 } };
+		b =   { 0.5, 0.5 };
+		c =   {   0,   1 };
+		// Set number of stages for every step
+	  n_stages = b.size();
+	}
+	else if( name == "IserNor" )
+	{
+		a = { {     1/3.,         0,         0,         0 },
+					{     1/3.,      1/3.,         0,         0 },
+					{        0,         0,  0.594788,         0 },
+					{        0,         0, -0.189576,  0.594788 } };
+		b =   { 1.978094,  1.978094, -1.478094, -1.478093 };
+		c =   {     1/3.,      2/3.,  0.594788,  0.405212 };
+		// Set number of stages for every step
+	  n_stages = b.size();
+	}
+	else if( name == "RK4" )
+	{
+		a = { {    0,    0,    0,    0 },
+					{  0.5,    0,    0,    0 },
+					{    0,  0.5,    0,    0 },
+					{    0,    0,    1,    0 } };
+		b =   { 1/6., 1/3., 1/3., 1/6. };
+		c =   {    0,  0.5,  0.5,    1 };
+		// Set number of stages for every step
+	  n_stages = b.size();
+	}
+	else
+	{
+		std::cerr << "Unknown RK method. Aborting..." << '\n' << '\n';
+		exit(1);
+	}
+	// Set total number of steps (known a priori only in RK; has no meaning in
+  // adaptive case)
+  Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+	// Set the proper version of RK (to be printed on screen)
+	method_name = name;
 }
 
 
@@ -125,7 +173,7 @@ void RKSolver::solve()
 
 void RKSolver::print_solver_spec() const
 {
-	std::cout << "Solved using: Runge Kutta" << std::endl;
+	std::cout << "Solved using: Runge Kutta (" << method_name << ")" << std::endl;
 	std::cout << "h  = " << h << std::endl;
 	std::cout << "Nh = " << Nh << std::endl;
 	std::cout << std::endl;

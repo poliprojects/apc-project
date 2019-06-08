@@ -21,14 +21,35 @@ close all
 % y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
 % y(0) = 1 1
 
-Test = 3;
+Test = 2;
 
-methods = [ "FE", "adapFE", "RK", "adapRK", "RK4" ]; % RK4
+available_methods = ...
+    [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
+      "adapFE","adapRK4","adapHeun","adapIserNor", ... % predefined adapRK
+      "adapRK","RK" ];                          % user defined in main.cpp
+
+% Build the vector of methods that have been actually used
+k = 1;
+for i = 1 : length( available_methods )
+    ID = fopen( ['solution_',num2str(Test),'_', ...
+            char(available_methods(i)),'.txt']);
+    if( ID ~= -1 ) % if the corresponding file exists
+        methods(k) = available_methods(i);
+        k = k + 1;
+    end
+end
+
+% Set colors for plot
 colors = [ [      0    0.4470    0.7410 ]
            [ 0.8500    0.3250    0.0980 ];
            [ 0.9290    0.6940    0.1250 ];
            [ 0.4940    0.1840    0.5560 ]; 
-           [ 0.4660    0.6740    0.1880 ]; ];
+           [ 0.4660    0.6740    0.1880 ];
+           [ 0.3010    0.7450    0.9330 ];
+           [ 0.6350    0.0780    0.1840 ];
+           [      0         0         1 ];
+           [      0         1         0 ];
+           [      1         0         1 ]; ];
 
 % Read computed solution and time instants from file
 for i = 1 : length( methods )
@@ -80,8 +101,15 @@ for i = 1 : length( methods )
                 'IconDisplayStyle','off');
         end
     end
-%     legend( h(1), char(methods(i)) )
 end
-legend( 'Exact', char(methods(1)), char(methods(2)), char(methods(3)), ...
-    char(methods(4)), char(methods(5)) )
+
+% Legend
+Legend = cell(length(methods),1);
+Legend{1} = 'Exact';
+for k = 2 : length(methods)+1
+    Legend{k} = char( methods(k-1) );
+end
+legend(Legend)
+
+% Title
 title( 'ODE solution' )
