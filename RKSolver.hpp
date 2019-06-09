@@ -1,10 +1,11 @@
 #ifndef RKSOLVER_HPP
 #define RKSOLVER_HPP
 
-#include<vector>
-#include<cassert>
-#include<cstdlib>
-#include<string>
+#include <vector>
+#include <cassert>
+#include <cstdlib>
+#include <string>
+#include <mpi.h>
 #include "BaseSolver.hpp"
 
 
@@ -34,6 +35,10 @@ class RKSolver: public BaseSolver
     //! One step of time integration, called by solve()
     Rnvector single_step(const double tn, const Rnvector &un,
       const double h) const override;
+
+    //! One step of time integration in parallel mode, called by solve()
+    Rnvector parallel_single_step(const double tn, const Rnvector &un,
+      const double h) const;
 
     //! Computes the K-th coefficient for an implicit method
     Rnvector fixed_point(const EquationFunction &f, const double tn,

@@ -11,6 +11,7 @@ Rnvector operator+(const Rnvector &x, const Rnvector &y) // vector sum
 	return z;
 }
 
+
 Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
 {
 	Rnvector z( x.size() );
@@ -19,17 +20,20 @@ Rnvector operator*(const double lambda, const Rnvector &x) // product by scalar
 	return z;
 }
 
+
 Rnvector operator-(const Rnvector &x, const Rnvector &y) // vector difference
 {
 	assert( x.size() == y.size() );
 	return x + (-1.0)*y;
 }
 
+
 Rnvector operator+(const Rnvector &x, const double lambda) // sum with scalar
 {
 	Rnvector y( x.size(), lambda );
 	return x + y;
 }
+
 
 Rnvector operator-(const Rnvector &x, const double lambda) // diff with scalar
 {

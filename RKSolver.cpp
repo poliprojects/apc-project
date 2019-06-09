@@ -14,9 +14,10 @@ RKSolver::RKSolver(double step, const BaseEquation & eq,
   // Set total number of steps (known a priori only in RK; has no meaning in
   // adaptive case)
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
-	// User defined version of RK (to be printed on screen)
+	// User defined version of RK
 	method_name = "User defined";
 }
+
 
 RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
 	BaseSolver(step, eq)
@@ -60,7 +61,7 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
 	// Set total number of steps (known a priori only in RK; has no meaning in
   // adaptive case)
   Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
-	// Set the proper version of RK (to be printed on screen)
+	// Set the proper version of RK
 	method_name = name;
 }
 
@@ -100,6 +101,7 @@ Rnvector RKSolver::single_step(const double tn, const Rnvector &un,
 
 	return un1;
 }
+
 
 /// \param   f           Right hand side
 /// \param   tn          Present time instant
@@ -145,9 +147,51 @@ bool RKSolver::is_implicit(const size_t K_index) const
 }
 
 
+// void RKSolver::solve()
+// {
+// 	int size;
+// 	MPI_Comm_size( MPI_COMM_WORLD, &size ); // 1 or 2
+//
+// 	// Initialization of time instants
+// 	times.resize( Nh+1 );
+// 	double tn = equation.get_tin();
+// 	for( std::size_t i = 0; i < Nh+1; i++ )
+// 	{
+// 		times[i] = tn;
+// 		tn += h;
+// 	}
+//
+// 	// Take solution at time 0 and function f from data
+// 	Rnvector un = solution[0];
+//
+// 	// Solution loop
+// 	Rnvector un1( un.size() ); // solution at time n+1
+// 	if( method_name == "IserNor" && size == 2 ) // parallel
+// 	{
+// 		for( unsigned n = 0; n < Nh; n++ )
+// 		{
+// 			un1 = parallel_single_step( times[n], un, h );
+// 			solution.push_back( un1 );
+// 			un = un1;
+// 			un1.clear();
+// 		}
+// 	}
+// 	else // sequential
+// 	{
+// 		for( unsigned n = 0; n < Nh; n++ )
+// 		{
+// 			un1 = single_step( times[n], un, h );
+// 			solution.push_back( un1 );
+// 			un = un1;
+// 			un1.clear();
+// 		}
+// 	}
+// }
+
+
 void RKSolver::solve()
 {
-	//Initialization of time instants
+	// Initialization of time instants
 	times.resize( Nh+1 );
 	double tn = equation.get_tin();
 	for( std::size_t i = 0; i < Nh+1; i++ )
@@ -156,10 +200,10 @@ void RKSolver::solve()
 		tn += h;
 	}
 
-	//Take solution at time 0 and function f from data
+	// Take solution at time 0 and function f from data
 	Rnvector un = solution[0];
 
-	//Solution loop
+	// Solution loop
 	Rnvector un1( un.size() ); // solution at time n+1
 	for( unsigned n = 0; n < Nh; n++ )
 	{
@@ -169,6 +213,7 @@ void RKSolver::solve()
 		un1.clear();
 	}
 }
+
 
 
 void RKSolver::print_solver_spec() const

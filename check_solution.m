@@ -21,7 +21,7 @@ close all
 % y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
 % y(0) = 1 1
 
-Test = 2;
+Test = 4;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
