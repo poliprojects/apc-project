@@ -1,6 +1,7 @@
 #include "RuntimeUtils.hpp"
 
 
+/// \param   argc   Number of arguments passed by command line
 void check_minimum_parameters_number(const int argc)
 {
 	if( argc < 3 )
@@ -15,6 +16,12 @@ void check_minimum_parameters_number(const int argc)
 }
 
 
+/// \param   rank              Process rank
+/// \param   test_number       Number of the equation chosen
+/// \param   fun_ptr           Pointer to the rhs to be initialized
+/// \param   initial_time      Integration starting time
+/// \param   final_time        Integration final time
+/// \param   initial_condition Solution at the first time instant
 void initialize_data(const int rank, char* test_number,
   EquationFunction* & fun_ptr, double & initial_time,
   double & final_time, Rnvector & initial_condition)
@@ -63,6 +70,12 @@ void initialize_data(const int rank, char* test_number,
 }
 
 
+/// \param   argc         Number of arguments passed by command line
+/// \param   argv         Arguments passed by command line
+/// \param   problem_ptr  Pointer to the solver to be initialized
+/// \param   initial_step Integration starting step
+/// \param   tolerance    Tolerance for error in adaptive methods
+/// \param   equation     Previously initialized equation
 void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
   double initial_step, double tolerance, const BaseEquation & equation)
 {
