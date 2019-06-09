@@ -1,16 +1,4 @@
-#include <iostream>
-#include <math.h>
-#include <string.h> // strcmp
-#include <string>
-#include <stdlib.h> // atof
-#include <chrono>
-#include "equations.hpp"
-#include "BaseSolver.hpp"
-#include "BaseEquation.hpp"
-#include "FESolver.hpp"
-#include "AdaptiveFESolver.hpp"
-#include "RKSolver.hpp"
-#include "AdaptiveRKSolver.hpp"
+#include "includes.hpp"
 
 using namespace std::chrono;
 
@@ -205,6 +193,7 @@ int main( int argc, char * argv[] )
     std::string method_name = argv[2];
     std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
     problem.save_sol_to_file( file_name );
+    std::cout << "Saved into file " << file_name << std::endl;
 
     // Releases dynamically allocated resources
     delete fun_ptr;
