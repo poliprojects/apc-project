@@ -29,7 +29,7 @@ int main( int argc, char * argv[] )
 		"are required." << std::endl <<
 		"Example: ./main 2 FE" << std::endl <<
 		"For more information, please refer to the README file." << std::endl;
-		exit(1);
+		exit( 1 );
 	}
 
   // ==========================================================================
@@ -44,49 +44,49 @@ int main( int argc, char * argv[] )
 	Rnvector initial_condition;
 
   // Test 1
-	if ( strcmp(argv[1], "1") == 0 )
+	if ( strcmp( argv[1], "1" ) == 0 )
 	{
 		std::cout << std::endl << "Running Test 1" << std::endl << std::endl;
 		fun_ptr = new EquationFunction_1;
 		initial_time = 0;
 		final_time = 1;
-		initial_condition.push_back(0);
+		initial_condition.push_back( 0 );
 	}
 
   // Test 2
-	else if ( strcmp(argv[1], "2") == 0 )
+	else if ( strcmp( argv[1], "2" ) == 0 )
 	{
 		std::cout << std::endl << "Running Test 2" << std::endl << std::endl;
 		fun_ptr = new EquationFunction_2;
 		initial_time = 0;
 		final_time = 30;
-		initial_condition.push_back(1);
+		initial_condition.push_back( 1 );
 	}
 
   // Test 3
-	else if ( strcmp(argv[1], "3") == 0  )
+	else if ( strcmp( argv[1], "3" ) == 0  )
 	{
 		std::cout << std::endl << "Running Test 3" << std::endl << std::endl;
 		fun_ptr = new EquationFunction_3;
 		initial_time = -1;
 		final_time = 5;
-		initial_condition.push_back(1);
+		initial_condition.push_back( 1 );
 	}
 
   // Test 4
-	else if ( strcmp(argv[1], "4") == 0  )
+	else if ( strcmp( argv[1], "4" ) == 0  )
 	{
 		std::cout << std::endl << "Running Test 4" << std::endl << std::endl;
 		fun_ptr = new EquationFunction_4;
 		initial_time = 0;
 		final_time = 10;
-		initial_condition.push_back(1);
-		initial_condition.push_back(1);
+		initial_condition.push_back( 1 );
+		initial_condition.push_back( 1 );
 	}
 
 	// Equation initialization using test dependent data
-	BaseEquation equation(initial_time, final_time, *fun_ptr,
-		initial_condition);
+	BaseEquation equation( initial_time, final_time, *fun_ptr,
+		initial_condition );
 
 
   // ==========================================================================
@@ -98,7 +98,7 @@ int main( int argc, char * argv[] )
 	double tolerance = 1e-2; // Used only in adaptive methods
 
   // Forward Euler method
-	if ( strcmp(argv[2], "FE") == 0 )
+	if ( strcmp( argv[2], "FE" ) == 0 )
 	{
 		if ( argc > 3 )
 			initial_step = atof( argv[3] );
@@ -106,7 +106,7 @@ int main( int argc, char * argv[] )
 	}
 
   // Adaptive Forward Euler method
-	else if ( strcmp(argv[2], "adapFE") == 0 )
+	else if ( strcmp( argv[2], "adapFE" ) == 0 )
 	{
 		if ( argc > 3 )
 			initial_step = atof( argv[3] );
@@ -117,7 +117,7 @@ int main( int argc, char * argv[] )
 	}
 
   // Runge Kutta method (user defined coefficients)
-  else if ( strcmp(argv[2], "RK") == 0 )
+  else if ( strcmp( argv[2], "RK" ) == 0 )
   {
     if( argc > 3 )
       initial_step = atof( argv[3] );
@@ -131,7 +131,7 @@ int main( int argc, char * argv[] )
   }
 
   // Adaptive Runge Kutta method (user defined coefficients)
-  else if ( strcmp(argv[2], "adapRK") == 0 )
+  else if ( strcmp( argv[2], "adapRK" ) == 0 )
   {
     if( argc > 3 )
       initial_step = atof( argv[3] );
@@ -148,7 +148,7 @@ int main( int argc, char * argv[] )
   }
 
   // Adaptive Runge Kutta method (chosen among predefined ones)
-  else if ( strncmp(argv[2], "adap", 4) == 0 )
+  else if ( strncmp( argv[2], "adap", 4 ) == 0 )
 	{
 		if( argc > 3 )
 			initial_step = atof( argv[3] );
@@ -168,7 +168,7 @@ int main( int argc, char * argv[] )
 
 
   // Problem initialization using the chosen solver
-	BaseSolver & problem = *problem_ptr;
+	BaseSolver &problem = *problem_ptr;
 
 
   // ==========================================================================

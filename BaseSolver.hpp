@@ -14,7 +14,7 @@ class BaseSolver
 		//! Integration step (starting value in adaptive methods)
 		double h;
 
-		//! Total number of time steps (known a priori, useless in adaptive version)
+		//! Total # of time steps (known a priori, useless in adaptive version)
 		unsigned Nh;
 
 		//! Equation to be solved
@@ -27,13 +27,13 @@ class BaseSolver
 		std::vector<double> times;
 
 		//! One step of time integration
-		virtual Rnvector single_step(const double tn, const Rnvector &un,
-			const double h) const = 0;
+		virtual Rnvector single_step( const double tn, const Rnvector &un,
+			const double h ) const = 0;
 
 	public:
 
 		// Constructors
-		BaseSolver(double step, const BaseEquation &eq);
+		BaseSolver( double step, const BaseEquation &eq );
 
 		// Destructor
 		virtual ~BaseSolver() = default;
@@ -52,7 +52,7 @@ class BaseSolver
 		virtual void print_solver_spec() const = 0;
 
 		//! Saves solution and time instants in a .txt file
-		virtual void save_sol_to_file(const std::string &file_name) const;
+		virtual void save_sol_to_file( const std::string &file_name ) const;
 };
 
 #endif // BASESOLVER_HPP

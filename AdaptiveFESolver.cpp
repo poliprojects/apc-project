@@ -37,7 +37,7 @@ void AdaptiveFESolver::solve()
 			n++;
 		}
 		else
-			hn = hn/2;
+			hn = hn / 2;
 	}
 
 	// Last time instant is exactly equal to tfin

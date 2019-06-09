@@ -18,11 +18,9 @@ class AdaptiveFESolver: public FESolver
 	public:
 
 		// Constructors
-		AdaptiveFESolver(double start_step, const BaseEquation &eq,
-			double tolerance, double minimum_step):
-			FESolver(start_step, eq), tol(tolerance), hmin(minimum_step) {}
-		AdaptiveFESolver(double step, const BaseEquation &eq):
-			AdaptiveFESolver(step, eq, 1e-2, step/10) {} // keep?
+		AdaptiveFESolver( double start_step, const BaseEquation &eq,
+			double tolerance, double min_step ):
+			FESolver( start_step, eq ), tol( tolerance ), hmin( min_step ) {}
 
 		//! Main solver based on Adaptive Forward Euler method
 		void solve();
