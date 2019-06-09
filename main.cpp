@@ -32,11 +32,11 @@ int main( int argc, char * argv[] )
 		exit( 1 );
 	}
 
-  // ==========================================================================
+	// =========================================================================
 	// INITIALIZATION OF TEST DEPENDENT DATA
 	// NB: the actual definition of fun depends on the test chosen (see
 	// equations.hpp and equations.cpp files)
-  // ==========================================================================
+	// =========================================================================
 
 	EquationFunction* fun_ptr = nullptr;
 	double initial_time;
@@ -89,9 +89,9 @@ int main( int argc, char * argv[] )
 		initial_condition );
 
 
-  // ==========================================================================
-  // INITIALIZATION OF THE SOLVER
-  // ==========================================================================
+	// =========================================================================
+	// INITIALIZATION OF THE SOLVER
+	// =========================================================================
 
 	BaseSolver* problem_ptr = nullptr;
 	double initial_step = 0.1; // Changes mid-solving only in adaptive methods
@@ -116,87 +116,88 @@ int main( int argc, char * argv[] )
 			tolerance, tolerance );
 	}
 
-  // Runge Kutta method (user defined coefficients)
-  else if ( strcmp( argv[2], "RK" ) == 0 )
-  {
-    if( argc > 3 )
-      initial_step = atof( argv[3] );
-    // FE method
-    std::vector<std::vector<double>> a;
-    std::vector<double> a1{ 0 };
-    a.push_back( a1 );
-    std::vector<double> b{ 1 };
-    std::vector<double> c{ 0 };
-    problem_ptr = new RKSolver( initial_step, equation, a, b, c );
-  }
+	// Runge Kutta method (user defined coefficients)
+	else if ( strcmp( argv[2], "RK" ) == 0 )
+	{
+		if( argc > 3 )
+		initial_step = atof( argv[3] );
+		// FE method
+		std::vector<std::vector<double>> a;
+		std::vector<double> a1{ 0 };
+		a.push_back( a1 );
+		std::vector<double> b{ 1 };
+		std::vector<double> c{ 0 };
+		problem_ptr = new RKSolver( initial_step, equation, a, b, c );
+	}
 
-  // Adaptive Runge Kutta method (user defined coefficients)
-  else if ( strcmp( argv[2], "adapRK" ) == 0 )
-  {
-    if( argc > 3 )
-      initial_step = atof( argv[3] );
-    // Heun method
-    std::vector<std::vector<double>> a;
-    std::vector<double> a1{ 0,  0 };
-    std::vector<double> a2{ 1,  0 };
-    a.push_back( a1 );
-    a.push_back( a2 );
-    std::vector<double> b{ 0.5, 0.5 };
-    std::vector<double> c{   0,  1  };
-    problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
-      tolerance, tolerance );
-  }
+	// Adaptive Runge Kutta method (user defined coefficients)
+	else if ( strcmp( argv[2], "adapRK" ) == 0 )
+	{
+		if( argc > 3 )
+		initial_step = atof( argv[3] );
+		// Heun method
+		std::vector<std::vector<double>> a;
+		std::vector<double> a1{ 0,  0 };
+		std::vector<double> a2{ 1,  0 };
+		a.push_back( a1 );
+		a.push_back( a2 );
+		std::vector<double> b{ 0.5, 0.5 };
+		std::vector<double> c{   0,  1  };
+		problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
+		tolerance, tolerance );
+	}
 
-  // Adaptive Runge Kutta method (chosen among predefined ones)
-  else if ( strncmp( argv[2], "adap", 4 ) == 0 )
+	// Adaptive Runge Kutta method (chosen among predefined ones)
+	else if ( strncmp( argv[2], "adap", 4 ) == 0 )
 	{
 		if( argc > 3 )
 			initial_step = atof( argv[3] );
-    std::string name_prefix( argv[2] );
-    std::string name_no_prefix = name_prefix.substr( 4, std::string::npos );
+	std::string name_prefix( argv[2] );
+	std::string name_no_prefix = name_prefix.substr( 4, std::string::npos );
 		problem_ptr = new AdaptiveRKSolver( initial_step, equation,
-      name_no_prefix, tolerance, tolerance );
+		name_no_prefix, tolerance, tolerance );
 	}
 
-  // Runge Kutta method (chosen among predefined ones)
-  else
-  {
-    if ( argc > 3 )
-      initial_step = atof( argv[3] );
-    problem_ptr = new RKSolver( initial_step, equation, argv[2] );
-  }
+	// Runge Kutta method (chosen among predefined ones)
+	else
+	{
+		if ( argc > 3 )
+			initial_step = atof( argv[3] );
+		problem_ptr = new RKSolver( initial_step, equation, argv[2] );
+	}
 
 
-  // Problem initialization using the chosen solver
+	// Problem initialization using the chosen solver
 	BaseSolver &problem = *problem_ptr;
 
 
-  // ==========================================================================
-  // SOLUTION
-  // ==========================================================================
+	// =========================================================================
+	// SOLUTION
+	// =========================================================================
 
-  // Chrono starts
-  high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	// Chrono starts
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-  // Solution
-  problem.solve();
+	// Solution
+	problem.solve();
 
-  // Chrono ends
-  high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	// Chrono ends
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
 
-  // ==========================================================================
-  // POSTPROCESSING
-  // ==========================================================================
+	// =========================================================================
+	// POSTPROCESSING
+	// =========================================================================
 
-  // Compute duration of the solution process
-  auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+	// Compute duration of the solution process
+	auto duration = duration_cast<microseconds>( t2 - t1 ).count();
 
-  // Prints problem characteristics on screen
+	// Prints problem characteristics on screen
 	problem.print();
 
-  // Prints duration of the solution process
-  std::cout << "Solution time: " << duration << " ms" << std::endl << std::endl;
+	// Prints duration of the solution process
+	std::cout << "Solution time: " << duration << " ms" << std::endl <<
+		std::endl;
 
 	// Saves solution to file_name
 	// NB: the name of the file depends on the arguments passed at runtime
