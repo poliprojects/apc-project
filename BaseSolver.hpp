@@ -9,50 +9,50 @@
 class BaseSolver
 {
 
-	protected:
+    protected:
 
-		//! Integration step (starting value in adaptive methods)
-		double h;
+        //! Integration step (starting value in adaptive methods)
+        double h;
 
-		//! Total # of time steps (known a priori, useless in adaptive version)
-		unsigned Nh;
+        //! Total # of time steps (known a priori, useless in adaptive version)
+        unsigned Nh;
 
-		//! Equation to be solved
-		BaseEquation equation;
+        //! Equation to be solved
+        BaseEquation equation;
 
-		//! Solution (to be filled by solve())
-		SolutionType solution;
+        //! Solution (to be filled by solve())
+        SolutionType solution;
 
-		//! Time instants (to be filled by solve())
-		std::vector<double> times;
+        //! Time instants (to be filled by solve())
+        std::vector<double> times;
 
-		//! One step of time integration
-		virtual Rnvector single_step( const double tn, const Rnvector &un,
-			const double h ) const = 0;
+        //! One step of time integration
+        virtual Rnvector single_step( const double tn, const Rnvector &un,
+            const double h ) const = 0;
 
-	public:
+    public:
 
-		// Constructors
-		BaseSolver( double step, const BaseEquation &eq );
+        // Constructors
+        BaseSolver( double step, const BaseEquation &eq );
 
-		// Destructor
-		virtual ~BaseSolver() = default;
+        // Destructor
+        virtual ~BaseSolver() = default;
 
-		// Getters
-		double get_h() const { return h; };
-		BaseEquation get_equation() const { return equation; };
-		SolutionType get_solution() const { return solution; };
+        // Getters
+        double get_h() const { return h; };
+        BaseEquation get_equation() const { return equation; };
+        SolutionType get_solution() const { return solution; };
 
-		//! Main solver
-		virtual void solve() = 0;
+        //! Main solver
+        virtual void solve() = 0;
 
-		//! Prints the equation and calls print_solver_spec()
-		virtual void print() const;
-		//! Prints the characteristics of the solver chosen
-		virtual void print_solver_spec() const = 0;
+        //! Prints the equation and calls print_solver_spec()
+        virtual void print() const;
+        //! Prints the characteristics of the solver chosen
+        virtual void print_solver_spec() const = 0;
 
-		//! Saves solution and time instants in a .txt file
-		virtual void save_sol_to_file( const std::string &file_name ) const;
+        //! Saves solution and time instants in a .txt file
+        virtual void save_sol_to_file( const std::string &file_name ) const;
 };
 
 #endif // BASESOLVER_HPP
