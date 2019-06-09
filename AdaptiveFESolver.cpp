@@ -42,10 +42,13 @@ void AdaptiveFESolver::solve()
 
 	// Last time instant is exactly equal to tfin
 	hn = tfin - tn;
-	times.push_back( tfin );
-	Rnvector utemp = FESolver::single_step( tn, un, hn/2 );
-	Rnvector uh2   = FESolver::single_step( tn+hn/2, utemp, hn/2 );
-	solution.push_back( uh2 );
+	if( hn != 0 )
+	{
+		times.push_back( tfin );
+		Rnvector utemp = FESolver::single_step( tn, un, hn/2 );
+		Rnvector uh2   = FESolver::single_step( tn+hn/2, utemp, hn/2 );
+		solution.push_back( uh2 );
+	}
 }
 
 void AdaptiveFESolver::print_solver_spec() const
