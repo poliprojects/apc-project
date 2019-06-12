@@ -101,11 +101,13 @@
 	\frametitle{Runge-Kutta methods}
 	\begin{itemize}
 		\item Family of single-step methods
-		\item Weighted average of $s$ evaluations (\textit{stages}) of $f$:
-		$$ \uu_{n+1} = \uu_{n} + h \sum_{i=1}^s b_i \kk_i \quad \text{with} $$
-		\vspace{-6pt}
-		$$ \kk_i = f(t_0 + c_i h, \ \uu_n + \sum_{j=1}^s a_{ij} \kk_j) $$
+		\item Weighted average of $s$ evaluations (\textit{stages}) of $f$: \\[-20pt]
+		\begin{align*}
+			\uu_{n+1} = \uu_{n} + h \sum_{i=1}^s b_i \kk_i \quad \text{with} \\[-5pt]
+			\kk_i = f(t_0 + c_i h, \ \uu_n + \sum_{j=1}^s a_{ij} \kk_j)
+		\end{align*}
 		\pause
+		\vspace{-20pt}
 		\item \textit{Butcher tableau}:
 		\begin{center}
 			\begin{tabular}{c|ccc}
@@ -115,7 +117,7 @@
 				\hline
 				& $b_1$ & $\dots$ & $b_s$
 			\end{tabular}
-		with $c_i = \sum_j a_{ij}$
+		\hspace{30pt} with $c_i = \sum_j a_{ij}$
 		\pause
 		\end{center}
 		\item $O(s n^2)$ if $f$ linear
@@ -173,8 +175,8 @@
 		\item Convergence $\to$ absolute error: $\norm{y_n - u_n} \simeq O(h^q)$
 		\item Consistence $\to$ truncation error: $\max_n \norm{\tau_n(h)} \simeq O(h^q)$
 		\item Stability $\to$ absolute error of perturbed numerical solution $z_n$:
-		$$ 	norm{z_n-u_n} < C \varepsilon \qquad
-		\text{given perturbation } < \varepsilon, \text{for some } h_0 $$
+		$$ 	\norm{z_n-u_n} < C \varepsilon \qquad
+		\text{given perturbation } < \varepsilon \text{, for some } h_0 $$
 	\end{itemize}
 	\pause
 	Examples:
@@ -193,14 +195,16 @@
 		\item Steep limitations on order of convergence:
 		\begin{itemize}
 			\item Maximum order is the number of stages
-			\item If $s \ge 5$, equality cannot be achieved in explicit variants
+			\item If $s \ge 5$, equality cannot be achieved in explicit variants \\[30pt]
 		\end{itemize}
 	\end{itemize}
-	\begin{tabular}{c|cccc}
-		order & 5 & 6 & 7 & 8\\
-		\hline
-		minimum $s$ & 6 & 7 & 9 & 11 
-	\end{tabular}
+	\begin{center}
+		\begin{tabular}{c|cccc}
+			order & 5 & 6 & 7 & 8\\
+			\hline
+			minimum $s$ & 6 & 7 & 9 & 11 
+		\end{tabular}
+	\end{center}
 \end{frame}
 
 
@@ -222,8 +226,11 @@
 \frametitle{Absolute stability controls oscillations}
 \begin{itemize}
 	\item Generalized model problem:
-	$$ y'(t) = \lambda(t) y(t) + r(t) \quad \text{with } t > 0, y(0) = \boldsymbol 1,
-	\lambda(t)<0 \in C^0 \cap L^\infty,  r(t) \in C^0 $$
+	\begin{align*}
+		y'(t) = \lambda(t) y(t) + r(t) \qquad & \text{with } t > 0,
+		\ y(0) = 1, \ \lambda < 0,  \\
+		& \lambda \in C^0 \cap L^\infty, \ r(t) \in C^0
+	\end{align*}
 	\item No absolute stability, but...
 	\item Absolutely stable Forward Euler case:
 	\begin{itemize}
@@ -249,13 +256,18 @@
 
 \begin{frame} %#14
 	\frametitle{Consistency of adaptive methods}
+	Forward Euler:
 	\begin{itemize}
-		\item Forward Euler: truncation errors are
+		\item Truncation errors:
 		$$ e_h = h^2/2 y"(\xi), \qquad e_{h/2} = h^2/8 y"(\eta) \cdot 2 + o(h^2) $$
-		$$\implies \abs{u_{h/2} - u_h} \simeq \abs{e_(h/2)} \simeq h^2/4 \abs{y"(\widehat\eta)}
+		\item Error estimate:
+		$$ \abs{u_{h/2} - u_h} \simeq \abs{e_(h/2)} \simeq h^2/4 \abs{y"(\widehat\eta)}
 		+ o(h^2) \stackrel{\downarrow}{<} \frac{\varepsilon}{2}
 		\quad \text{(tolerance)} $$
-		\item Runge-Kutta %TODO!!!!!!!!!
+	\end{itemize}
+	Runge-Kutta:
+	\begin{itemize}
+		\item \dots %TODO!!!!!!!!!
 	\end{itemize}
 \end{frame}
 
@@ -279,24 +291,26 @@
 		% are some unknown (in the general case) quantities that need to be
 		% estimated
 		\includegraphics[scale=0.3]{etc/test.jpg}
-		\item Adaptive \verb|single_step()| class methods are not efficient
+		\item Adaptive single\_step() class methods are not efficient
 	\end{itemize}
 	
 \end{frame}
+
 
 \begin{frame} %#18
 	\frametitle{Results}
 	\includegraphics[scale=0.3]{etc/test.jpg}
 \end{frame}
 
+
 \begin{frame} %#19
 	\frametitle{Bibliography}
-	\begin{thebibliography}
+	\begin{thebibliography}{9}
 		\setbeamertemplate{bibliography item}[book] % or [online] or [article]
-		\bibitem ItemB Quarteroni, Sacco, Saleri, Gervasio, \textit{Matematica numerica}
-		\bibitem Quarteroni, Saleri, \textit{Calcolo scientifico}
-		\bibitem Solodushkin, Iumanova, \textit{Parallel Numerical Methods for Ordinary Differential Equations: a Survey}
-		\bibitem Podhaisky, \textit{Parallel two-step Runge-Kutta methods}	
+		\bibitem{QSSG} Quarteroni, Sacco, Saleri, Gervasio, \textit{Matematica numerica}
+		\bibitem{QS} Quarteroni, Saleri, \textit{Calcolo scientifico}
+		\bibitem{SI} Solodushkin, Iumanova, \textit{Parallel Numerical Methods for Ordinary Differential Equations: a Survey}
+		\bibitem{P} Podhaisky, \textit{Parallel two-step Runge-Kutta methods}
 	\end{thebibliography}
 \end{frame}
 
@@ -305,10 +319,10 @@
 
 
 
+
 \begin{frame}
 	\frametitle{Title}
-	
 	\begin{itemize}
-		\item 
+		\item Text
 	\end{itemize}
 \end{frame}
