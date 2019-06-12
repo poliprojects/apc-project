@@ -17,6 +17,10 @@ ParallelIserNorSolver::ParallelIserNorSolver(double step,
 Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
 	const double h) const
 {
+  // high_resolution_clock::time_point t1 = high_resolution_clock::now();
+  // high_resolution_clock::time_point t2 = high_resolution_clock::now();
+  // auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+
 	int rank, size;
 	MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
 	MPI_Comm_size( MPI_COMM_WORLD, &size ); // 2
@@ -30,6 +34,7 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
 	unsigned local_n_stages = a.size() / size; // 2
 	unsigned first_stage = 2*rank; // 0 in rank 0, 2 in rank 1
 
+  // t1 = high_resolution_clock::now();
 	for( unsigned i = first_stage; i < first_stage+local_n_stages; i++ )
 	{
 		// Linear combination of the previous computed K_i
@@ -42,7 +47,14 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
 		K[i] = fixed_point( f, tn, un, sum_aij_Kj, i );
 		sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
 	}
-
+  // t2 = high_resolution_clock::now();
+  // duration = duration_cast<microseconds>( t2 - t1 ).count();
+  // if( rank == 0 )
+  //   std::cout << "Fixed point 0: " << duration << " μs" << '\n' << std::endl;
+  // if( rank == 1 )
+  //   std::cout << "Fixed point 1: " << duration << " μs" << '\n' << std::endl;
+  //
+  // t1 = high_resolution_clock::now();
 	if( rank == 0 )
 	{
 		for( unsigned i = 0; i < 2; i++ )
@@ -71,6 +83,12 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
 			MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD );
 		}
 	}
+  // t2 = high_resolution_clock::now();
+  // duration = duration_cast<microseconds>( t2 - t1 ).count();
+  // if( rank == 0 )
+  //   std::cout << "Communication 0: " << duration << " μs" << '\n' << std::endl;
+  // if( rank == 1 )
+  //   std::cout << "Communication 1: " << duration << " μs" << '\n' << std::endl;
 
 	for( unsigned i = 0; i < n_stages; i++ )
     un1 = un1 + h * b[i] * K[i];

@@ -2,7 +2,9 @@
 #define PARALLELISERNORSOLVER_HPP
 
 #include <mpi.h>
+#include <chrono>
 #include "RKSolver.hpp"
+using namespace std::chrono;
 
 
 class ParallelIserNorSolver: public RKSolver

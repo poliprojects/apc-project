@@ -123,15 +123,18 @@ Rnvector RKSolver::fixed_point( const EquationFunction &f, const double tn,
     Rnvector K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
     double error = compute_error( K0, K1 );
     K0 = K1;
+    // unsigned iter = 0;
 
     while( error > fixed_point_tol )
     {
         K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
         error = compute_error( K0, K1 );
         K0 = K1;
+        // iter++;
     }
+    // std::cout << "Iter: " << iter << '\n';
 
-  return K0;
+    return K0;
 }
 
 /// \param   K0     Previous value of K_i
@@ -171,11 +174,30 @@ void RKSolver::solve()
 	  // Solution loop
 	  Rnvector un1( un.size() ); // solution at time n+1
 	  for( unsigned n = 0; n < Nh; n++ )
-  	{
-	  	  un1 = single_step( times[n], un, h );
-		    solution.push_back( un1 );
-		    un = un1;
-		    un1.clear();
+    {
+  	  	// int rank;
+  	  	// MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
+        //
+    		// // Chrono starts
+    	  // high_resolution_clock::time_point t1 = high_resolution_clock::now();
+
+  	  	un1 = single_step( times[n], un, h );
+
+    		// // Chrono ends
+    	  // high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        //
+    		// // Compute duration of the solution process
+        // auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+        //
+    		// // Prints duration of the solution process
+    		// if( rank == 0 )
+    		// 	std::cout << "Step time: " << duration << " μs" << '\n' << std::endl;
+
+    		solution.push_back( un1 );
+    		un = un1;
+    		un1.clear();
+        // if( n == 30 )
+        //     exit(1);
   	}
 }
 

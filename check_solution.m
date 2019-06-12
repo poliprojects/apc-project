@@ -20,8 +20,16 @@ close all
 % y1'(t) = -3*y1(t) -   y2(t) + sin(t)
 % y2'(t) =    y1(t) - 5*y2(t) - 2		 in [0,10]
 % y(0) = 1 1
+%
+% Test 5:
+% y'(t) = -16.8*y(t)   in [ 0, 1 ]
+%  y(0) = 1
+%
+% Test 6:
+% y'(t) = 2^( -x/4 + 6 + 10*t )   in [ 0, 100 ]
+%  y(0) = 1
 
-Test = 4;
+Test = 6;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -84,6 +92,12 @@ elseif( Test == 4 )
                        (3243*exp(-4*t))/2312 - cos(t + atan(15/8))/17 - ...
                        (15*t.*exp(-4*t))/34 - 3/8 );
     [ u(1,:), u(2,:) ] = u_ex( t );
+elseif( Test == 5 )
+    u_ex = @(t) exp(-(84*t)/5);
+    u = u_ex( t );
+elseif( Test == 6 )
+    u_ex = @(t) (4*(log((20*2^(1/4) - 32)/(5*log(2)) + (32*2.^(10*t))/(5*log(2))) - 2*log(2) + log(log(2))))/log(2);
+    u = u_ex( t );
 end
 
 % Plot
