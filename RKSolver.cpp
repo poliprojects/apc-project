@@ -154,71 +154,29 @@ bool RKSolver::is_implicit( const size_t K_index ) const
 }
 
 
-// void RKSolver::solve()
-// {
-// 	int size;
-// 	MPI_Comm_size( MPI_COMM_WORLD, &size ); // 1 or 2
-//
-// 	// Initialization of time instants
-// 	times.resize( Nh+1 );
-// 	double tn = equation.get_tin();
-// 	for( std::size_t i = 0; i < Nh+1; i++ )
-// 	{
-// 		times[i] = tn;
-// 		tn += h;
-// 	}
-//
-// 	// Take solution at time 0 and function f from data
-// 	Rnvector un = solution[0];
-//
-// 	// Solution loop
-// 	Rnvector un1( un.size() ); // solution at time n+1
-// 	if( method_name == "IserNor" && size == 2 ) // parallel
-// 	{
-// 		for( unsigned n = 0; n < Nh; n++ )
-// 		{
-// 			un1 = parallel_single_step( times[n], un, h );
-// 			solution.push_back( un1 );
-// 			un = un1;
-// 			un1.clear();
-// 		}
-// 	}
-// 	else // sequential
-// 	{
-// 		for( unsigned n = 0; n < Nh; n++ )
-// 		{
-// 			un1 = single_step( times[n], un, h );
-// 			solution.push_back( un1 );
-// 			un = un1;
-// 			un1.clear();
-// 		}
-// 	}
-// }
-
-
 void RKSolver::solve()
 {
-	// Initialization of time instants
-	times.resize( Nh+1 );
-	double tn = equation.get_tin();
-	for( std::size_t i = 0; i < Nh+1; i++ )
-	{
-		times[i] = tn;
-		tn += h;
-	}
+	  // Initialization of time instants
+	  times.resize( Nh+1 );
+	  double tn = equation.get_tin();
+	  for( std::size_t i = 0; i < Nh+1; i++ )
+  	{
+	  	  times[i] = tn;
+		    tn += h;
+	  }
 
-	// Take solution at time 0 and function f from data
-	Rnvector un = solution[0];
+	  // Take solution at time 0 and function f from data
+	  Rnvector un = solution[0];
 
-	// Solution loop
-	Rnvector un1( un.size() ); // solution at time n+1
-	for( unsigned n = 0; n < Nh; n++ )
-	{
-		un1 = single_step( times[n], un, h );
-		solution.push_back( un1 );
-		un = un1;
-		un1.clear();
-	}
+	  // Solution loop
+	  Rnvector un1( un.size() ); // solution at time n+1
+	  for( unsigned n = 0; n < Nh; n++ )
+  	{
+	  	  un1 = single_step( times[n], un, h );
+		    solution.push_back( un1 );
+		    un = un1;
+		    un1.clear();
+  	}
 }
 
 

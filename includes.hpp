@@ -5,6 +5,7 @@
 #include <stdlib.h> // atof
 #include <chrono>
 #include "equations.hpp"
+#include "RuntimeUtils.hpp"
 #include "BaseSolver.hpp"
 #include "BaseEquation.hpp"
 #include "FESolver.hpp"
