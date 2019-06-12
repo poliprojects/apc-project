@@ -9,48 +9,48 @@ using namespace std::chrono;
 // argv[4] = tolerance (default to 1e-2)
 int main( int argc, char * argv[] )
 {
-  // MPI initialization
-  MPI_Init( &argc, &argv );
-  int rank, size;
-	MPI_Comm_rank( MPI_COMM_WORLD, &rank );
-	MPI_Comm_size( MPI_COMM_WORLD, &size );
+    // MPI initialization
+    MPI_Init( &argc, &argv );
+    int rank, size;
+    MPI_Comm_rank( MPI_COMM_WORLD, &rank );
+    MPI_Comm_size( MPI_COMM_WORLD, &size );
 
-	// Checks if there are enough parameters to start the execution
-	check_minimum_parameters_number( argc );
+    // Checks if there are enough parameters to start the execution
+    check_minimum_parameters_number( argc );
 
-  // ==========================================================================
-	// INITIALIZATION OF TEST DEPENDENT DATA
-  // ==========================================================================
-  // NB: the actual definition of fun depends on the test chosen (see
-	// equations.hpp and equations.cpp files)
+    // =========================================================================
+    // INITIALIZATION OF TEST DEPENDENT DATA
+    // =========================================================================
+    // NB: the actual definition of fun depends on the test chosen (see
+    // equations.hpp and equations.cpp files)
 
-	EquationFunction* fun_ptr = nullptr;
-	double initial_time;
-	double final_time;
-	Rnvector initial_condition;
+    EquationFunction* fun_ptr = nullptr;
+    double initial_time;
+    double final_time;
+    Rnvector initial_condition;
 
-  // Setting data from runtime parameters
-  initialize_data( rank, argv[1], fun_ptr,
-    initial_time, final_time, initial_condition );
+    // Setting data from runtime parameters
+    initialize_data( rank, argv[1], fun_ptr, initial_time, final_time,
+        initial_condition );
 
-	// Equation initialization using test dependent data
-	BaseEquation equation(initial_time, final_time, *fun_ptr,
-		initial_condition);
+    // Equation initialization using test dependent data
+    BaseEquation equation(initial_time, final_time, *fun_ptr,
+        initial_condition);
 
 
-  // ==========================================================================
-  // INITIALIZATION OF THE SOLVER
-  // ==========================================================================
-  // NB: the actual definition of solver depends on the method chosen (see
-  // RuntimeUtils.hpp and RuntimeUtils.cpp files)
+    // =========================================================================
+    // INITIALIZATION OF THE SOLVER
+    // =========================================================================
+    // NB: the actual definition of solver depends on the method chosen (see
+    // RuntimeUtils.hpp and RuntimeUtils.cpp files)
 
-	BaseSolver* problem_ptr = nullptr;
-	double initial_step = 0.1; // Changes mid-solving only in adaptive methods
-	double tolerance = 1e-2; // Used only in adaptive methods
+    BaseSolver* problem_ptr = nullptr;
+    double initial_step = 0.1; // Changes mid-solving only in adaptive methods
+    double tolerance = 1e-2; // Used only in adaptive methods
 
-  // Solver inizialization from runtime parameters
-  initialize_solver( argc, argv, problem_ptr,
-    initial_step, tolerance, equation );
+    // Solver inizialization from runtime parameters
+    initialize_solver( argc, argv, problem_ptr, initial_step, tolerance,
+        equation );
 
     // Problem initialization using the chosen solver
     BaseSolver &problem = *problem_ptr;
@@ -98,8 +98,8 @@ int main( int argc, char * argv[] )
     delete fun_ptr;
     delete problem_ptr;
 
-  // MPI finalization
-  MPI_Finalize();
+    // MPI finalization
+    MPI_Finalize();
 
-	return 0;
+    return 0;
 }
