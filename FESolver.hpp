@@ -7,25 +7,25 @@
 class FESolver: public BaseSolver
 {
 
-	protected:
+    protected:
 
-		//! One step of time integration, called by solve()
-		Rnvector single_step(const double tn, const Rnvector &un,
-			const double h) const override;
+        //! One step of time integration, called by solve()
+        Rnvector single_step( const double tn, const Rnvector &un,
+            const double h ) const override;
 
-	public:
+    public:
 
-		// Constructors
-		FESolver(double step, const BaseEquation &eq);
+        // Constructors
+        FESolver( double step, const BaseEquation &eq );
 
-		// Getters
-		unsigned get_Nh() const { return Nh; };
+        // Getters
+        unsigned get_Nh() const { return Nh; };
 
-		//! Main solver based on Forward Euler method
-		void solve() override;
+        //! Main solver based on Forward Euler method
+        void solve() override;
 
-		//! Prints the characteristics of the Forward Euler solver
-		void print_solver_spec() const override;
+        //! Prints the characteristics of the Forward Euler solver
+        void print_solver_spec() const override;
 };
 
 #endif // FESOLVER_HPP

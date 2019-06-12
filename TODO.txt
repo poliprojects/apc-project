@@ -1,16 +1,4 @@
 TO DO LIST
-* Migrate all includes in the main to an appropriate file?
 * Can we lift the assumption that h evenly divides the time interval?
-* Display file name after running solve()
-
-STUFF TO PUT IN THE SLIDES
-* single_step() for adap methos is possible, but inefficient b/c...
-* Finding parallelizable RK methods was hard
-
-BIBLIOGRAPHY
-* Quarteroni, Sacco, Saleri, Gervasio, "Matematica numerica"
-* Quarteroni, Saleri, "Calcolo scientifico"
-* Solodushkin, Iumanova, "Parallel Numerical Methods for Ordinary Differential
-	Equations: a Survey" (paper)
-* Podhaisky, "Parallel two-step Runge-Kutta methods" (slides)
-* http://masters.donntu.org/2007/fvti/shumeykin/library/st5/index.htm
+* Should we include complex analysis (absolute stability region...) in the
+  presentation?

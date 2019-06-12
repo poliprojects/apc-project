@@ -1,16 +1,4 @@
-#include <iostream>
-#include <math.h>
-#include <string>
-#include <chrono>
-#include <mpi.h>
-#include "equations.hpp"
-#include "RuntimeUtils.hpp"
-#include "BaseEquation.hpp"
-#include "BaseSolver.hpp"
-#include "FESolver.hpp"
-#include "AdaptiveFESolver.hpp"
-#include "RKSolver.hpp"
-#include "AdaptiveRKSolver.hpp"
+#include "includes.hpp"
 
 using namespace std::chrono;
 
@@ -64,27 +52,27 @@ int main( int argc, char * argv[] )
   initialize_solver( argc, argv, problem_ptr,
     initial_step, tolerance, equation );
 
-  // Problem initialization using the chosen solver
-	BaseSolver & problem = *problem_ptr;
+    // Problem initialization using the chosen solver
+    BaseSolver &problem = *problem_ptr;
 
 
-  // ==========================================================================
-  // SOLUTION
-  // ==========================================================================
+    // =========================================================================
+    // SOLUTION
+    // =========================================================================
 
-  // Chrono starts
-  high_resolution_clock::time_point t1 = high_resolution_clock::now();
+    // Chrono starts
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-  // Solution
-  problem.solve();
+    // Solution
+    problem.solve();
 
-  // Chrono ends
-  high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    // Chrono ends
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
 
-  // ==========================================================================
-  // POSTPROCESSING
-  // ==========================================================================
+    // =========================================================================
+    // POSTPROCESSING
+    // =========================================================================
 
   if( rank == 0 )
   {
@@ -105,9 +93,9 @@ int main( int argc, char * argv[] )
   	problem.save_sol_to_file( file_name );
   }
 
-	// Releases dynamically allocated resources
-	delete fun_ptr;
-	delete problem_ptr;
+    // Releases dynamically allocated resources
+    delete fun_ptr;
+    delete problem_ptr;
 
   // MPI finalization
   MPI_Finalize();
