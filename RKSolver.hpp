@@ -4,9 +4,12 @@
 #include <vector>
 #include <cassert>
 #include <cstdlib>
+#include <chrono>
 #include <string>
 #include <mpi.h>
 #include "BaseSolver.hpp"
+
+using namespace std::chrono;
 
 
 class RKSolver: public BaseSolver

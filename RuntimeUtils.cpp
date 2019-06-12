@@ -59,18 +59,37 @@ void initialize_data(const int rank, char* test_number,
         final_time = 5;
         initial_condition.push_back(1);
     }
-  // Test 4
-    else if ( strcmp(test_number, "4") == 0  )
-    {
+    // Test 4
+	  else if ( strcmp(test_number, "4") == 0  )
+	  {
         if( rank == 0 )
-            std::cout << std::endl << "Running Test 4" << std::endl <<
-                std::endl;
-        fun_ptr = new EquationFunction_4;
-        initial_time = 0;
-        final_time = 10;
-        initial_condition.push_back(1);
-        initial_condition.push_back(1);
-    }
+	  	      std::cout << std::endl << "Running Test 4" << std::endl << std::endl;
+		    fun_ptr = new EquationFunction_4;
+	    	initial_time = 0;
+	    	final_time = 10;
+    		initial_condition.push_back(1);
+    		initial_condition.push_back(1);
+  	}
+    // Test 5
+  	if ( strcmp(test_number, "5") == 0 )
+  	{
+        if( rank == 0 )
+		        std::cout << std::endl << "Running Test 5" << std::endl << std::endl;
+		    fun_ptr = new EquationFunction_5;
+	    	initial_time = 0;
+    		final_time = 1;
+    		initial_condition.push_back(1);
+  	}
+    // Test 6
+  	if ( strcmp(test_number, "6") == 0 )
+  	{
+        if( rank == 0 )
+	      	  std::cout << std::endl << "Running Test 6" << std::endl << std::endl;
+	    	fun_ptr = new EquationFunction_6;
+    		initial_time = 0;
+	    	final_time = 100;
+	    	initial_condition.push_back(1);
+  	}
 }
 
 
@@ -85,28 +104,28 @@ void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
 {
     int size;
     MPI_Comm_size( MPI_COMM_WORLD, &size );
-  
+
     // User defined initial step
     if ( argc > 3 )
         initial_step = atof( argv[3] );
-  
+
     // User defined tolerance for adaptive methods
     if ( argc > 4 )
         tolerance = atof( argv[4] );
-  
+
     // Parallel Iserles-Nørsett method
     if( size == 2 && strcmp(argv[2], "IserNor") == 0 )
         problem_ptr = new ParallelIserNorSolver( initial_step, equation );
-  
+
     // Forward Euler method
     else if ( strcmp(argv[2], "FE") == 0 )
         problem_ptr = new FESolver( initial_step, equation );
-  
+
     // Adaptive Forward Euler method
     else if ( strcmp(argv[2], "adapFE") == 0 )
         problem_ptr = new AdaptiveFESolver( initial_step, equation,
             tolerance, tolerance );
-  
+
     // Runge Kutta method (user defined coefficients)
     else if ( strcmp(argv[2], "RK") == 0 )
     {
@@ -118,7 +137,7 @@ void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
         std::vector<double> c{ 0 };
         problem_ptr = new RKSolver( initial_step, equation, a, b, c );
     }
-  
+
     // Adaptive Runge Kutta method (user defined coefficients)
     else if ( strcmp(argv[2], "adapRK") == 0 )
     {
@@ -133,7 +152,7 @@ void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
         problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
             tolerance, tolerance );
     }
-  
+
     // Adaptive Runge Kutta method (chosen among predefined ones)
     else if ( strncmp(argv[2], "adap", 4) == 0 )
     {
@@ -142,7 +161,7 @@ void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
         problem_ptr = new AdaptiveRKSolver( initial_step, equation,
             name_no_prefix, tolerance, tolerance );
     }
-  
+
     // Runge Kutta method (chosen among predefined ones)
     else
     {

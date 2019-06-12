@@ -41,4 +41,16 @@ struct EquationFunction_4: public EquationFunction
     {}
 };
 
+struct EquationFunction_5: public EquationFunction
+{
+    Rnvector operator()( const double &t, Rnvector y ) const override;
+    EquationFunction_5(): EquationFunction( "y'(t) = -16.8*y(t)" ) {}
+};
+
+struct EquationFunction_6: public EquationFunction
+{
+    Rnvector operator()( const double &t, Rnvector y ) const override;
+    EquationFunction_6(): EquationFunction( "y'(t) = 2^( -x/4 + 6 + 10*t )" ) {}
+};
+
 #endif // EQUATIONS_HPP
