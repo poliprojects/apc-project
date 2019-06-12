@@ -191,7 +191,7 @@ void RKSolver::solve()
         //
     		// // Prints duration of the solution process
     		// if( rank == 0 )
-    		// 	std::cout << "Step time: " << duration << " μs" << '\n' << std::endl;
+    		// 	std::cout << "Step time: " << duration << " μs" << '\n' << '\n';
 
     		solution.push_back( un1 );
     		un = un1;

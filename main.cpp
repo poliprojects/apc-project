@@ -74,25 +74,25 @@ int main( int argc, char * argv[] )
     // POSTPROCESSING
     // =========================================================================
 
-  if( rank == 0 )
-  {
-      // Compute duration of the solution process
-      auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+    if( rank == 0 )
+    {
+        // Compute duration of the solution process
+        auto duration = duration_cast<microseconds>( t2 - t1 ).count();
 
-      // Prints problem characteristics on screen
-  	  problem.print();
+        // Prints problem characteristics on screen
+    	  problem.print();
 
-      // Prints duration of the solution process
-      std::cout << "Solution time: " << duration << " μs" << '\n' << std::endl;
+        // Prints duration of the solution process
+        std::cout << "Solution time: " << duration << " μs" << '\n' << std::endl;
 
-    	// Saves solution to file_name
-    	// NB: the name of the file depends on the arguments passed at runtime
-    	std::string test_number = argv[1];
-      std::string method_name = argv[2];
-    	std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
-    	problem.save_sol_to_file( file_name );
-      std::cout << "Saved solution to file: " << file_name << '\n' << '\n';
-  }
+      	// Saves solution to file_name
+      	// NB: the name of the file depends on the arguments passed at runtime
+      	std::string test_number = argv[1];
+        std::string method_name = argv[2];
+      	std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
+      	problem.save_sol_to_file( file_name );
+        std::cout << "Saved solution to file: " << file_name << '\n' << '\n';
+    }
 
     // Releases dynamically allocated resources
     delete fun_ptr;
