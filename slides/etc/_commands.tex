@@ -1,0 +1,61 @@
+% Delimiters
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% Utilities
+\newcommand{\Fixvmode}{\leavevmode\vspace{-\baselineskip}}
+\newcommand{\tikzmark}[2]{\tikz[remember picture,baseline=(#1.base)]{\node[inner sep=0pt] (#1) {#2};}}
+
+% Symbols
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+% Bold letters for vectors
+\newcommand{\kk}{\boldsymbol K}
+\newcommand{\uu}{\boldsymbol u}
+\newcommand{\yy}{\boldsymbol y}
+
+% Calligraphic letters
+\newcommand{\Ac}{\mathcal A}
+\newcommand{\Bc}{\mathcal B}
+\newcommand{\Cc}{\mathcal C}
+\newcommand{\Dc}{\mathcal D}
+\newcommand{\Ec}{\mathcal E}
+\newcommand{\Fc}{\mathcal F}
+\newcommand{\Gc}{\mathcal G}
+\newcommand{\Hc}{\mathcal H}
+\newcommand{\Ic}{\mathcal I}
+\newcommand{\Jc}{\mathcal J}
+\newcommand{\Kc}{\mathcal K}
+\newcommand{\Lc}{\mathcal L}
+\newcommand{\Mc}{\mathcal M}
+\newcommand{\Nc}{\mathcal N}
+\newcommand{\Oc}{\mathcal O}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\Qc}{\mathcal Q}
+\newcommand{\Rc}{\mathcal R}
+\newcommand{\Sc}{\mathcal S}
+\newcommand{\Tc}{\mathcal T}
+\newcommand{\Uc}{\mathcal U}
+\newcommand{\Vc}{\mathcal V}
+\newcommand{\Wc}{\mathcal W}
+\newcommand{\Xc}{\mathcal X}
+\newcommand{\Yc}{\mathcal Y}
+\newcommand{\Zc}{\mathcal Z}
+
+% Double pipe letters
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+
+%% \bigcdot a dot for arguments in functions
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+% Arrows
+\newcommand{\RArr}[1]{\parbox{#1}{\tikz{\draw[->](0,0)--(#1,0);}}}
+\newcommand{\LArr}[1]{\parbox{#1}{\tikz{\draw[<-](0,0)--(#1,0);}}}
+\newcommand{\UArr}[1]{\parbox{#1}{\tikz{\draw[->](0,0)--(0,#1);}}}
+\newcommand{\DArr}[1]{\parbox{#1}{\tikz{\draw[<-](0,0)--(0,#1);}}}
+\newcommand{\VArr}[1]{\parbox{#1}{\tikz{\draw[-](0,0)--(0,#1);}}}
