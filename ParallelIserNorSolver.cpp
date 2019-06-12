@@ -2,11 +2,10 @@
 
 
 ParallelIserNorSolver::ParallelIserNorSolver(double step,
-  const BaseEquation & eq):
-	RKSolver(step, eq, "IserNor")
+    const BaseEquation & eq): RKSolver(step, eq, "IserNor")
 {
-	// Parallel version of Iserles-Nørsett
-	method_name = "Parallel IserNor";
+    // Parallel version of Iserles-Nørsett
+    method_name = "Parallel IserNor";
 }
 
 
@@ -15,65 +14,65 @@ ParallelIserNorSolver::ParallelIserNorSolver(double step,
 /// \param   h    Step size
 /// \return       Solution at the following time instant
 Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
-	const double h) const
+    const double h) const
 {
-	int rank, size;
-	MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
-	MPI_Comm_size( MPI_COMM_WORLD, &size ); // 2
+    int rank, size;
+    MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
+    MPI_Comm_size( MPI_COMM_WORLD, &size ); // 2
 
-	Rnvector un1 = un;
-	unsigned system_dim = un.size();
-	Rnvector empty( system_dim, 0 );
-	std::vector<Rnvector> K{ empty, empty, empty, empty }; // vector of K_i
-	EquationFunction &f = equation.get_f();
+    Rnvector un1 = un;
+    unsigned system_dim = un.size();
+    Rnvector empty( system_dim, 0 );
+    std::vector<Rnvector> K{ empty, empty, empty, empty }; // vector of K_i
+    EquationFunction &f = equation.get_f();
 
-	unsigned local_n_stages = a.size() / size; // 2
-	unsigned first_stage = 2*rank; // 0 in rank 0, 2 in rank 1
+    unsigned local_n_stages = a.size() / size; // 2
+    unsigned first_stage = 2*rank; // 0 in rank 0, 2 in rank 1
 
-	for( unsigned i = first_stage; i < first_stage+local_n_stages; i++ )
-	{
-		// Linear combination of the previous computed K_i
-    Rnvector sum_aij_Kj( system_dim, 0 );
-		// starts at first stage also in rank 1 since A21 2x2 block is empty
-    for( unsigned j = first_stage; j < i; j++ )
-      sum_aij_Kj = sum_aij_Kj + a[i][j] * K[j];
+    for( unsigned i = first_stage; i < first_stage+local_n_stages; i++ )
+    {
+        // Linear combination of the previous computed K_i
+        Rnvector sum_aij_Kj( system_dim, 0 );
+        // starts at first stage also in rank 1 since A21 2x2 block is empty
+        for( unsigned j = first_stage; j < i; j++ )
+            sum_aij_Kj = sum_aij_Kj + a[i][j] * K[j];
 
-		// Computes the new K_i
-		K[i] = fixed_point( f, tn, un, sum_aij_Kj, i );
-		sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
-	}
+        // Computes the new K_i
+        K[i] = fixed_point( f, tn, un, sum_aij_Kj, i );
+        sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
+    }
 
-	if( rank == 0 )
-	{
-		for( unsigned i = 0; i < 2; i++ )
-		{
-			// Send K[0], K[1]
-			MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD );
-		}
-		for( unsigned i = 2; i < 4; i++ )
-		{
-			// Recieve K[2], K[3]
-			MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD,
-				MPI_STATUS_IGNORE );
-		}
-	}
-	else if( rank == 1 )
-	{
-		for( unsigned i = 0; i < 2; i++ )
-		{
-			// Recieve K[0], K[1]
-			MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD,
-				MPI_STATUS_IGNORE );
-		}
-		for( unsigned i = 2; i < 4; i++ )
-		{
-			// Send K[2], K[3]
-			MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD );
-		}
-	}
+    if( rank == 0 )
+    {
+        for( unsigned i = 0; i < 2; i++ )
+        {
+            // Send K[0], K[1]
+            MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD );
+        }
+        for( unsigned i = 2; i < 4; i++ )
+        {
+            // Recieve K[2], K[3]
+            MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD,
+                MPI_STATUS_IGNORE );
+        }
+    }
+    else if( rank == 1 )
+    {
+        for( unsigned i = 0; i < 2; i++ )
+        {
+            // Recieve K[0], K[1]
+            MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD,
+                MPI_STATUS_IGNORE );
+        }
+        for( unsigned i = 2; i < 4; i++ )
+        {
+            // Send K[2], K[3]
+            MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD );
+        }
+    }
 
-	for( unsigned i = 0; i < n_stages; i++ )
+    for( unsigned i = 0; i < n_stages; i++ )
     un1 = un1 + h * b[i] * K[i];
 
-	return un1;
+    return un1;
 }

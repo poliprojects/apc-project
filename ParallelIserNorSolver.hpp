@@ -12,7 +12,7 @@ class ParallelIserNorSolver: public RKSolver
 
     //! One step of time integration in parallel mode, called by solve()
     Rnvector single_step(const double tn, const Rnvector &un,
-      const double h) const override;
+        const double h) const override;
 
   public:
 

@@ -30,7 +30,7 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
         b = { 0.5, 0.5 };
         c = {   0,   1 };
         // Set number of stages for every step
-          n_stages = b.size();
+        n_stages = b.size();
     }
     else if( name == "IserNor" )
     {
@@ -44,7 +44,7 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
         b = { 1.978094,  1.978094, -1.478094, -1.478093 };
         c = {     1/3.,      2/3.,  0.594788,  0.405212 };
         // Set number of stages for every step
-      n_stages = b.size();
+        n_stages = b.size();
     }
     else if( name == "RK4" )
     {
@@ -156,27 +156,27 @@ bool RKSolver::is_implicit( const size_t K_index ) const
 
 void RKSolver::solve()
 {
-	  // Initialization of time instants
-	  times.resize( Nh+1 );
-	  double tn = equation.get_tin();
-	  for( std::size_t i = 0; i < Nh+1; i++ )
-  	{
-	  	  times[i] = tn;
-		    tn += h;
-	  }
+    // Initialization of time instants
+    times.resize( Nh+1 );
+    double tn = equation.get_tin();
+    for( std::size_t i = 0; i < Nh+1; i++ )
+    {
+        times[i] = tn;
+        tn += h;
+    }
 
-	  // Take solution at time 0 and function f from data
-	  Rnvector un = solution[0];
+    // Take solution at time 0 and function f from data
+    Rnvector un = solution[0];
 
-	  // Solution loop
-	  Rnvector un1( un.size() ); // solution at time n+1
-	  for( unsigned n = 0; n < Nh; n++ )
-  	{
-	  	  un1 = single_step( times[n], un, h );
-		    solution.push_back( un1 );
-		    un = un1;
-		    un1.clear();
-  	}
+    // Solution loop
+    Rnvector un1( un.size() ); // solution at time n+1
+    for( unsigned n = 0; n < Nh; n++ )
+    {
+        un1 = single_step( times[n], un, h );
+        solution.push_back( un1 );
+        un = un1;
+        un1.clear();
+    }
 }
 
 
