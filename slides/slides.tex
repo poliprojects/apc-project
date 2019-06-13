@@ -24,7 +24,14 @@
 %	\end{textblock*}
 %}
 
-\begin{frame} %#02
+\begin{frame}[c] %#02
+	\begin{center}
+		\Huge \color{blue} Introduction
+	\end{center}
+\end{frame}
+
+
+\begin{frame} %#03
 	\frametitle{Ordinary differential equations (ODE)}
 	\begin{itemize}
 		\item Spacial coordinates: $\yy \in \RR^n$
@@ -49,7 +56,8 @@
 	\end{center}
 \end{frame}
 
-\begin{frame} %#03
+
+\begin{frame} %#04
 	\frametitle{Existence and uniqueness of solution}
 	\begin{itemize}
 		\item Guaranteed under \textit{Lipschitz continuity}:
@@ -80,15 +88,16 @@
 	\end{itemize}
 \end{frame}
 
+
 \begin{frame}
-	\frametitle{Single-step methods} %#05
+	\frametitle{Single-step methods} %#06
 	\begin{itemize}
 		\item $\uu_{n+1}$ depends directly only on the one previous step $\uu_{n}$
 		\item General updating scheme (with generic increment function $\phi$):
 		$$ \uu_{n+1} = \uu_{n} + h \ \phi(t_n, \, h, \, \uu_n, \, \uu_{n+1}, \, f) $$
 		\pause
-		\item \textit{Explicit} methods: $\uu_{n+1}$ does not appear in $\phi$
-		\item \textit{Implicit} methods: $\uu_{n+1}$ appears in $\phi$
+		\item \textbf{Explicit} methods: $\uu_{n+1}$ does not appear in $\phi$
+		\item \textbf{Implicit} methods: $\uu_{n+1}$ appears in $\phi$
 		\begin{center}
 			\vspace{-5pt}
 			$\implies$ nonlinear equations
@@ -97,11 +106,11 @@
 \end{frame}
 
 
-\begin{frame} %#06
+\begin{frame} %#07
 	\frametitle{Runge-Kutta methods}
 	\begin{itemize}
-		\item Family of single-step methods
-		\item Weighted average of $s$ evaluations (\textit{stages}) of $f$: \\[-20pt]
+		\item Family of \textbf{single-step} methods
+		\item Weighted average of $s$ evaluations (\textbf{stages}) of $f$: \\[-20pt]
 		\begin{align*}
 			\uu_{n+1} = \uu_{n} + h \sum_{i=1}^s b_i \kk_i \quad \text{with} \\[-5pt]
 			\kk_i = f(t_0 + c_i h, \ \uu_n + \sum_{j=1}^s a_{ij} \kk_j)
@@ -126,72 +135,77 @@
 \end{frame}
 
 
-\begin{frame} %#07
-	\frametitle{Examples of explicit RK variants}
-	\begin{itemize}
-		\item \textbf{Forward Euler} (FE):
-		$$ a = 0, b = 1, c = 0 $$
-		$$ \uu_{n+1} = \uu_{n} + h f(t_n, \uu_n) $$
-		\item RK4 (standard):
-		\begin{tabular}{c|cccc}
-			$0$ & & & & \\
-			$\frac 1 2$ & $\frac 1 2$ & & & \\
-			$\frac 1 2$ & & $\frac 1 2$ & & \\
-			$1$ & & & 1 & \\
-			\hline
-			& $\frac 1 6$ & $\frac 1 3$ & $\frac 1 3$ & $\frac 1 6$
-			\end{tabular}
-		\item Heun:
-		\begin{tabular}{c|cc}
-			$0$ &     & \\
-			$1$ & $1$ & \\
-			\hline
-			    & $\frac 1 2$ & $\frac 1 2$
-			\end{tabular}	
-	\end{itemize}
-\end{frame}
-
-
 \begin{frame} %#08
-	\frametitle{Examples of implicit RK variants}
+	\frametitle{Examples of RK variants}
 	\begin{itemize}
-		\item Iserles-Nørsett:
-		\begin{tabular}{c|cccc}
-			$\frac{3-\sqrt{3}}{6}$ & $\frac{5}{12}$ & $\frac{1-2\sqrt{3}}{12}$ & & \\
-			$\frac{3+\sqrt{3}}{6}$ & $\frac{1+2\sqrt{3}}{12}$ & $\frac{5}{12}$ & & \\
-			$\frac{3-\sqrt{3}}{6}$ & & & $\frac{1}{2}$ & $-\frac{\sqrt{3}}{6}$ \\
-			$\frac{3+\sqrt{3}}{6}$ & & & $\frac{\sqrt{3}}{6}$ & $\frac{1}{2}$ \\
-			\hline
-			& $\frac{3}{2}$ & $\frac{3}{2}$ & $1$ & $1$
-			\end{tabular}
-		%TODO: do we need another one?	
+		\item \textbf{Forward Euler} (FE) (explicit):
+		$$ a = 0, \ b = 1, \ c = 0 $$
+		$$ \uu_{n+1} = \uu_{n} + h f(t_n, \uu_n) $$
+		\item RK4 (standard) (explicit): \\
+		\begin{center}
+			\begin{tabular}{c|cccc}
+				$0$ & & & & \\
+				$\frac 1 2$ & $\frac 1 2$ & & & \\
+				$\frac 1 2$ & & $\frac 1 2$ & & \\
+				$1$ & & & 1 & \\
+				\hline
+				& $\frac 1 6$ & $\frac 1 3$ & $\frac 1 3$ & $\frac 1 6$
+				\end{tabular}
+		\end{center}	
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame} %#09
-	\frametitle{Convergence analysis}
+	\frametitle{Examples of RK variants}
 	\begin{itemize}
-		\item Convergence $\to$ absolute error: $\norm{y_n - u_n} \simeq O(h^q)$
-		\item Consistence $\to$ truncation error: $\max_n \norm{\tau_n(h)} \simeq O(h^q)$
-		\item Stability $\to$ absolute error of perturbed numerical solution $z_n$:
-		$$ 	\norm{z_n-u_n} < C \varepsilon \qquad
-		\text{given perturbation } < \varepsilon \text{, for some } h_0 $$
-	\end{itemize}
-	\pause
-	Examples:
-	\begin{itemize}
-		\item Forward and backward Euler are order 1 methods
-		\item Under reasonable Lipschitz continuity assumptions on $\phi$, and if the method is also single-step and consistent, then it's convergent
+		\item Heun (explicit):
+		\begin{center}
+			\begin{tabular}{c|cc}
+				$0$ &     & \\
+				$1$ & $1$ & \\
+				\hline
+				& $\frac 1 2$ & $\frac 1 2$
+			\end{tabular}
+		\end{center}
+		\item \textbf{Iserles-Nørsett} (implicit):
+		\begin{center}
+			\begin{tabular}{c|cccc}
+				$\frac{3-\sqrt{3}}{6}$ & $\frac{5}{12}$ & $\frac{1-2\sqrt{3}}{12}$ & & \\
+				$\frac{3+\sqrt{3}}{6}$ & $\frac{1+2\sqrt{3}}{12}$ & $\frac{5}{12}$ & & \\
+				$\frac{3-\sqrt{3}}{6}$ & & & $\frac{1}{2}$ & $-\frac{\sqrt{3}}{6}$ \\
+				$\frac{3+\sqrt{3}}{6}$ & & & $\frac{\sqrt{3}}{6}$ & $\frac{1}{2}$ \\
+				\hline
+				& $\frac{3}{2}$ & $\frac{3}{2}$ & $1$ & $1$
+				\end{tabular}
+		\end{center}
+		%TODO: do we need another one?	
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame} %#10
+	\frametitle{Convergence analysis}
+	\begin{itemize}
+		\item \textbf{Convergence} $\to$ absolute error: $\norm{y_n - u_n} \simeq O(h^q)$
+		\item \textbf{Consistence} $\to$ truncation error: $\max_n \norm{\tau_n(h)} \simeq O(h^q)$
+		\item \textbf{Stability} $\to$ absolute error of \textit{perturbed} numerical solution $z_n$:
+		$$ 	\norm{z_n-u_n} < C \varepsilon \qquad
+		\text{given perturbation } \rho_n < \varepsilon \text{, for some } h_0 $$
+	\end{itemize}
+	\pause
+	Examples:
+	\begin{itemize}
+		\item Forward and backward Euler are order 1 methods
+		\item Under reasonable Lipschitz continuity assumptions on $\phi$, a single-step method which is \textbf{consistent} is also convergent
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame} %#11
 \frametitle{Convergence of RK}
 	\begin{itemize}
-		\item Runge-Kutta is consistent iff $\sum_i b_i = 1$ $\implies$
-		\item Therefore, it's convergent via the previous result
+		\item Runge-Kutta is consistent iff $\sum_i b_i = 1$ $\implies$ \textbf{convergent}
 		\item Steep limitations on order of convergence:
 		\begin{itemize}
 			\item Maximum order is the number of stages
@@ -208,117 +222,150 @@
 \end{frame}
 
 
-
-\begin{frame} %#11
+\begin{frame} %#12
 \frametitle{Model problem analysis (in $\RR$)}
-	$$ y'(t) = \lambda(t) y \qquad \text{with } t > 0, \ y(0) = y_0 $$
 	\begin{itemize}
+		\item Model problem:
+		$$
+		\begin{cases}
+		y'(t) = \lambda(t) \, y \qquad \text{with } t > 0 \\
+		y(0) = y_0
+		\end{cases}
+		$$
 		\item Absolute stability: $u_n \to 0$ as $n \to +\infty$
 		\item FE is absolutely stable iff $h < \frac{2}{\max_t \abs{\lambda(t)}} $
-		\item Be is absolutely stable $\forall h$
+		\item BE is absolutely stable $\forall h$
 	\end{itemize}
 	% Problem: number of intervals N -> +inf even with h fixed, i.e. not
 	% tending to 0
 \end{frame}
 
 
-\begin{frame} %#12
+\begin{frame} %#13
 \frametitle{Absolute stability controls oscillations}
 \begin{itemize}
+	\item Let $\lambda \in C^0 \cap L^\infty$ nonpositive, $r \in C^0$
 	\item Generalized model problem:
-	\begin{align*}
-		y'(t) = \lambda(t) y(t) + r(t) \qquad & \text{with } t > 0,
-		\ y(0) = 1, \ \lambda < 0,  \\
-		& \lambda \in C^0 \cap L^\infty, \ r(t) \in C^0
-	\end{align*}
+	$$
+	\begin{cases}
+		y'(t) = \lambda(t) y(t) + r(t) \qquad \text{with } t > 0 \\
+		y(0) = 1
+	\end{cases}
+	$$
+	\vspace{-10pt}
 	\item No absolute stability, but...
+	\pause
 	\item Absolutely stable Forward Euler case:
 	\begin{itemize}
-		\item $\abs{z_n - u_n} = \dots$ %TODO
-		\item $\abs{z_n - u_n} < \sup_k(\abs{\rho_k}) \cdot A(\lambda_k), \ \forall n,h$ %TODO check
-		\item This can also be generalized to any IVP
+		\item Introduce perturbation $h \rho_{n+1}$ at step $n+1$
+		\item $\abs{z_n - u_n} = \rho_0 \prod_{k=0}^{n-1} (1+\lambda(t_k)) +
+		h \sum_{k=0}^{n-1} \rho_{k+1} \prod_{j=k+1}^{n-1} (1 + \lambda(t_j)) $
+		\pause
+		\item $\abs{z_n - u_n} < \sup_k(\abs{\rho_k}) \cdot A(\lambda_k), \ \forall n,h$
+		\item \textbf{Absolute stability controls oscillations!}
+		\item This can also be generalized to an arbitrary IVP
 	\end{itemize}
 \end{itemize}
 %  TODO: reasons to use adaptive step?
 \end{frame}
 
 
-\begin{frame} %#13
+\begin{frame} %#14
 	\frametitle{Adaptive methods}
-	Step is updated at every iteration, based on the trend of the solution
+	Step $h$ is \textbf{updated} at every iteration adaptively, i.e. based on the trend of the solution
 	\begin{itemize}
 		\item Small $h$ near steep slopes, large $h$ near flat points %TODO check
 		% In model problem, lam(t) decreasing => function is flat %TODO check
-		\item \textit{A posteriori} estimate of error is needed
-		\item Compute both two-round solution with $\frac{h}{2}$ and single-round solution with $h$
-	\end{itemize}
-\end{frame}
-
-\begin{frame} %#14
-	\frametitle{Consistency of adaptive methods}
-	Forward Euler:
-	\begin{itemize}
-		\item Truncation errors:
-		$$ e_h = h^2/2 y"(\xi), \qquad e_{h/2} = h^2/8 y"(\eta) \cdot 2 + o(h^2) $$
-		\item Error estimate:
-		$$ \abs{u_{h/2} - u_h} \simeq \abs{e_(h/2)} \simeq h^2/4 \abs{y"(\widehat\eta)}
-		+ o(h^2) \stackrel{\downarrow}{<} \frac{\varepsilon}{2}
-		\quad \text{(tolerance)} $$
-	\end{itemize}
-	Runge-Kutta:
-	\begin{itemize}
-		\item \dots %TODO!!!!!!!!!
+		\item \textit{A posteriori} \textbf{estimate of error} is needed
+		\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame} %#15
-	Code structure %TODO put big ass title
+	\frametitle{Consistency of adaptive methods}
+	Forward Euler:
+	\begin{itemize}
+		\item Truncation errors:
+		$$ e_h = h^2/2 y''(\xi), \qquad e_{h/2} = h^2/8 y''(\eta) \cdot 2 + o(h^2) $$
+		\item Error estimate:
+		$$ \abs{u_{h/2} - u_h} \simeq \abs{e_{h/2}} \simeq h^2/4 \abs{y''(\widehat\eta)}
+		+ o(h^2) \stackrel{\downarrow}{<} \frac{\varepsilon}{2}
+		\quad \text{(tolerance)} $$
+	\end{itemize}
+	\pause
+	Runge-Kutta:
+	\begin{itemize}
+		\item \dots %TODO
+	\end{itemize}
 \end{frame}
 
 
-\begin{frame} %#16
-	\frametitle{Code structure}
-	\includegraphics[scale=0.3]{etc/test.jpg}
+\begin{frame}[c] %#16
+\begin{center}
+	\Huge \color{blue} Code structure
+\end{center}
 \end{frame}
 
 
 \begin{frame} %#17
+	\frametitle{Code structure}
+	\includegraphics[scale=0.2]{etc/test.jpg}
+	%TODO: choose what to show and what not to
+\end{frame}
+
+
+\begin{frame} %#18
 	\frametitle{Programming choices}
 	\begin{itemize}
 		\item Separate FE class is more efficient than RK specialized class
 		% Moreover, the adaptive RK error is computed differently because there
 		% are some unknown (in the general case) quantities that need to be
 		% estimated
-		\includegraphics[scale=0.3]{etc/test.jpg}
+		\includegraphics[scale=0.2]{etc/test.jpg}
 		\item Adaptive single\_step() class methods are not efficient
 	\end{itemize}
-	
-\end{frame}
-
-
-\begin{frame} %#18
-	\frametitle{Results}
-	\includegraphics[scale=0.3]{etc/test.jpg}
 \end{frame}
 
 
 \begin{frame} %#19
+	\frametitle{Parallel Iserles-Nørsett}
+	\begin{itemize}
+		\item Exploits block-diagonal structure of Butcher array
+		\item Run in parallel on 2 processors, each dealing with one indpendent 2-by-2 block
+		\item Fixed point algorithm
+	\end{itemize}
+	% TODO discussion on efficiency
+	\includegraphics[scale=0.2]{etc/test.jpg}
+\end{frame}
+
+
+\begin{frame}[c] %#20
+\begin{center}
+	\Huge \color{blue} Results
+\end{center}
+\end{frame}
+
+
+\begin{frame} %#21
+	\frametitle{Results}
+	\includegraphics[scale=0.2]{etc/test.jpg}
+\end{frame}
+
+
+\begin{frame} %#last
 	\frametitle{Bibliography}
 	\begin{thebibliography}{9}
 		\setbeamertemplate{bibliography item}[book] % or [online] or [article]
-		\bibitem{QSSG} Quarteroni, Sacco, Saleri, Gervasio, \textit{Matematica numerica}
-		\bibitem{QS} Quarteroni, Saleri, \textit{Calcolo scientifico}
-		\bibitem{SI} Solodushkin, Iumanova, \textit{Parallel Numerical Methods for Ordinary Differential Equations: a Survey}
 		\bibitem{P} Podhaisky, \textit{Parallel two-step Runge-Kutta methods}
+		\bibitem{QS} Quarteroni, Saleri, \textit{Calcolo scientifico}
+		\bibitem{QSSG} Quarteroni, Sacco, Saleri, Gervasio, \textit{Matematica numerica}
+		\bibitem{SI} Solodushkin, Iumanova, \textit{Parallel Numerical Methods for Ordinary Differential Equations: a Survey}	
 	\end{thebibliography}
 \end{frame}
 
 \end{document}
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\frametitle{Title}
