@@ -1,8 +1,9 @@
 #include "utils.hpp"
 
 
-// Vector operators
-Rnvector operator+( const Rnvector &x, const Rnvector &y ) // vector sum
+// Vector operators:
+// Vector sum
+Rnvector operator+( const Rnvector &x, const Rnvector &y )
 {
     assert( x.size() == y.size() );
     Rnvector z( x.size() );
@@ -11,7 +12,8 @@ Rnvector operator+( const Rnvector &x, const Rnvector &y ) // vector sum
     return z;
 }
 
-Rnvector operator*( const double lambda, const Rnvector &x ) // product by scalar
+ // Product by scalar
+Rnvector operator*( const double lambda, const Rnvector &x )
 {
     Rnvector z( x.size() );
     for( std::size_t i = 0; i < x.size(); i++ )
@@ -19,26 +21,29 @@ Rnvector operator*( const double lambda, const Rnvector &x ) // product by scala
     return z;
 }
 
-Rnvector operator-( const Rnvector &x, const Rnvector &y ) // vector difference
+// Vector difference
+Rnvector operator-( const Rnvector &x, const Rnvector &y ) 
 {
     assert( x.size() == y.size() );
     return x + (-1.0)*y;
 }
 
-Rnvector operator+( const Rnvector &x, const double lambda ) // sum with scalar
+// Sum with scalar (i.e. with constant vector)
+Rnvector operator+( const Rnvector &x, const double lambda ) 
 {
     Rnvector y( x.size(), lambda );
     return x + y;
 }
 
-Rnvector operator-( const Rnvector &x, const double lambda ) // diff with scalar
+// Difference with scalar (i.e. with constant vector)
+Rnvector operator-( const Rnvector &x, const double lambda )
 {
     Rnvector y( x.size(), lambda );
     return x + (-1)*y;
 }
 
-
-Rnvector abs( const Rnvector &x ) // vector of absolute values
+// Vector of absolute values
+Rnvector abs( const Rnvector &x )
 {
     Rnvector z( x.size() );
     for( std::size_t i = 0; i < x.size(); i++ )

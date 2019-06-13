@@ -1,8 +1,8 @@
 #include "ParallelIserNorSolver.hpp"
 
 
-ParallelIserNorSolver::ParallelIserNorSolver(double step,
-    const BaseEquation & eq): RKSolver(step, eq, "IserNor")
+ParallelIserNorSolver::ParallelIserNorSolver( double step,
+    const BaseEquation &eq ): RKSolver( step, eq, "IserNor" )
 {
     // Parallel version of Iserles-Nørsett
     method_name = "Parallel IserNor";
@@ -13,8 +13,8 @@ ParallelIserNorSolver::ParallelIserNorSolver(double step,
 /// \param   un   Present value of the solution
 /// \param   h    Step size
 /// \return       Solution at the following time instant
-Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
-    const double h) const
+Rnvector ParallelIserNorSolver::single_step( const double tn,
+	const Rnvector &un, const double h ) const
 {
     // high_resolution_clock::time_point t1 = high_resolution_clock::now();
     // high_resolution_clock::time_point t2 = high_resolution_clock::now();
@@ -49,9 +49,9 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
     // t2 = high_resolution_clock::now();
     // duration = duration_cast<microseconds>( t2 - t1 ).count();
     // if( rank == 0 )
-    //   std::cout << "Fixed point 0: " << duration << " μs" << '\n' << std::endl;
+    //   std::cout << "Fixed point 0: " << duration << " μs" << << std::endl;
     // if( rank == 1 )
-    //   std::cout << "Fixed point 1: " << duration << " μs" << '\n' << std::endl;
+    //   std::cout << "Fixed point 1: " << duration << " μs" << << std::endl;
     //
     // t1 = high_resolution_clock::now();
   	if( rank == 0 )
@@ -59,13 +59,14 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
     		for( unsigned i = 0; i < 2; i++ )
     		{
     	  		// Send K[0], K[1]
-      			MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD );
+      			MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 1, 0,
+      				MPI_COMM_WORLD );
     		}
     		for( unsigned i = 2; i < 4; i++ )
     		{
 	    	  	// Recieve K[2], K[3]
-	      		MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD,
-	  		    	MPI_STATUS_IGNORE );
+	      		MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 1, 0,
+	      			MPI_COMM_WORLD, MPI_STATUS_IGNORE );
 	    	}
   	}
   	else if( rank == 1 )
@@ -73,13 +74,14 @@ Rnvector ParallelIserNorSolver::single_step(const double tn, const Rnvector &un,
   	  	for( unsigned i = 0; i < 2; i++ )
   	  	{
   	  	  	// Recieve K[0], K[1]
-  	    		MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD,
-  			    	MPI_STATUS_IGNORE );
+  	    		MPI_Recv( &K[i][0], system_dim, MPI_DOUBLE, 0, 0,
+  	    			MPI_COMM_WORLD, MPI_STATUS_IGNORE );
   		  }
     		for( unsigned i = 2; i < 4; i++ )
     		{
       			// Send K[2], K[3]
-  	    		MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD );
+  	    		MPI_Send( &K[i][0], system_dim, MPI_DOUBLE, 0, 0,
+  	    			MPI_COMM_WORLD );
   	  	}
   	}
     // t2 = high_resolution_clock::now();

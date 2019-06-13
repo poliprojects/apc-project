@@ -24,7 +24,7 @@ void BaseSolver::print() const
 
 void BaseSolver::save_sol_to_file( const std::string &file_name ) const
 {
-    std::ofstream output_stream{file_name};
+    std::ofstream output_stream{ file_name };
     if( !output_stream )
     {
         std::cerr << "Cannot open input file: \"" << file_name << "\"" <<

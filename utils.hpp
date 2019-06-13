@@ -14,17 +14,17 @@ typedef std::vector<Rnvector> SolutionType;
 
 
 // Vector operators:
-// vector sum
+// Vector sum
 Rnvector operator+( const Rnvector &x, const Rnvector &y );
-// product by scalar
+// Product by scalar
 Rnvector operator*( const double lambda, const Rnvector &x );
-// vector difference
+// Vector difference
 Rnvector operator-( const Rnvector &x, const Rnvector &y );
-// sum with scalar (i.e. with constant vector)
+// Sum with scalar (i.e. with constant vector)
 Rnvector operator+( const Rnvector &x, const double lambda );
-// difference with scalar (i.e. with constant vector)
+// Difference with scalar (i.e. with constant vector)
 Rnvector operator-( const Rnvector &x, const double lambda );
-// vector of absolute values
+// Vector of absolute values
 Rnvector abs( const Rnvector &x );
 
 #endif //UTILS_HPP

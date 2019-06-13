@@ -11,7 +11,7 @@ void check_minimum_parameters_number(const int argc)
         "are required." << std::endl <<
         "Example: ./main 2 FE" << std::endl <<
         "For more information, please refer to the README file." << std::endl;
-        exit(1);
+        exit( 1 );
     }
 }
 
@@ -23,8 +23,8 @@ void check_minimum_parameters_number(const int argc)
 /// \param   final_time        Integration final time
 /// \param   initial_condition Solution at the first time instant
 void initialize_data(const int rank, char* test_number,
-    EquationFunction* & fun_ptr, double & initial_time,
-    double & final_time, Rnvector & initial_condition)
+    EquationFunction* &fun_ptr, double &initial_time,
+    double &final_time, Rnvector &initial_condition)
 {
     // Test 1
     if ( strcmp(test_number, "1") == 0 )
@@ -35,7 +35,7 @@ void initialize_data(const int rank, char* test_number,
         fun_ptr = new EquationFunction_1;
         initial_time = 0;
         final_time = 1;
-        initial_condition.push_back(0);
+        initial_condition.push_back( 0 );
     }
     // Test 2
     else if ( strcmp(test_number, "2") == 0 )
@@ -46,7 +46,7 @@ void initialize_data(const int rank, char* test_number,
         fun_ptr = new EquationFunction_2;
         initial_time = 0;
         final_time = 30;
-        initial_condition.push_back(1);
+        initial_condition.push_back( 1 );
     }
     // Test 3
     else if ( strcmp(test_number, "3") == 0  )
@@ -57,38 +57,41 @@ void initialize_data(const int rank, char* test_number,
         fun_ptr = new EquationFunction_3;
         initial_time = -1;
         final_time = 5;
-        initial_condition.push_back(1);
+        initial_condition.push_back( 1 );
     }
     // Test 4
 	  else if ( strcmp(test_number, "4") == 0  )
 	  {
         if( rank == 0 )
-	  	      std::cout << std::endl << "Running Test 4" << std::endl << std::endl;
+	  	        std::cout << std::endl << "Running Test 4" << std::endl <<
+	  	            std::endl;
 		    fun_ptr = new EquationFunction_4;
 	    	initial_time = 0;
 	    	final_time = 10;
-    		initial_condition.push_back(1);
-    		initial_condition.push_back(1);
+    		initial_condition.push_back( 1 );
+    		initial_condition.push_back( 1 );
   	}
     // Test 5
   	if ( strcmp(test_number, "5") == 0 )
   	{
         if( rank == 0 )
-		        std::cout << std::endl << "Running Test 5" << std::endl << std::endl;
+		        std::cout << std::endl << "Running Test 5" << std::endl <<
+		            std::endl;
 		    fun_ptr = new EquationFunction_5;
 	    	initial_time = 0;
     		final_time = 1;
-    		initial_condition.push_back(1);
+    		initial_condition.push_back( 1 );
   	}
     // Test 6
   	if ( strcmp(test_number, "6") == 0 )
   	{
         if( rank == 0 )
-	      	  std::cout << std::endl << "Running Test 6" << std::endl << std::endl;
+	      	    std::cout << std::endl << "Running Test 6" << std::endl <<
+	      	        std::endl;
 	    	fun_ptr = new EquationFunction_6;
     		initial_time = 0;
 	    	final_time = 100;
-	    	initial_condition.push_back(1);
+	    	initial_condition.push_back( 1 );
   	}
 }
 
@@ -99,8 +102,8 @@ void initialize_data(const int rank, char* test_number,
 /// \param   initial_step Integration starting step
 /// \param   tolerance    Tolerance for error in adaptive methods
 /// \param   equation     Previously initialized equation
-void initialize_solver(int argc, char* argv[], BaseSolver* & problem_ptr,
-    double initial_step, double tolerance, const BaseEquation & equation)
+void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
+    double initial_step, double tolerance, const BaseEquation & equation )
 {
     int size;
     MPI_Comm_size( MPI_COMM_WORLD, &size );

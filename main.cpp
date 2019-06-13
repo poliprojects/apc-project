@@ -1,4 +1,4 @@
-#include "includes.hpp"
+#include "RuntimeUtils.hpp"
 
 using namespace std::chrono;
 
@@ -34,8 +34,8 @@ int main( int argc, char * argv[] )
         initial_condition );
 
     // Equation initialization using test dependent data
-    BaseEquation equation(initial_time, final_time, *fun_ptr,
-        initial_condition);
+    BaseEquation equation( initial_time, final_time, *fun_ptr,
+        initial_condition );
 
 
     // =========================================================================
@@ -80,10 +80,10 @@ int main( int argc, char * argv[] )
         auto duration = duration_cast<microseconds>( t2 - t1 ).count();
 
         // Prints problem characteristics on screen
-    	  problem.print();
+    	problem.print();
 
         // Prints duration of the solution process
-        std::cout << "Solution time: " << duration << " μs" << '\n' << std::endl;
+        std::cout << "Solution time: " << duration << " μs" << std::endl;
 
       	// Saves solution to file_name
       	// NB: the name of the file depends on the arguments passed at runtime
@@ -91,7 +91,7 @@ int main( int argc, char * argv[] )
         std::string method_name = argv[2];
       	std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
       	problem.save_sol_to_file( file_name );
-        std::cout << "Saved solution to file: " << file_name << '\n' << '\n';
+        std::cout << "Saved solution to file " << file_name << std::endl;
     }
 
     // Releases dynamically allocated resources

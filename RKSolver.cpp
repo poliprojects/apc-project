@@ -20,8 +20,8 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
 }
 
 
-RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
-    BaseSolver(step, eq)
+RKSolver::RKSolver( double step, const BaseEquation &eq,
+	const std::string name ): BaseSolver( step, eq )
 {
     if( name == "Heun" )
     {
@@ -36,10 +36,10 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
     {
         a =
         {
-                {1/3.,     0,         0,         0 },
-                {1/3.,  1/3.,         0,         0 },
-                {   0,     0,  0.594788,         0 },
-                {   0,     0, -0.189576,  0.594788 }
+            {1/3.,     0,         0,         0 },
+            {1/3.,  1/3.,         0,         0 },
+            {   0,     0,  0.594788,         0 },
+            {   0,     0, -0.189576,  0.594788 }
         };
         b = { 1.978094,  1.978094, -1.478094, -1.478093 };
         c = {     1/3.,      2/3.,  0.594788,  0.405212 };
@@ -50,10 +50,10 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
     {
         a =
         {
-                {    0,    0,    0,    0 },
-                {  0.5,    0,    0,    0 },
-                {    0,  0.5,    0,    0 },
-                {    0,    0,    1,    0 }
+            {    0,    0,    0,    0 },
+            {  0.5,    0,    0,    0 },
+            {    0,  0.5,    0,    0 },
+            {    0,    0,    1,    0 }
         };
         b = { 1/6., 1/3., 1/3., 1/6. };
         c = {    0,  0.5,  0.5,    1 };
@@ -68,7 +68,7 @@ RKSolver::RKSolver(double step, const BaseEquation &eq, const std::string name):
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
     Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
-    // Set the proper version of RK (to be printed on screen)
+    // Set the proper version name of RK (to be printed on screen)
     method_name = name;
 }
 
@@ -110,7 +110,7 @@ Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
 }
 
 
-/// \param   f           Right hand side
+/// \param   f           Right-hand side
 /// \param   tn          Present time instant
 /// \param   un          Present value of the solution
 /// \param   sum_aij_Kj  Linear combination of explicit (already available) Ks
@@ -123,16 +123,16 @@ Rnvector RKSolver::fixed_point( const EquationFunction &f, const double tn,
     Rnvector K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
     double error = compute_error( K0, K1 );
     K0 = K1;
-    // unsigned iter = 0;
+    // unsigned iter = 0; // TODO DEBUG
 
     while( error > fixed_point_tol )
     {
         K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
         error = compute_error( K0, K1 );
         K0 = K1;
-        // iter++;
+        // iter++; // TODO DEBUG
     }
-    // std::cout << "Iter: " << iter << '\n';
+    // std::cout << "Iter: " << iter << std::endl; // TODO DEBUG
 
     return K0;
 }
@@ -175,27 +175,28 @@ void RKSolver::solve()
 	  Rnvector un1( un.size() ); // solution at time n+1
 	  for( unsigned n = 0; n < Nh; n++ )
     {
-  	  	// int rank;
+  	  	// int rank; // TODO DEBUG
   	  	// MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
         //
-    		// // Chrono starts
-    	  // high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        // // Chrono starts
+    	// high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
   	  	un1 = single_step( times[n], un, h );
 
-    		// // Chrono ends
-    	  // high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    	// // Chrono ends
+    	// high_resolution_clock::time_point t2 = high_resolution_clock::now();
         //
-    		// // Compute duration of the solution process
+    	// // Compute duration of the solution process
         // auto duration = duration_cast<microseconds>( t2 - t1 ).count();
         //
-    		// // Prints duration of the solution process
-    		// if( rank == 0 )
-    		// 	std::cout << "Step time: " << duration << " μs" << '\n' << '\n';
-
-    		solution.push_back( un1 );
-    		un = un1;
-    		un1.clear();
+    	// // Prints duration of the solution process
+    	// if( rank == 0 )
+    		// std::cout << "Step time: " << duration << " μs" << std::endl <<
+  	  	        //std::endl;
+  	  	
+   		solution.push_back( un1 );
+   		un = un1;
+   		un1.clear();
         // if( n == 30 )
         //     exit(1);
   	}

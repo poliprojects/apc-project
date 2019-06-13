@@ -10,16 +10,14 @@ using namespace std::chrono;
 class ParallelIserNorSolver: public RKSolver
 {
 
-  protected:
+    protected:
+        //! One step of time integration in parallel mode, called by solve()
+        Rnvector single_step( const double tn, const Rnvector &un,
+            const double h ) const override;
 
-    //! One step of time integration in parallel mode, called by solve()
-    Rnvector single_step(const double tn, const Rnvector &un,
-        const double h) const override;
-
-  public:
-
-    // Constructors
-    ParallelIserNorSolver(double step, const BaseEquation &eq);
+    public:
+        // Constructors
+        ParallelIserNorSolver( double step, const BaseEquation &eq );
 };
 
 #endif // PARALLELISERNORSOLVER_HPP
