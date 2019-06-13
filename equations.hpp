@@ -50,7 +50,7 @@ struct EquationFunction_5: public EquationFunction
 struct EquationFunction_6: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
-    EquationFunction_6(): EquationFunction( "y'(t) = 2^( -x/4 + 6 + 10*t )" ) {}
+    EquationFunction_6(): EquationFunction( "y'(t) = 2^( -y/4 + 6 + 10*t )" ) {}
 };
 
 #endif // EQUATIONS_HPP

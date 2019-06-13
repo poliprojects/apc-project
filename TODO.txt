@@ -2,3 +2,6 @@ TO DO LIST
 * Can we lift the assumption that h evenly divides the time interval?
 * Should we include complex analysis (absolute stability region...) in the
   presentation?
+* Update README.md
+* Remove all TODO and DEBUG
+* Replace tabs with 4 spaces

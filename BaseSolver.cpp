@@ -17,7 +17,7 @@ void BaseSolver::print() const
     std::cout << "y(" << equation.get_tin() << ") = ";
     for( auto i : equation.get_x0() )
         std::cout << i << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
     //Print the solver specifications
     print_solver_spec();
 }
