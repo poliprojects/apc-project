@@ -1,0 +1,38 @@
+\hypertarget{classAdaptiveFESolver}{}\section{Adaptive\+F\+E\+Solver Class Reference}
+\label{classAdaptiveFESolver}\index{Adaptive\+F\+E\+Solver@{Adaptive\+F\+E\+Solver}}
+
+
+Inheritance diagram for Adaptive\+F\+E\+Solver\+:
+% FIG 0
+
+
+Collaboration diagram for Adaptive\+F\+E\+Solver\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAdaptiveFESolver_aeeb5a4b36f9e54027ddc576fa0c73b83}\label{classAdaptiveFESolver_aeeb5a4b36f9e54027ddc576fa0c73b83}} 
+{\bfseries Adaptive\+F\+E\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, double tolerance, double min\+\_\+step)
+\item 
+\mbox{\Hypertarget{classAdaptiveFESolver_a2d18dfe7c73872501d96df7fb1967f5f}\label{classAdaptiveFESolver_a2d18dfe7c73872501d96df7fb1967f5f}} 
+void \hyperlink{classAdaptiveFESolver_a2d18dfe7c73872501d96df7fb1967f5f}{solve} ()
+\begin{DoxyCompactList}\small\item\em Main solver based on Adaptive Forward Euler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAdaptiveFESolver_a8d15ec3bd7db8e46eca25382ba8130ae}\label{classAdaptiveFESolver_a8d15ec3bd7db8e46eca25382ba8130ae}} 
+void \hyperlink{classAdaptiveFESolver_a8d15ec3bd7db8e46eca25382ba8130ae}{print\+\_\+solver\+\_\+spec} () const override
+\begin{DoxyCompactList}\small\item\em Prints the characteristics of the Adaptive Forward Euler solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAdaptiveFESolver_a589e2aa0d09dbbcc103f5c072a6da69a}\label{classAdaptiveFESolver_a589e2aa0d09dbbcc103f5c072a6da69a}} 
+double \hyperlink{classAdaptiveFESolver_a589e2aa0d09dbbcc103f5c072a6da69a}{tol}
+\begin{DoxyCompactList}\small\item\em Error tolerance to select the step size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAdaptiveFESolver_a138ebbe940e45ae7b34132b571f6b8d5}\label{classAdaptiveFESolver_a138ebbe940e45ae7b34132b571f6b8d5}} 
+double \hyperlink{classAdaptiveFESolver_a138ebbe940e45ae7b34132b571f6b8d5}{hmin}
+\begin{DoxyCompactList}\small\item\em Minimum step size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Adaptive\+F\+E\+Solver.\+hpp\item 
+Adaptive\+F\+E\+Solver.\+cpp\end{DoxyCompactItemize}

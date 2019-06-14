@@ -1,0 +1,67 @@
+\hypertarget{classBaseSolver}{}\section{Base\+Solver Class Reference}
+\label{classBaseSolver}\index{Base\+Solver@{Base\+Solver}}
+
+
+Inheritance diagram for Base\+Solver\+:
+% FIG 0
+
+
+Collaboration diagram for Base\+Solver\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseSolver_a67dba5908628ed3dd89735d9e4c4a436}\label{classBaseSolver_a67dba5908628ed3dd89735d9e4c4a436}} 
+{\bfseries Base\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq)
+\item 
+\mbox{\Hypertarget{classBaseSolver_a4f4ada66347913e8ac7d6c11d2c87b2c}\label{classBaseSolver_a4f4ada66347913e8ac7d6c11d2c87b2c}} 
+double {\bfseries get\+\_\+h} () const
+\item 
+\mbox{\Hypertarget{classBaseSolver_ad23f3587017d0fdcca0620440a2d2ef6}\label{classBaseSolver_ad23f3587017d0fdcca0620440a2d2ef6}} 
+\hyperlink{classBaseEquation}{Base\+Equation} {\bfseries get\+\_\+equation} () const
+\item 
+\mbox{\Hypertarget{classBaseSolver_a6c867079cffc2aaa2af28425b4ea9d40}\label{classBaseSolver_a6c867079cffc2aaa2af28425b4ea9d40}} 
+Solution\+Type {\bfseries get\+\_\+solution} () const
+\item 
+\mbox{\Hypertarget{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}\label{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}} 
+virtual void \hyperlink{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}{solve} ()=0
+\begin{DoxyCompactList}\small\item\em Main solver. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_a8dd30ba31c4fe6268f1bc779b3b1c8fa}\label{classBaseSolver_a8dd30ba31c4fe6268f1bc779b3b1c8fa}} 
+virtual void \hyperlink{classBaseSolver_a8dd30ba31c4fe6268f1bc779b3b1c8fa}{print} () const
+\begin{DoxyCompactList}\small\item\em Prints the equation and calls \hyperlink{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}{print\+\_\+solver\+\_\+spec()} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}\label{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}} 
+virtual void \hyperlink{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}{print\+\_\+solver\+\_\+spec} () const =0
+\begin{DoxyCompactList}\small\item\em Prints the characteristics of the solver chosen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_a083167190cdd436c2a5aa60cbb58d904}\label{classBaseSolver_a083167190cdd436c2a5aa60cbb58d904}} 
+virtual void \hyperlink{classBaseSolver_a083167190cdd436c2a5aa60cbb58d904}{save\+\_\+sol\+\_\+to\+\_\+file} (const std\+::string \&file\+\_\+name) const
+\begin{DoxyCompactList}\small\item\em Saves solution and time instants in a .txt file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}\label{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}} 
+virtual Rnvector \hyperlink{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}{single\+\_\+step} (const double tn, const Rnvector \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const =0
+\begin{DoxyCompactList}\small\item\em One step of time integration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}\label{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}} 
+double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}
+\begin{DoxyCompactList}\small\item\em Integration step (starting value in adaptive methods) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_a645271429bc1e10e183a10c5b87dc1a1}\label{classBaseSolver_a645271429bc1e10e183a10c5b87dc1a1}} 
+unsigned \hyperlink{classBaseSolver_a645271429bc1e10e183a10c5b87dc1a1}{Nh}
+\begin{DoxyCompactList}\small\item\em Total \# of time steps (known a priori, useless in adaptive version) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_af6a2cea17c378f21a44293bda52ea07a}\label{classBaseSolver_af6a2cea17c378f21a44293bda52ea07a}} 
+\hyperlink{classBaseEquation}{Base\+Equation} \hyperlink{classBaseSolver_af6a2cea17c378f21a44293bda52ea07a}{equation}
+\begin{DoxyCompactList}\small\item\em Equation to be solved. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_aa17362c89150f816e476d7e7616d23a4}\label{classBaseSolver_aa17362c89150f816e476d7e7616d23a4}} 
+Solution\+Type \hyperlink{classBaseSolver_aa17362c89150f816e476d7e7616d23a4}{solution}
+\begin{DoxyCompactList}\small\item\em Solution (to be filled by \hyperlink{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}{solve()}) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseSolver_af772ecc8a738ec9b6f1b0fa470be2158}\label{classBaseSolver_af772ecc8a738ec9b6f1b0fa470be2158}} 
+std\+::vector$<$ double $>$ \hyperlink{classBaseSolver_af772ecc8a738ec9b6f1b0fa470be2158}{times}
+\begin{DoxyCompactList}\small\item\em Time instants (to be filled by \hyperlink{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}{solve()}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Base\+Solver.\+hpp\item 
+Base\+Solver.\+cpp\end{DoxyCompactItemize}

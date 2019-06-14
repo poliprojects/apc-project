@@ -1,0 +1,36 @@
+You will need a terminal to run the following commands.
+
+\subsection*{Downloading from Git\+Hub}
+
+Run {\ttfamily git clone \href{https://github.com/poliprojects/apc-project.git}{\tt https\+://github.\+com/poliprojects/apc-\/project.\+git}}
+
+\subsection*{Installing}
+
+Compile running {\ttfamily make}
+
+\subsection*{Usage}
+
+
+\begin{DoxyItemize}
+\item Run {\ttfamily main} or {\ttfamily ./main}, providing the following parameters\+:
+\begin{DoxyItemize}
+\item number of the test function (see {\ttfamily \hyperlink{equations_8hpp_source}{equations.\+hpp}} file)\+: \mbox{[} 1, 2, 3, 4, 5, 6 \mbox{]}
+\item solver identification code\+: \mbox{[} FE, adap\+FE, RK, adap\+RK, R\+K4, Iser\+Nor, adap\+Iser\+Nor \mbox{]}
+\end{DoxyItemize}
+\item Optional parameters\+:
+\begin{DoxyItemize}
+\item initial step \mbox{[} any double, default set to 0.\+1 \mbox{]}
+\item tolerance \mbox{[} any double, default set to 0.\+01 \mbox{]}
+\end{DoxyItemize}
+\item Example\+: {\ttfamily ./main 3 RK 0.\+2 1e-\/3}
+\item Example\+: {\ttfamily ./main 2 adap\+FE}
+\item To execute the Iser\+Nor method in parallel (either the adaptive version or the regular one), include {\ttfamily mpiexec -\/np 2} when calling main
+\item Example\+: {\ttfamily mpiexec -\/np 2 ./main 4 Iser\+Nor}
+\item After running, information about the equation solved will appear on screen
+\item The solution and time instants will be saved in solution\+\_\+$<$\#test$>$\+\_\+$<$method$>$.\+txt
+\item Run the {\ttfamily check\+\_\+solutions.\+m} file with Matlab selecting the number of the test to see a plot of exact vs computed solution
+\end{DoxyItemize}
+
+\subsection*{Adding new test functions}
+
+1) Add a new \hyperlink{structEquationFunction}{Equation\+Function} in the {\ttfamily equations.\+cpp} and {\ttfamily \hyperlink{equations_8hpp_source}{equations.\+hpp}} files 2) In main.\+cpp ... (T\+O\+DO) 

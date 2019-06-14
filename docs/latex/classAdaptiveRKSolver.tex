@@ -1,0 +1,41 @@
+\hypertarget{classAdaptiveRKSolver}{}\section{Adaptive\+R\+K\+Solver Class Reference}
+\label{classAdaptiveRKSolver}\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+
+
+Inheritance diagram for Adaptive\+R\+K\+Solver\+:
+% FIG 0
+
+
+Collaboration diagram for Adaptive\+R\+K\+Solver\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}\label{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}} 
+{\bfseries Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&a\+\_\+, const std\+::vector$<$ double $>$ \&b\+\_\+, const std\+::vector$<$ double $>$ \&c\+\_\+, double tolerance, double min\+\_\+step)
+\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}\label{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}} 
+{\bfseries Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, std\+::string name, double tolerance, double min\+\_\+step)
+\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}\label{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}} 
+void \hyperlink{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}{solve} ()
+\begin{DoxyCompactList}\small\item\em Main solver. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}\label{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}} 
+void \hyperlink{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}{print\+\_\+solver\+\_\+spec} () const override
+\begin{DoxyCompactList}\small\item\em Prints the characteristics of the solver chosen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}\label{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}} 
+double \hyperlink{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}{tol}
+\begin{DoxyCompactList}\small\item\em Error tolerance to select the step size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}\label{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}} 
+double \hyperlink{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}{hmin}
+\begin{DoxyCompactList}\small\item\em Minimum step size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Adaptive\+R\+K\+Solver.\+hpp\item 
+Adaptive\+R\+K\+Solver.\+cpp\end{DoxyCompactItemize}

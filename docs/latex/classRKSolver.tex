@@ -1,0 +1,156 @@
+\hypertarget{classRKSolver}{}\section{R\+K\+Solver Class Reference}
+\label{classRKSolver}\index{R\+K\+Solver@{R\+K\+Solver}}
+
+
+Inheritance diagram for R\+K\+Solver\+:
+% FIG 0
+
+
+Collaboration diagram for R\+K\+Solver\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRKSolver_a47393b170acf8f25fb5110448ba4981b}\label{classRKSolver_a47393b170acf8f25fb5110448ba4981b}} 
+{\bfseries R\+K\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&a\+\_\+, const std\+::vector$<$ double $>$ \&b\+\_\+, const std\+::vector$<$ double $>$ \&c\+\_\+)
+\item 
+\mbox{\Hypertarget{classRKSolver_aa1b51cd0bb2327b364d3a47f131d8bf0}\label{classRKSolver_aa1b51cd0bb2327b364d3a47f131d8bf0}} 
+{\bfseries R\+K\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, const std\+::string name)
+\item 
+\mbox{\Hypertarget{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}\label{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}} 
+void \hyperlink{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}{solve} () override
+\begin{DoxyCompactList}\small\item\em Main solver based on Runge Kutta method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_af7ec0ddafd838e03c9db344a2abd8674}\label{classRKSolver_af7ec0ddafd838e03c9db344a2abd8674}} 
+void \hyperlink{classRKSolver_af7ec0ddafd838e03c9db344a2abd8674}{print\+\_\+solver\+\_\+spec} () const override
+\begin{DoxyCompactList}\small\item\em Prints the characteristics of the Runge Kutta solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Rnvector \hyperlink{classRKSolver_a12a097a860de0ed2647344661133ba90}{single\+\_\+step} (const double tn, const Rnvector \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const override
+\begin{DoxyCompactList}\small\item\em One step of time integration, called by \hyperlink{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}{solve()} \end{DoxyCompactList}\item 
+Rnvector \hyperlink{classRKSolver_abb7c57c57c820ab981eab492ad9511db}{fixed\+\_\+point} (const \hyperlink{structEquationFunction}{Equation\+Function} \&f, const double tn, const Rnvector \&un, const Rnvector \&sum\+\_\+aij\+\_\+\+Kj, const size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Computes the K-\/th coefficient for an implicit method. \end{DoxyCompactList}\item 
+double \hyperlink{classRKSolver_a0d3892f1b340e82c8aa135441f5adbed}{compute\+\_\+error} (const Rnvector \&K0, const Rnvector \&K1) const
+\begin{DoxyCompactList}\small\item\em Computes the error at a set iteration of the fixed point algorithm. \end{DoxyCompactList}\item 
+bool \hyperlink{classRKSolver_a3362f4ffb68c9fc3fc1dd1bdf36233fa}{is\+\_\+implicit} (const size\+\_\+t K\+\_\+index) const
+\begin{DoxyCompactList}\small\item\em Checks if the K-\/th coefficient computation is implicit looking at A. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRKSolver_ac5db53f1709b9db57f5ac9f41b54aa56}\label{classRKSolver_ac5db53f1709b9db57f5ac9f41b54aa56}} 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \hyperlink{classRKSolver_ac5db53f1709b9db57f5ac9f41b54aa56}{a}
+\begin{DoxyCompactList}\small\item\em a coefficients of the Butcher tableau \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_a205a66e4ac1d479de5d7e0677ae32783}\label{classRKSolver_a205a66e4ac1d479de5d7e0677ae32783}} 
+std\+::vector$<$ double $>$ \hyperlink{classRKSolver_a205a66e4ac1d479de5d7e0677ae32783}{b}
+\begin{DoxyCompactList}\small\item\em b coefficients of the Butcher tableau \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_af8ae228652ea669839fe260398057724}\label{classRKSolver_af8ae228652ea669839fe260398057724}} 
+std\+::vector$<$ double $>$ \hyperlink{classRKSolver_af8ae228652ea669839fe260398057724}{c}
+\begin{DoxyCompactList}\small\item\em c coefficients of the Butcher tableau \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_adccead9bf0b1c26a25a073b05f25cc76}\label{classRKSolver_adccead9bf0b1c26a25a073b05f25cc76}} 
+unsigned \hyperlink{classRKSolver_adccead9bf0b1c26a25a073b05f25cc76}{n\+\_\+stages}
+\begin{DoxyCompactList}\small\item\em Number of stages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_af0635d0dae01c89746b582796784794a}\label{classRKSolver_af0635d0dae01c89746b582796784794a}} 
+std\+::string \hyperlink{classRKSolver_af0635d0dae01c89746b582796784794a}{method\+\_\+name}
+\begin{DoxyCompactList}\small\item\em Name of the RK method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRKSolver_aae528768265579a7c5b5cc5466114c82}\label{classRKSolver_aae528768265579a7c5b5cc5466114c82}} 
+double \hyperlink{classRKSolver_aae528768265579a7c5b5cc5466114c82}{fixed\+\_\+point\+\_\+tol} = 0.\+001
+\begin{DoxyCompactList}\small\item\em Tolerance for fixed point iterations (in case of implicit method) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRKSolver_a0d3892f1b340e82c8aa135441f5adbed}\label{classRKSolver_a0d3892f1b340e82c8aa135441f5adbed}} 
+\index{R\+K\+Solver@{R\+K\+Solver}!compute\+\_\+error@{compute\+\_\+error}}
+\index{compute\+\_\+error@{compute\+\_\+error}!R\+K\+Solver@{R\+K\+Solver}}
+\subsubsection{\texorpdfstring{compute\+\_\+error()}{compute\_error()}}
+{\footnotesize\ttfamily double R\+K\+Solver\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{const Rnvector \&}]{K0,  }\item[{const Rnvector \&}]{K1 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Computes the error at a set iteration of the fixed point algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em K0} & Previous value of K\+\_\+i \\
+\hline
+{\em K0} & Present value of K\+\_\+i \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fixed point error computed as $\vert$ x -\/ f(x) $\vert$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRKSolver_abb7c57c57c820ab981eab492ad9511db}\label{classRKSolver_abb7c57c57c820ab981eab492ad9511db}} 
+\index{R\+K\+Solver@{R\+K\+Solver}!fixed\+\_\+point@{fixed\+\_\+point}}
+\index{fixed\+\_\+point@{fixed\+\_\+point}!R\+K\+Solver@{R\+K\+Solver}}
+\subsubsection{\texorpdfstring{fixed\+\_\+point()}{fixed\_point()}}
+{\footnotesize\ttfamily Rnvector R\+K\+Solver\+::fixed\+\_\+point (\begin{DoxyParamCaption}\item[{const \hyperlink{structEquationFunction}{Equation\+Function} \&}]{f,  }\item[{const double}]{tn,  }\item[{const Rnvector \&}]{un,  }\item[{const Rnvector \&}]{sum\+\_\+aij\+\_\+\+Kj,  }\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Computes the K-\/th coefficient for an implicit method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Right-\/hand side \\
+\hline
+{\em tn} & Present time instant \\
+\hline
+{\em un} & Present value of the solution \\
+\hline
+{\em sum\+\_\+aij\+\_\+\+Kj} & Linear combination of explicit (already available) Ks \\
+\hline
+{\em i} & Index of the K to be computed by fixed point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+K computed by fixed point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRKSolver_a3362f4ffb68c9fc3fc1dd1bdf36233fa}\label{classRKSolver_a3362f4ffb68c9fc3fc1dd1bdf36233fa}} 
+\index{R\+K\+Solver@{R\+K\+Solver}!is\+\_\+implicit@{is\+\_\+implicit}}
+\index{is\+\_\+implicit@{is\+\_\+implicit}!R\+K\+Solver@{R\+K\+Solver}}
+\subsubsection{\texorpdfstring{is\+\_\+implicit()}{is\_implicit()}}
+{\footnotesize\ttfamily bool R\+K\+Solver\+::is\+\_\+implicit (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{K\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Checks if the K-\/th coefficient computation is implicit looking at A. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em K\+\_\+index} & Row index of A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+implicit True if implicit, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRKSolver_a12a097a860de0ed2647344661133ba90}\label{classRKSolver_a12a097a860de0ed2647344661133ba90}} 
+\index{R\+K\+Solver@{R\+K\+Solver}!single\+\_\+step@{single\+\_\+step}}
+\index{single\+\_\+step@{single\+\_\+step}!R\+K\+Solver@{R\+K\+Solver}}
+\subsubsection{\texorpdfstring{single\+\_\+step()}{single\_step()}}
+{\footnotesize\ttfamily Rnvector R\+K\+Solver\+::single\+\_\+step (\begin{DoxyParamCaption}\item[{const double}]{tn,  }\item[{const Rnvector \&}]{un,  }\item[{const double}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+One step of time integration, called by \hyperlink{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}{solve()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tn} & Present time instant \\
+\hline
+{\em un} & Present value of the solution \\
+\hline
+{\em h} & Step size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Solution at the following time instant 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}{Base\+Solver}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+R\+K\+Solver.\+hpp\item 
+R\+K\+Solver.\+cpp\end{DoxyCompactItemize}

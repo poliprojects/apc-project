@@ -1,0 +1,62 @@
+\hypertarget{classBaseEquation}{}\section{Base\+Equation Class Reference}
+\label{classBaseEquation}\index{Base\+Equation@{Base\+Equation}}
+
+
+Collaboration diagram for Base\+Equation\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseEquation_a649e9bef29ad2885442750f72fde0d69}\label{classBaseEquation_a649e9bef29ad2885442750f72fde0d69}} 
+{\bfseries Base\+Equation} (const double \&initial\+\_\+time, const double \&final\+\_\+time, \hyperlink{structEquationFunction}{Equation\+Function} \&fun, const Rnvector \&initial\+\_\+cond)
+\item 
+\mbox{\Hypertarget{classBaseEquation_ad5575137eeccd996ad27ed20ef3d7f69}\label{classBaseEquation_ad5575137eeccd996ad27ed20ef3d7f69}} 
+\hyperlink{structEquationFunction}{Equation\+Function} \& {\bfseries get\+\_\+f} () const
+\item 
+\mbox{\Hypertarget{classBaseEquation_ae208cf521727cbdba9f830948a9b434e}\label{classBaseEquation_ae208cf521727cbdba9f830948a9b434e}} 
+double {\bfseries get\+\_\+tin} () const
+\item 
+\mbox{\Hypertarget{classBaseEquation_a013b3adfbbc50e6d56f07a1d0831d3fa}\label{classBaseEquation_a013b3adfbbc50e6d56f07a1d0831d3fa}} 
+double {\bfseries get\+\_\+tfin} () const
+\item 
+\mbox{\Hypertarget{classBaseEquation_a7e801dee1909932f54ba022d67cb6ebd}\label{classBaseEquation_a7e801dee1909932f54ba022d67cb6ebd}} 
+Rnvector {\bfseries get\+\_\+x0} () const
+\item 
+\mbox{\Hypertarget{classBaseEquation_a904f532d60a0a3bfab3e317cfc35c171}\label{classBaseEquation_a904f532d60a0a3bfab3e317cfc35c171}} 
+unsigned {\bfseries get\+\_\+dimension} () const
+\item 
+\mbox{\Hypertarget{classBaseEquation_afc56728c1331f42263959a6a6d13b2e1}\label{classBaseEquation_afc56728c1331f42263959a6a6d13b2e1}} 
+void {\bfseries set\+\_\+f} (\hyperlink{structEquationFunction}{Equation\+Function} \&fun)
+\item 
+\mbox{\Hypertarget{classBaseEquation_a483e1f4df9e791cec7f911b5cff0083a}\label{classBaseEquation_a483e1f4df9e791cec7f911b5cff0083a}} 
+void {\bfseries set\+\_\+tin} (const double \&initial\+\_\+time)
+\item 
+\mbox{\Hypertarget{classBaseEquation_a252acc3f65baabe91d21280bd911c745}\label{classBaseEquation_a252acc3f65baabe91d21280bd911c745}} 
+void {\bfseries set\+\_\+tfin} (const double \&final\+\_\+time)
+\item 
+\mbox{\Hypertarget{classBaseEquation_a07152aa622647f9a2b0e10c5ce330193}\label{classBaseEquation_a07152aa622647f9a2b0e10c5ce330193}} 
+void {\bfseries set\+\_\+x0} (const Rnvector \&cond)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseEquation_a9003149a3218fd7994c18914cd4446b8}\label{classBaseEquation_a9003149a3218fd7994c18914cd4446b8}} 
+double \hyperlink{classBaseEquation_a9003149a3218fd7994c18914cd4446b8}{tin}
+\begin{DoxyCompactList}\small\item\em Inital time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseEquation_a5286836cab7d0366681863c8cda0d45b}\label{classBaseEquation_a5286836cab7d0366681863c8cda0d45b}} 
+double \hyperlink{classBaseEquation_a5286836cab7d0366681863c8cda0d45b}{tfin}
+\begin{DoxyCompactList}\small\item\em Final time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseEquation_ae7bf8243e94cd4cd762345048849a967}\label{classBaseEquation_ae7bf8243e94cd4cd762345048849a967}} 
+\hyperlink{structEquationFunction}{Equation\+Function} \& \hyperlink{classBaseEquation_ae7bf8243e94cd4cd762345048849a967}{f}
+\begin{DoxyCompactList}\small\item\em Right hand side f(x,t) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseEquation_a86cd7c1803bac9d80e15b4dc81571fa7}\label{classBaseEquation_a86cd7c1803bac9d80e15b4dc81571fa7}} 
+Rnvector \hyperlink{classBaseEquation_a86cd7c1803bac9d80e15b4dc81571fa7}{x0}
+\begin{DoxyCompactList}\small\item\em Initial condition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseEquation_ad57b2ae84acedfb6d38b70e08dc39db3}\label{classBaseEquation_ad57b2ae84acedfb6d38b70e08dc39db3}} 
+unsigned \hyperlink{classBaseEquation_ad57b2ae84acedfb6d38b70e08dc39db3}{dimension}
+\begin{DoxyCompactList}\small\item\em Dimension of the system (x0.\+size()) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Base\+Equation.\+hpp\end{DoxyCompactItemize}
