@@ -28,14 +28,14 @@ Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
 // TODO
 Rnvector EquationFunction_5::operator() ( const double &t, Rnvector y ) const
 {
-	  return (-16.8)*y; // Tante iterazioni di punto fisso ma sbilanciate
+    return (-16.8)*y; // Tante iterazioni di punto fisso ma sbilanciate
 }
 
 Rnvector EquationFunction_6::operator() ( const double &t, Rnvector y ) const
 {
-	  // Iterazioni punto fisso bilanciate (IserNor parallelo più efficiente)
-		for( unsigned i = 0; i < y.size(); i++ )
-			y[i] = exp2( -0.25*y[i] + 6 + 10*t );
-		return y;
+      // Iterazioni punto fisso bilanciate (IserNor parallelo più efficiente)
+        for( unsigned i = 0; i < y.size(); i++ )
+            y[i] = exp2( -0.25*y[i] + 6 + 10*t );
+        return y;
 
 }

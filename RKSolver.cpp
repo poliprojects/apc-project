@@ -21,7 +21,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
 
 
 RKSolver::RKSolver( double step, const BaseEquation &eq,
-	const std::string name ): BaseSolver( step, eq )
+    const std::string name ): BaseSolver( step, eq )
 {
     if( name == "Heun" )
     {
@@ -159,47 +159,47 @@ bool RKSolver::is_implicit( const size_t K_index ) const
 
 void RKSolver::solve()
 {
-	  // Initialization of time instants
-	  times.resize( Nh+1 );
-	  double tn = equation.get_tin();
-	  for( std::size_t i = 0; i < Nh+1; i++ )
-  	{
-	  	  times[i] = tn;
-		    tn += h;
-	  }
+      // Initialization of time instants
+      times.resize( Nh+1 );
+      double tn = equation.get_tin();
+      for( std::size_t i = 0; i < Nh+1; i++ )
+      {
+            times[i] = tn;
+            tn += h;
+      }
 
-	  // Take solution at time 0 and function f from data
-	  Rnvector un = solution[0];
+      // Take solution at time 0 and function f from data
+      Rnvector un = solution[0];
 
-	  // Solution loop
-	  Rnvector un1( un.size() ); // solution at time n+1
-	  for( unsigned n = 0; n < Nh; n++ )
+      // Solution loop
+      Rnvector un1( un.size() ); // solution at time n+1
+      for( unsigned n = 0; n < Nh; n++ )
     {
-  	  	// int rank; // TODO DEBUG
-  	  	// MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
+            // int rank; // TODO DEBUG
+            // MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
         //
         // // Chrono starts
-    	// high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        // high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-  	  	un1 = single_step( times[n], un, h );
+            un1 = single_step( times[n], un, h );
 
-    	// // Chrono ends
-    	// high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        // // Chrono ends
+        // high_resolution_clock::time_point t2 = high_resolution_clock::now();
         //
-    	// // Compute duration of the solution process
+        // // Compute duration of the solution process
         // auto duration = duration_cast<microseconds>( t2 - t1 ).count();
         //
-    	// // Prints duration of the solution process
-    	// if( rank == 0 )
-    		// std::cout << "Step time: " << duration << " μs" << std::endl <<
-  	  	        //std::endl;
-  	  	
-   		solution.push_back( un1 );
-   		un = un1;
-   		un1.clear();
+        // // Prints duration of the solution process
+        // if( rank == 0 )
+            // std::cout << "Step time: " << duration << " μs" << std::endl <<
+                    //std::endl;
+            
+           solution.push_back( un1 );
+           un = un1;
+           un1.clear();
         // if( n == 30 )
         //     exit(1);
-  	}
+      }
 }
 
 
