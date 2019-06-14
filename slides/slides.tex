@@ -8,11 +8,11 @@
 \input{etc/_includes}
 \include{etc/_commands}
 
-\title[Numerical solvers for ODEs]{\textbf{Numerical solvers}}
+\title[Numerical solvers for ODEs]{\textbf{Adaptive numerical solvers}}
 \subtitle{for Ordinary Differential Equations}
 \author[Guindani, Vidulis]{Bruno Guindani \\ Michele Vidulis}
 \institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_lungo.jpg}}
-\date[2019/06/TODO]{June TODO, 2019}
+\date[2019/07/TODO]{July TODO, 2019}
 
 \begin{document}
 
@@ -33,14 +33,8 @@
 
 \begin{frame} %#03
 	\frametitle{Ordinary differential equations (ODE)}
-	\begin{itemize}
-		\item Spacial coordinates: $\yy \in \RR^n$
-		\item Time: $t \in I = [t_0, t_F] \subset \RR$
-		\item Equation function: $f(t,\yy): I \times \RR^n \to \RR^n, \quad f \in C^1$
-		\item Initial value: $t_0 \in I, \quad \yy_0 \in \RR^n$
-	\end{itemize}
-	\vspace{15pt}
-	\pause
+	Given $I = [t_0, t_F] \subset \RR, \ \ f(t,\yy): I \times \RR^n \to \RR^n,
+	\quad f \in C^1$, and $t_0 \in I, \yy_0 \in \RR^n$:
 	\begin{center}
 		\textbf{Initial Value Problem (IVP)}: \\[15pt]
 		find a $C^1$ function $\yy(t): I \to \RR^n$ that solves
@@ -54,50 +48,24 @@
 		%Ordinary: derive only wrt y
 		%Higher-order EDOs can be reduced to a set of order 1 EDOs
 	\end{center}
+	Existence and uniqueness are guaranteed under \textit{Lipschitz continuity} of $f$
 \end{frame}
 
 
 \begin{frame} %#04
-	\frametitle{Existence and uniqueness of solution}
+	\frametitle{Iterative methods}
 	\begin{itemize}
-		\item Guaranteed under \textit{Lipschitz continuity}:
-			$$ \abs{f(t,\yy_1) - f(t,\yy_2)} \le \, L \abs{\yy_1 - \yy_2}
-			\qquad \forall t \in U(t_0), \ \ \yy_1, \yy_2 \in U(\yy_0) $$
-		\item Can be extended to the whole $I \times \RR^n$
-		\pause
-		\item But computing $\yy$ analitically may be difficult, impossible, or inefficient \\[30pt]
-			\begin{center}
-			$\implies$ \textbf{numerical approximations}
-		\end{center}
-	\end{itemize}
-	% Applications of ODEs: everywhere
-\end{frame}
-
-\begin{frame} %#04
-	\frametitle{General features of iterative methods}
-	\begin{itemize}
-		\item Discretization of time into $N$ intervals: $t_0, \ t_1, \ \dots, \ t_{N} = t_F$
-		\item $n = 0, 1, \dots, N$
-		\item Discretization step: $t_{n+1} = t_n + h$
-		\pause
-		\item Vectorial approximation of $\yy$:
+		\item Discretization of time into $N$ intervals: $t_0, \ t_1, \ \dots, \ t_{N} = t_F$ through a scretization step $h$: $t_{n+1} = t_n + h$, with $n = 0, 1, \dots, N$
+		\item $\yy(t_n)$ is numerically approximated by $\uu_n$:
 		\begin{center}
 			$\uu_0 = \yy_0, \uu_1, \dots, \uu_{N} \in \RR^n$
+			% iteratively updated
 		\end{center}
-		\item $\uu_n$ is iteratively updated $\forall n = 1, \dots, N-1$
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Single-step methods} %#06
-	\begin{itemize}
-		\item $\uu_{n+1}$ depends directly only on the one previous step $\uu_{n}$
-		\item General updating scheme (with generic increment function $\phi$):
-		$$ \uu_{n+1} = \uu_{n} + h \ \phi(t_n, \, h, \, \uu_n, \, \uu_{n+1}, \, f) $$
 		\pause
-		\item \textbf{Explicit} methods: $\uu_{n+1}$ does not appear in $\phi$
-		\item \textbf{Implicit} methods: $\uu_{n+1}$ appears in $\phi$
+		\item In \textbf{single-step methods}, $\uu_{n+1}$ depends directly only on the one previous step $\uu_{n}$:
+		$$ \uu_{n+1} = \uu_{n} + h \ \phi(t_n, \, h, \, \uu_n, \, \uu_{n+1}, \, f) $$
+		\item In \textbf{explicit} methods, $\uu_{n+1}$ does not appear in $\phi$
+		\item In \textbf{implicit} methods, $\uu_{n+1}$ appears in $\phi$
 		\begin{center}
 			\vspace{-5pt}
 			$\implies$ nonlinear equations
@@ -106,7 +74,7 @@
 \end{frame}
 
 
-\begin{frame} %#07
+\begin{frame} %#05
 	\frametitle{Runge-Kutta methods}
 	\begin{itemize}
 		\item Family of \textbf{single-step} methods
@@ -135,8 +103,8 @@
 \end{frame}
 
 
-\begin{frame} %#08
-	\frametitle{Examples of RK variants}
+\begin{frame} %#06
+	\frametitle{Examples of RK variants (1)}
 	\begin{itemize}
 		\item \textbf{Forward Euler} (FE) (explicit):
 		$$ a = 0, \ b = 1, \ c = 0 $$
@@ -156,8 +124,8 @@
 \end{frame}
 
 
-\begin{frame} %#09
-	\frametitle{Examples of RK variants}
+\begin{frame} %#07
+	\frametitle{Examples of RK variants (2)}
 	\begin{itemize}
 		\item Heun (explicit):
 		\begin{center}
@@ -179,37 +147,22 @@
 				& $\frac{3}{2}$ & $\frac{3}{2}$ & $1$ & $1$
 				\end{tabular}
 		\end{center}
-		%TODO: do we need another one?	
 	\end{itemize}
 \end{frame}
 
 
-\begin{frame} %#10
-	\frametitle{Convergence analysis}
+\begin{frame} %#08
+\frametitle{Convergence analysis for RK}
 	\begin{itemize}
 		\item \textbf{Convergence} $\to$ absolute error: $\norm{y_n - u_n} \simeq O(h^q)$
 		\item \textbf{Consistence} $\to$ truncation error: $\max_n \norm{\tau_n(h)} \simeq O(h^q)$
-		\item \textbf{Stability} $\to$ absolute error of \textit{perturbed} numerical solution $z_n$:
-		$$ 	\norm{z_n-u_n} < C \varepsilon \qquad
-		\text{given perturbation } \rho_n < \varepsilon \text{, for some } h_0 $$
-	\end{itemize}
-	\pause
-	Examples:
-	\begin{itemize}
-		\item Forward and backward Euler are order 1 methods
-		\item Under reasonable Lipschitz continuity assumptions on $\phi$, a single-step method which is \textbf{consistent} is also convergent
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame} %#11
-\frametitle{Convergence of RK}
-	\begin{itemize}
+		\item Under reasonable Lipschitz continuity assumptions on $\phi$, a single-step method which is consistent is also convergent
+		\pause
 		\item Runge-Kutta is consistent iff $\sum_i b_i = 1$ $\implies$ \textbf{convergent}
 		\item Steep limitations on order of convergence:
 		\begin{itemize}
 			\item Maximum order is the number of stages
-			\item If $s \ge 5$, equality cannot be achieved in explicit variants \\[30pt]
+			\item If $s \ge 5$, equality cannot be achieved in explicit variants \\[10pt]
 		\end{itemize}
 	\end{itemize}
 	\begin{center}
@@ -219,58 +172,11 @@
 			minimum $s$ & 6 & 7 & 9 & 11 
 		\end{tabular}
 	\end{center}
+	% Ex: Forward and backward Euler are order 1 methods
 \end{frame}
 
 
-\begin{frame} %#12
-\frametitle{Model problem analysis (in $\RR$)}
-	\begin{itemize}
-		\item Model problem:
-		$$
-		\begin{cases}
-		y'(t) = \lambda(t) \, y \qquad \text{with } t > 0 \\
-		y(0) = y_0
-		\end{cases}
-		$$
-		\item Absolute stability: $u_n \to 0$ as $n \to +\infty$
-		\item FE is absolutely stable iff $h < \frac{2}{\max_t \abs{\lambda(t)}} $
-		\item BE is absolutely stable $\forall h$
-	\end{itemize}
-	% Problem: number of intervals N -> +inf even with h fixed, i.e. not
-	% tending to 0
-\end{frame}
-
-
-\begin{frame} %#13
-\frametitle{Absolute stability controls oscillations}
-\begin{itemize}
-	\item Let $\lambda \in C^0 \cap L^\infty$ nonpositive, $r \in C^0$
-	\item Generalized model problem:
-	$$
-	\begin{cases}
-		y'(t) = \lambda(t) y(t) + r(t) \qquad \text{with } t > 0 \\
-		y(0) = 1
-	\end{cases}
-	$$
-	\vspace{-10pt}
-	\item No absolute stability, but...
-	\pause
-	\item Absolutely stable Forward Euler case:
-	\begin{itemize}
-		\item Introduce perturbation $h \rho_{n+1}$ at step $n+1$
-		\item $\abs{z_n - u_n} = \rho_0 \prod_{k=0}^{n-1} (1+\lambda(t_k)) +
-		h \sum_{k=0}^{n-1} \rho_{k+1} \prod_{j=k+1}^{n-1} (1 + \lambda(t_j)) $
-		\pause
-		\item $\abs{z_n - u_n} < \sup_k(\abs{\rho_k}) \cdot A(\lambda_k), \ \forall n,h$
-		\item \textbf{Absolute stability controls oscillations!}
-		\item This can also be generalized to an arbitrary IVP
-	\end{itemize}
-\end{itemize}
-%  TODO: reasons to use adaptive step?
-\end{frame}
-
-
-\begin{frame} %#14
+\begin{frame} %#09
 	\frametitle{Adaptive methods}
 	Step $h$ is \textbf{updated} at every iteration adaptively, i.e. based on the trend of the solution
 	\begin{itemize}
@@ -279,10 +185,11 @@
 		\item \textit{A posteriori} \textbf{estimate of error} is needed
 		\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
 	\end{itemize}
+	%  TODO: reasons to use adaptive step?
 \end{frame}
 
 
-\begin{frame} %#15
+\begin{frame} %#10
 	\frametitle{Consistency of adaptive methods}
 	Forward Euler:
 	\begin{itemize}
@@ -301,21 +208,21 @@
 \end{frame}
 
 
-\begin{frame}[c] %#16
+\begin{frame}[c] %#11
 \begin{center}
 	\Huge \color{blue} Code structure
 \end{center}
 \end{frame}
 
 
-\begin{frame} %#17
+\begin{frame} %#12
 	\frametitle{Code structure}
 	\includegraphics[scale=0.2]{etc/test.jpg}
 	%TODO: choose what to show and what not to
 \end{frame}
 
 
-\begin{frame} %#18
+\begin{frame} %#13
 	\frametitle{Programming choices}
 	\begin{itemize}
 		\item Separate FE class is more efficient than RK specialized class
@@ -328,7 +235,7 @@
 \end{frame}
 
 
-\begin{frame} %#19
+\begin{frame} %#14
 	\frametitle{Parallel Iserles-Nørsett}
 	\begin{itemize}
 		\item Exploits block-diagonal structure of Butcher array
@@ -340,14 +247,14 @@
 \end{frame}
 
 
-\begin{frame}[c] %#20
+\begin{frame}[c] %#15
 \begin{center}
 	\Huge \color{blue} Results
 \end{center}
 \end{frame}
 
 
-\begin{frame} %#21
+\begin{frame} %#16
 	\frametitle{Results}
 	\includegraphics[scale=0.2]{etc/test.jpg}
 \end{frame}
