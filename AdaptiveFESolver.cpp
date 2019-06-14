@@ -51,6 +51,7 @@ void AdaptiveFESolver::solve()
     }
 }
 
+
 void AdaptiveFESolver::print_solver_spec() const
 {
     std::cout << "Solved using: Adaptive Forward Euler" << std::endl;

@@ -7,9 +7,11 @@
 class AdaptiveRKSolver: public RKSolver
 {
     private:
+        //! Error tolerance to select the step size
         double tol;
+
+        //! Minimum step size
         double hmin;
-        // h is the starting value for the step and Nh has no meaning
 
     public:
         // Constructors
@@ -28,7 +30,7 @@ class AdaptiveRKSolver: public RKSolver
         // Solving tool
         void solve();
 
-        //Solution output
+        // Solution output
         void print_solver_spec() const override;
 };
 
