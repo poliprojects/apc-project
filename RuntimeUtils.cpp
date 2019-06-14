@@ -120,6 +120,11 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
     if( size == 2 && strcmp(argv[2], "IserNor") == 0 )
         problem_ptr = new ParallelIserNorSolver( initial_step, equation );
 
+    // Adaptive parallel Iserles-Nørsett method
+    if( size == 2 && strcmp(argv[2], "adapIserNor") == 0 )
+        problem_ptr = new AdaptiveParallelIserNorSolver( initial_step,
+            equation, tolerance, tolerance );
+
     // Forward Euler method
     else if ( strcmp(argv[2], "FE") == 0 )
         problem_ptr = new FESolver( initial_step, equation );

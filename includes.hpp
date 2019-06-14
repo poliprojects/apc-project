@@ -1,4 +1,5 @@
 #include "AdaptiveFESolver.hpp"
+#include "AdaptiveParallelIserNorSolver.hpp"
 #include "AdaptiveRKSolver.hpp"
 #include "BaseEquation.hpp"
 #include "BaseSolver.hpp"
