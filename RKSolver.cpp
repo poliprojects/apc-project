@@ -209,7 +209,7 @@ void RKSolver::solve()
 
 void RKSolver::print_solver_spec() const
 {
-    std::cout << "Solved using: Runge Kutta (" << method_name << ")"
+    std::cout << "Solved using: Runge-Kutta (" << method_name << ")"
         << std::endl;
     std::cout << "h  = " << h << std::endl;
     std::cout << "Nh = " << Nh << std::endl;

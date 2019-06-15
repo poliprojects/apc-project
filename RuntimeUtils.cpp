@@ -139,7 +139,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
         problem_ptr = new AdaptiveFESolver( initial_step, equation,
             tolerance, tolerance );
 
-    // Runge Kutta method (user defined coefficients)
+    // Runge-Kutta method (user defined coefficients)
     else if ( strcmp(argv[2], "RK") == 0 )
     {
         // FE method
@@ -151,7 +151,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
         problem_ptr = new RKSolver( initial_step, equation, a, b, c );
     }
 
-    // Adaptive Runge Kutta method (user defined coefficients)
+    // Adaptive Runge-Kutta method (user defined coefficients)
     else if ( strcmp(argv[2], "adapRK") == 0 )
     {
         // Heun method
@@ -166,7 +166,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
             tolerance, tolerance );
     }
 
-    // Adaptive Runge Kutta method (chosen among predefined ones)
+    // Adaptive Runge-Kutta method (chosen among predefined ones)
     else if ( strncmp(argv[2], "adap", 4) == 0 )
     {
         std::string name_prefix( argv[2] );
@@ -175,7 +175,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
             name_no_prefix, tolerance, tolerance );
     }
 
-    // Runge Kutta method (chosen among predefined ones)
+    // Runge-Kutta method (chosen among predefined ones)
     else
     {
         problem_ptr = new RKSolver( initial_step, equation, argv[2] );

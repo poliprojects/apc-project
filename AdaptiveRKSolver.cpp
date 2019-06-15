@@ -56,7 +56,7 @@ void AdaptiveRKSolver::solve()
 
 void AdaptiveRKSolver::print_solver_spec() const
 {
-    std::cout << "Solved using: Adaptive Runge Kutta (" << method_name << ")"
+    std::cout << "Solved using: Adaptive Runge-Kutta (" << method_name << ")"
                         << std::endl;
     std::cout << "Starting h = " << h    << std::endl;
     std::cout << "Minimum h  = " << hmin << std::endl;

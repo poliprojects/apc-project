@@ -57,10 +57,10 @@ class RKSolver: public BaseSolver
             const std::vector<double> &c_ );
         RKSolver( double step, const BaseEquation &eq, const std::string name );
 
-        //! Main solver based on Runge Kutta method
+        //! Main solver based on Runge-Kutta method
         void solve() override;
 
-        //! Prints the characteristics of the Runge Kutta solver
+        //! Prints the characteristics of the Runge-Kutta solver
         void print_solver_spec() const override;
 };
 

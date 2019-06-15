@@ -27,10 +27,10 @@ class AdaptiveRKSolver: public RKSolver
             RKSolver( start_step, eq, name ), tol( tolerance ),
             hmin( min_step ) {}
 
-        // Solving tool
+        //! Main solver based on Adaptive Runge-Kutta method
         void solve();
 
-        // Solution output
+        //! Prints the characteristics of the Adaptive Runge-Kutta solver
         void print_solver_spec() const override;
 };
 
