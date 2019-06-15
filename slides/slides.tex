@@ -178,14 +178,17 @@
 
 \begin{frame} %#09
 	\frametitle{Adaptive methods}
-	Step $h$ is \textbf{updated} at every iteration adaptively, i.e. based on the trend of the solution
 	\begin{itemize}
-		\item Small $h$ near steep slopes, large $h$ near flat points %TODO check
-		% In model problem, lam(t) decreasing => function is flat %TODO check
-		\item \textit{A posteriori} \textbf{estimate of error} is needed
-		\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
+		\item Step $h$ is \textbf{updated} at every iteration adaptively, i.e. based on the trend of the solution
+		\begin{itemize}
+			\item Small $h$ near steep slopes, large $h$ near flat points
+			% In model problem, lam(t) decreasing => function is flat
+			\item \textit{A posteriori} \textbf{estimate of error} is needed
+			\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
+		\end{itemize}
+		\item No need for input of ``correct'' step
+		\item Computational gain
 	\end{itemize}
-	%  TODO: reasons to use adaptive step?
 \end{frame}
 
 
