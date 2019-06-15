@@ -63,24 +63,24 @@ void initialize_data(const int rank, char* test_number,
       else if ( strcmp(test_number, "4") == 0  )
       {
         if( rank == 0 )
-                  std::cout << std::endl << "Running Test 4" << std::endl <<
-                      std::endl;
-            fun_ptr = new EquationFunction_4;
-            initial_time = 0;
-            final_time = 10;
-            initial_condition.push_back( 1 );
-            initial_condition.push_back( 1 );
+            std::cout << std::endl << "Running Test 4" << std::endl <<
+                std::endl;
+        fun_ptr = new EquationFunction_4;
+        initial_time = 0;
+        final_time = 10;
+        initial_condition.push_back( 1 );
+        initial_condition.push_back( 1 );
       }
     // Test 5
       if ( strcmp(test_number, "5") == 0 )
       {
         if( rank == 0 )
-                std::cout << std::endl << "Running Test 5" << std::endl <<
-                    std::endl;
-            fun_ptr = new EquationFunction_5;
-            initial_time = 0;
-            final_time = 1;
-            initial_condition.push_back( 1 );
+            std::cout << std::endl << "Running Test 5" << std::endl <<
+                std::endl;
+        fun_ptr = new EquationFunction_5;
+        initial_time = 0;
+        final_time = 1;
+        initial_condition.push_back( 1 );
       }
     // Test 6
       if ( strcmp(test_number, "6") == 0 )
@@ -88,10 +88,10 @@ void initialize_data(const int rank, char* test_number,
         if( rank == 0 )
             std::cout << std::endl << "Running Test 6" << std::endl <<
                 std::endl;
-            fun_ptr = new EquationFunction_6;
-            initial_time = 0;
-            final_time = 100;
-            initial_condition.push_back( 1 );
+        fun_ptr = new EquationFunction_6;
+        initial_time = 0;
+        final_time = 100;
+        initial_condition.push_back( 1 );
       }
 }
 
