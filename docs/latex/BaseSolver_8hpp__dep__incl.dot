@@ -1,0 +1,46 @@
+digraph "BaseSolver.hpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node11 [label="BaseSolver.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="FESolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FESolver_8hpp.html"];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="AdaptiveFESolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveFESolver_8hpp.html"];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="AdaptiveFESolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveFESolver_8cpp.html"];
+  Node13 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="includes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$includes_8hpp.html"];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="RuntimeUtils.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RuntimeUtils_8hpp.html"];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node16 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="RuntimeUtils.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RuntimeUtils_8cpp.html"];
+  Node12 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="FESolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FESolver_8cpp.html"];
+  Node12 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="RKSolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RKSolver_8hpp.html"];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="ParallelIserNorSolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ParallelIserNorSolver_8hpp.html"];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="AdaptiveParallelIserNorSolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveParallelIserNorSolver_8hpp.html"];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="AdaptiveParallelIserNorSolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveParallelIserNorSolver_8cpp.html"];
+  Node22 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="ParallelIserNorSolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ParallelIserNorSolver_8cpp.html"];
+  Node20 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="AdaptiveRKSolver.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveRKSolver_8hpp.html"];
+  Node25 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="AdaptiveRKSolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AdaptiveRKSolver_8cpp.html"];
+  Node25 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="RKSolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RKSolver_8cpp.html"];
+  Node11 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="BaseSolver.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$BaseSolver_8cpp.html"];
+  Node11 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}
