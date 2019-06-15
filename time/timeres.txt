@@ -1,0 +1,12 @@
+Parallel 5:
+28582407
+
+Sequent. 5:
+28063801
+
+
+Parallel 6:
+16928707
+
+Sequent. 6:
+16456108
