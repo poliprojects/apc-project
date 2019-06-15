@@ -6,6 +6,7 @@ ParallelIserNorSolver::ParallelIserNorSolver( double step,
 {
     // Parallel version of Iserles-Nørsett
     method_name = "Parallel IserNor";
+    // TODO fix: when calling mpiexec, "IserNor" shows up instead!
 }
 
 
