@@ -6,9 +6,7 @@
 
 class AdaptiveFESolver: public FESolver
 {
-
     private:
-
         //! Error tolerance to select the step size
         double tol;
 
@@ -16,7 +14,6 @@ class AdaptiveFESolver: public FESolver
         double hmin;
 
     public:
-
         // Constructors
         AdaptiveFESolver( double start_step, const BaseEquation &eq,
             double tolerance, double min_step ):
@@ -28,5 +25,6 @@ class AdaptiveFESolver: public FESolver
         //! Prints the characteristics of the Adaptive Forward Euler solver
         void print_solver_spec() const override;
 };
+
 
 #endif // ADAPTIVEFESOLVER_HPP

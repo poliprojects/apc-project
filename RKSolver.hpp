@@ -9,7 +9,7 @@
 #include <mpi.h>
 #include "BaseSolver.hpp"
 
-using namespace std::chrono;
+using namespace std::chrono; // TODO can we move it elsewhere?
 
 
 class RKSolver: public BaseSolver
@@ -63,5 +63,6 @@ class RKSolver: public BaseSolver
         //! Prints the characteristics of the Runge Kutta solver
         void print_solver_spec() const override;
 };
+
 
 #endif // RKSOLVER_HPP

@@ -53,6 +53,7 @@ void AdaptiveRKSolver::solve()
     }
 }
 
+
 void AdaptiveRKSolver::print_solver_spec() const
 {
     std::cout << "Solved using: Adaptive Runge Kutta (" << method_name << ")"

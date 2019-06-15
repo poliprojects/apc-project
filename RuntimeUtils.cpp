@@ -37,6 +37,7 @@ void initialize_data(const int rank, char* test_number,
         final_time = 1;
         initial_condition.push_back( 0 );
     }
+
     // Test 2
     else if ( strcmp(test_number, "2") == 0 )
     {
@@ -48,6 +49,7 @@ void initialize_data(const int rank, char* test_number,
         final_time = 30;
         initial_condition.push_back( 1 );
     }
+
     // Test 3
     else if ( strcmp(test_number, "3") == 0  )
     {
@@ -59,9 +61,10 @@ void initialize_data(const int rank, char* test_number,
         final_time = 5;
         initial_condition.push_back( 1 );
     }
+
     // Test 4
-      else if ( strcmp(test_number, "4") == 0  )
-      {
+    else if ( strcmp(test_number, "4") == 0  )
+    {
         if( rank == 0 )
             std::cout << std::endl << "Running Test 4" << std::endl <<
                 std::endl;
@@ -70,10 +73,11 @@ void initialize_data(const int rank, char* test_number,
         final_time = 10;
         initial_condition.push_back( 1 );
         initial_condition.push_back( 1 );
-      }
+    }
+
     // Test 5
-      if ( strcmp(test_number, "5") == 0 )
-      {
+    else if ( strcmp(test_number, "5") == 0 )
+    {
         if( rank == 0 )
             std::cout << std::endl << "Running Test 5" << std::endl <<
                 std::endl;
@@ -81,10 +85,11 @@ void initialize_data(const int rank, char* test_number,
         initial_time = 0;
         final_time = 1;
         initial_condition.push_back( 1 );
-      }
+    }
+
     // Test 6
-      if ( strcmp(test_number, "6") == 0 )
-      {
+    else if ( strcmp(test_number, "6") == 0 )
+    {
         if( rank == 0 )
             std::cout << std::endl << "Running Test 6" << std::endl <<
                 std::endl;
@@ -92,7 +97,7 @@ void initialize_data(const int rank, char* test_number,
         initial_time = 0;
         final_time = 100;
         initial_condition.push_back( 1 );
-      }
+    }
 }
 
 

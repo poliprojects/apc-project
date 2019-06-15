@@ -1,20 +1,25 @@
 #include "equations.hpp"
 
+
 // Examples of test equations
+
 Rnvector EquationFunction_1::operator() ( const double &t, Rnvector y ) const
 {
     return 5*y - 3;
 }
 
+
 Rnvector EquationFunction_2::operator() ( const double &t, Rnvector y ) const
 {
-    return (-1.0)*y;  // Originale
+    return (-1.0)*y;  // Originale (TODO?)
 }
+
 
 Rnvector EquationFunction_3::operator() ( const double &t, Rnvector y ) const
 {
     return (-1.0)*y + t;
 }
+
 
 Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
 {
@@ -25,11 +30,13 @@ Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
     return y;
 }
 
+
 // TODO
 Rnvector EquationFunction_5::operator() ( const double &t, Rnvector y ) const
 {
     return (-16.8)*y; // Tante iterazioni di punto fisso ma sbilanciate
 }
+
 
 Rnvector EquationFunction_6::operator() ( const double &t, Rnvector y ) const
 {
@@ -37,5 +44,4 @@ Rnvector EquationFunction_6::operator() ( const double &t, Rnvector y ) const
         for( unsigned i = 0; i < y.size(); i++ )
             y[i] = exp2( -0.25*y[i] + 6 + 10*t );
         return y;
-
 }

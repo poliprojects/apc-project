@@ -3,6 +3,7 @@
 
 #include "ParallelIserNorSolver.hpp"
 
+
 class AdaptiveParallelIserNorSolver: public ParallelIserNorSolver
 {
     private:

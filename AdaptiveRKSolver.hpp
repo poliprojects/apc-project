@@ -34,4 +34,5 @@ class AdaptiveRKSolver: public RKSolver
         void print_solver_spec() const override;
 };
 
+
 #endif // ADAPTIVERKSOLVER_HPP

@@ -12,7 +12,8 @@ Rnvector operator+( const Rnvector &x, const Rnvector &y )
     return z;
 }
 
- // Product by scalar
+
+// Product by scalar
 Rnvector operator*( const double lambda, const Rnvector &x )
 {
     Rnvector z( x.size() );
@@ -21,12 +22,14 @@ Rnvector operator*( const double lambda, const Rnvector &x )
     return z;
 }
 
+
 // Vector difference
 Rnvector operator-( const Rnvector &x, const Rnvector &y ) 
 {
     assert( x.size() == y.size() );
     return x + (-1.0)*y;
 }
+
 
 // Sum with scalar (i.e. with constant vector)
 Rnvector operator+( const Rnvector &x, const double lambda ) 
@@ -35,12 +38,14 @@ Rnvector operator+( const Rnvector &x, const double lambda )
     return x + y;
 }
 
+
 // Difference with scalar (i.e. with constant vector)
 Rnvector operator-( const Rnvector &x, const double lambda )
 {
     Rnvector y( x.size(), lambda );
     return x + (-1)*y;
 }
+
 
 // Vector of absolute values
 Rnvector abs( const Rnvector &x )

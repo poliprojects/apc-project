@@ -8,9 +8,7 @@
 
 class BaseSolver
 {
-
     protected:
-
         //! Integration step (starting value in adaptive methods)
         double h;
 
@@ -31,7 +29,6 @@ class BaseSolver
             const double h ) const = 0;
 
     public:
-
         // Constructors
         BaseSolver( double step, const BaseEquation &eq );
 
@@ -54,5 +51,6 @@ class BaseSolver
         //! Saves solution and time instants in a .txt file
         virtual void save_sol_to_file( const std::string &file_name ) const;
 };
+
 
 #endif // BASESOLVER_HPP

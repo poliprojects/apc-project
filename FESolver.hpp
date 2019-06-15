@@ -6,15 +6,12 @@
 
 class FESolver: public BaseSolver
 {
-
     protected:
-
         //! One step of time integration, called by solve()
         Rnvector single_step( const double tn, const Rnvector &un,
             const double h ) const override;
 
     public:
-
         // Constructors
         FESolver( double step, const BaseEquation &eq );
 

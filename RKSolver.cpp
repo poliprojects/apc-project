@@ -8,7 +8,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
     BaseSolver( step, eq ), a( a_ ), b( b_ ), c( c_ )
 {
     // Check dimensions consintency
-     assert( b.size() == c.size() && a.size() == a[0].size() &&
+    assert( b.size() == c.size() && a.size() == a[0].size() &&
         b.size() == a.size() );
     // Set number of stages for every step
     n_stages = b.size();
@@ -32,6 +32,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         // Set number of stages for every step
         n_stages = b.size();
     }
+
     else if( name == "IserNor" )
     {
         a =
@@ -46,6 +47,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         // Set number of stages for every step
         n_stages = b.size();
     }
+
     else if( name == "RK4" )
     {
         a =
@@ -60,11 +62,13 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         // Set number of stages for every step
         n_stages = b.size();
     }
+
     else
     {
         std::cerr << "Unknown RK method. Aborting..." << std::endl << std::endl;
         exit( 1 );
     }
+
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
     Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
@@ -159,29 +163,29 @@ bool RKSolver::is_implicit( const size_t K_index ) const
 
 void RKSolver::solve()
 {
-      // Initialization of time instants
-      times.resize( Nh+1 );
-      double tn = equation.get_tin();
-      for( std::size_t i = 0; i < Nh+1; i++ )
-      {
-            times[i] = tn;
-            tn += h;
-      }
-
-      // Take solution at time 0 and function f from data
-      Rnvector un = solution[0];
-
-      // Solution loop
-      Rnvector un1( un.size() ); // solution at time n+1
-      for( unsigned n = 0; n < Nh; n++ )
+    // Initialization of time instants
+    times.resize( Nh+1 );
+    double tn = equation.get_tin();
+    for( std::size_t i = 0; i < Nh+1; i++ )
     {
-            // int rank; // TODO DEBUG
-            // MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
+        times[i] = tn;
+        tn += h;
+    }
+
+    // Take solution at time 0 and function f from data
+    Rnvector un = solution[0];
+
+    // Solution loop
+    Rnvector un1( un.size() ); // solution at time n+1
+    for( unsigned n = 0; n < Nh; n++ )
+    {
+        // int rank; // TODO DEBUG
+        // MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
         //
         // // Chrono starts
         // high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-            un1 = single_step( times[n], un, h );
+        un1 = single_step( times[n], un, h );
 
         // // Chrono ends
         // high_resolution_clock::time_point t2 = high_resolution_clock::now();
@@ -194,14 +198,13 @@ void RKSolver::solve()
             // std::cout << "Step time: " << duration << " μs" << std::endl <<
                     //std::endl;
             
-           solution.push_back( un1 );
-           un = un1;
-           un1.clear();
+        solution.push_back( un1 );
+        un = un1;
+        un1.clear();
         // if( n == 30 )
         //     exit(1);
       }
 }
-
 
 
 void RKSolver::print_solver_spec() const

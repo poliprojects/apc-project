@@ -15,11 +15,13 @@ struct EquationFunction
 
 
 // Examples of test equations
+
 struct EquationFunction_1: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
     EquationFunction_1(): EquationFunction( "y'(t) = 5*y(t) - 3" ) {}
 };
+
 
 struct EquationFunction_2: public EquationFunction
 {
@@ -27,11 +29,13 @@ struct EquationFunction_2: public EquationFunction
     EquationFunction_2(): EquationFunction( "y'(t) = -y(t)" ) {}
 };
 
+
 struct EquationFunction_3: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
     EquationFunction_3(): EquationFunction("y'(t) = t - y(t)") {}
 };
+
 
 struct EquationFunction_4: public EquationFunction
 {
@@ -41,16 +45,19 @@ struct EquationFunction_4: public EquationFunction
     {}
 };
 
+
 struct EquationFunction_5: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
     EquationFunction_5(): EquationFunction( "y'(t) = -16.8*y(t)" ) {}
 };
 
+
 struct EquationFunction_6: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
     EquationFunction_6(): EquationFunction( "y'(t) = 2^( -y/4 + 6 + 10*t )" ) {}
 };
+
 
 #endif // EQUATIONS_HPP

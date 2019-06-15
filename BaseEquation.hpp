@@ -6,9 +6,7 @@
 
 class BaseEquation
 {
-
     private:
-
         //! Inital time
         double tin;
 
@@ -25,7 +23,6 @@ class BaseEquation
         unsigned dimension;
 
     public:
-
         // Constructors
         BaseEquation( const double &initial_time, const double &final_time,
             EquationFunction &fun, const Rnvector &initial_cond ):
@@ -46,5 +43,6 @@ class BaseEquation
         void set_x0( const Rnvector &cond )
             { x0 = cond; dimension = x0.size(); };
 };
+
 
 #endif //BASEEQUATION_HPP
