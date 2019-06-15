@@ -2,6 +2,10 @@
 \label{classFESolver}\index{F\+E\+Solver@{F\+E\+Solver}}
 
 
+{\ttfamily \#include $<$F\+E\+Solver.\+hpp$>$}
+
+
+
 Inheritance diagram for F\+E\+Solver\+:
 % FIG 0
 
@@ -11,32 +15,57 @@ Collaboration diagram for F\+E\+Solver\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classFESolver_adbd4e19eb5c39bdbced70671961bbc4d}\label{classFESolver_adbd4e19eb5c39bdbced70671961bbc4d}} 
-{\bfseries F\+E\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq)
+\hyperlink{classFESolver_adbd4e19eb5c39bdbced70671961bbc4d}{F\+E\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq)
 \item 
-\mbox{\Hypertarget{classFESolver_a1b7bde8ef3e3e4650096e1d56ad3add1}\label{classFESolver_a1b7bde8ef3e3e4650096e1d56ad3add1}} 
-unsigned {\bfseries get\+\_\+\+Nh} () const
+unsigned \hyperlink{classFESolver_a1b7bde8ef3e3e4650096e1d56ad3add1}{get\+\_\+\+Nh} () const
 \item 
-\mbox{\Hypertarget{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}\label{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}} 
 void \hyperlink{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}{solve} () override
 \begin{DoxyCompactList}\small\item\em Main solver based on Forward Euler method. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classFESolver_a46f8b70e97141583f68c5dfeb79e80c8}\label{classFESolver_a46f8b70e97141583f68c5dfeb79e80c8}} 
 void \hyperlink{classFESolver_a46f8b70e97141583f68c5dfeb79e80c8}{print\+\_\+solver\+\_\+spec} () const override
 \begin{DoxyCompactList}\small\item\em Prints the characteristics of the Forward Euler solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Rnvector \hyperlink{classFESolver_acb3624bbe9132b8ab2989fc97ac33d81}{single\+\_\+step} (const double tn, const Rnvector \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const override
+\hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \hyperlink{classFESolver_acb3624bbe9132b8ab2989fc97ac33d81}{single\+\_\+step} (const double tn, const \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const override
 \begin{DoxyCompactList}\small\item\em One step of time integration, called by \hyperlink{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}{solve()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFESolver_adbd4e19eb5c39bdbced70671961bbc4d}\label{classFESolver_adbd4e19eb5c39bdbced70671961bbc4d}} 
+\index{F\+E\+Solver@{F\+E\+Solver}!F\+E\+Solver@{F\+E\+Solver}}
+\index{F\+E\+Solver@{F\+E\+Solver}!F\+E\+Solver@{F\+E\+Solver}}
+\subsubsection{\texorpdfstring{F\+E\+Solver()}{FESolver()}}
+{\footnotesize\ttfamily F\+E\+Solver\+::\+F\+E\+Solver (\begin{DoxyParamCaption}\item[{double}]{step,  }\item[{const \hyperlink{classBaseEquation}{Base\+Equation} \&}]{eq }\end{DoxyParamCaption})}
+
+
+
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFESolver_a1b7bde8ef3e3e4650096e1d56ad3add1}\label{classFESolver_a1b7bde8ef3e3e4650096e1d56ad3add1}} 
+\index{F\+E\+Solver@{F\+E\+Solver}!get\+\_\+\+Nh@{get\+\_\+\+Nh}}
+\index{get\+\_\+\+Nh@{get\+\_\+\+Nh}!F\+E\+Solver@{F\+E\+Solver}}
+\subsubsection{\texorpdfstring{get\+\_\+\+Nh()}{get\_Nh()}}
+{\footnotesize\ttfamily unsigned F\+E\+Solver\+::get\+\_\+\+Nh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classFESolver_a46f8b70e97141583f68c5dfeb79e80c8}\label{classFESolver_a46f8b70e97141583f68c5dfeb79e80c8}} 
+\index{F\+E\+Solver@{F\+E\+Solver}!print\+\_\+solver\+\_\+spec@{print\+\_\+solver\+\_\+spec}}
+\index{print\+\_\+solver\+\_\+spec@{print\+\_\+solver\+\_\+spec}!F\+E\+Solver@{F\+E\+Solver}}
+\subsubsection{\texorpdfstring{print\+\_\+solver\+\_\+spec()}{print\_solver\_spec()}}
+{\footnotesize\ttfamily void F\+E\+Solver\+::print\+\_\+solver\+\_\+spec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Prints the characteristics of the Forward Euler solver. 
+
+
+
+Implements \hyperlink{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}{Base\+Solver}.
+
 \mbox{\Hypertarget{classFESolver_acb3624bbe9132b8ab2989fc97ac33d81}\label{classFESolver_acb3624bbe9132b8ab2989fc97ac33d81}} 
 \index{F\+E\+Solver@{F\+E\+Solver}!single\+\_\+step@{single\+\_\+step}}
 \index{single\+\_\+step@{single\+\_\+step}!F\+E\+Solver@{F\+E\+Solver}}
 \subsubsection{\texorpdfstring{single\+\_\+step()}{single\_step()}}
-{\footnotesize\ttfamily Rnvector F\+E\+Solver\+::single\+\_\+step (\begin{DoxyParamCaption}\item[{const double}]{tn,  }\item[{const Rnvector \&}]{un,  }\item[{const double}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} F\+E\+Solver\+::single\+\_\+step (\begin{DoxyParamCaption}\item[{const double}]{tn,  }\item[{const \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \&}]{un,  }\item[{const double}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -58,9 +87,23 @@ un1 Solution at the following time instant
 
 Implements \hyperlink{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}{Base\+Solver}.
 
+\mbox{\Hypertarget{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}\label{classFESolver_ac6ac17db7001191c7bb32c3e8ce74d55}} 
+\index{F\+E\+Solver@{F\+E\+Solver}!solve@{solve}}
+\index{solve@{solve}!F\+E\+Solver@{F\+E\+Solver}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily void F\+E\+Solver\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Main solver based on Forward Euler method. 
+
+
+
+Implements \hyperlink{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}{Base\+Solver}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-F\+E\+Solver.\+hpp\item 
-F\+E\+Solver.\+cpp\end{DoxyCompactItemize}
+\hyperlink{FESolver_8hpp}{F\+E\+Solver.\+hpp}\item 
+\hyperlink{FESolver_8cpp}{F\+E\+Solver.\+cpp}\end{DoxyCompactItemize}

@@ -2,17 +2,17 @@ digraph "BaseSolver"
 {
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node0 [label="BaseSolver",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node1 [label="FESolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFESolver.html"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node2 [label="AdaptiveFESolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveFESolver.html"];
-  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node3 [label="RKSolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRKSolver.html"];
-  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node4 [label="AdaptiveRKSolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveRKSolver.html"];
-  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node5 [label="ParallelIserNorSolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParallelIserNorSolver.html"];
-  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node6 [label="AdaptiveParallelIserNorSolver",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveParallelIserNorSolver.html"];
+  Node0 [label="{BaseSolver\n|# h\l# Nh\l# equation\l# solution\l# times\l|+ BaseSolver()\l+ ~BaseSolver()\l+ get_h()\l+ get_equation()\l+ get_solution()\l+ solve()\l+ print()\l+ print_solver_spec()\l+ save_sol_to_file()\l# single_step()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node1 [label="{FESolver\n||+ FESolver()\l+ get_Nh()\l+ solve()\l+ print_solver_spec()\l# single_step()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFESolver.html"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node2 [label="{AdaptiveFESolver\n|- tol\l- hmin\l|+ AdaptiveFESolver()\l+ solve()\l+ print_solver_spec()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveFESolver.html"];
+  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node3 [label="{RKSolver\n|# a\l# b\l# c\l# n_stages\l# method_name\l# fixed_point_tol\l|+ RKSolver()\l+ RKSolver()\l+ solve()\l+ print_solver_spec()\l# single_step()\l# fixed_point()\l# compute_error()\l# is_implicit()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRKSolver.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node4 [label="{AdaptiveRKSolver\n|- tol\l- hmin\l|+ AdaptiveRKSolver()\l+ AdaptiveRKSolver()\l+ solve()\l+ print_solver_spec()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveRKSolver.html"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node5 [label="{ParallelIserNorSolver\n||+ ParallelIserNorSolver()\l# single_step()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParallelIserNorSolver.html"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node6 [label="{AdaptiveParallelIserNorSolver\n|- tol\l- hmin\l|+ AdaptiveParallelIserNorSolver()\l+ solve()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdaptiveParallelIserNorSolver.html"];
 }

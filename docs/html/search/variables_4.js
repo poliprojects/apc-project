@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['equation',['equation',['../classBaseSolver.html#af6a2cea17c378f21a44293bda52ea07a',1,'BaseSolver']]]
+  ['dimension',['dimension',['../classBaseEquation.html#ad57b2ae84acedfb6d38b70e08dc39db3',1,'BaseEquation']]]
 ];

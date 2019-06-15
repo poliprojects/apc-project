@@ -2,6 +2,10 @@
 \label{classParallelIserNorSolver}\index{Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}}
 
 
+{\ttfamily \#include $<$Parallel\+Iser\+Nor\+Solver.\+hpp$>$}
+
+
+
 Inheritance diagram for Parallel\+Iser\+Nor\+Solver\+:
 % FIG 0
 
@@ -11,15 +15,23 @@ Collaboration diagram for Parallel\+Iser\+Nor\+Solver\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classParallelIserNorSolver_a5316d47db330753f44ed088250857ec0}\label{classParallelIserNorSolver_a5316d47db330753f44ed088250857ec0}} 
-{\bfseries Parallel\+Iser\+Nor\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq)
+\hyperlink{classParallelIserNorSolver_a5316d47db330753f44ed088250857ec0}{Parallel\+Iser\+Nor\+Solver} (double step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Rnvector \hyperlink{classParallelIserNorSolver_a10cac84b730cf473723461622f1a74e0}{single\+\_\+step} (const double tn, const Rnvector \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const override
+\hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \hyperlink{classParallelIserNorSolver_a10cac84b730cf473723461622f1a74e0}{single\+\_\+step} (const double tn, const \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \&un, const double \hyperlink{classBaseSolver_a6dbedd1610b0979379e6acbb0a4093cd}{h}) const override
 \begin{DoxyCompactList}\small\item\em One step of time integration in parallel mode, called by \hyperlink{classRKSolver_aa251eaaa56b4ef39d95347579b8a6259}{solve()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classParallelIserNorSolver_a5316d47db330753f44ed088250857ec0}\label{classParallelIserNorSolver_a5316d47db330753f44ed088250857ec0}} 
+\index{Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}!Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}}
+\index{Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}!Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}}
+\subsubsection{\texorpdfstring{Parallel\+Iser\+Nor\+Solver()}{ParallelIserNorSolver()}}
+{\footnotesize\ttfamily Parallel\+Iser\+Nor\+Solver\+::\+Parallel\+Iser\+Nor\+Solver (\begin{DoxyParamCaption}\item[{double}]{step,  }\item[{const \hyperlink{classBaseEquation}{Base\+Equation} \&}]{eq }\end{DoxyParamCaption})}
+
 
 
 \subsection{Member Function Documentation}
@@ -27,7 +39,7 @@ Rnvector \hyperlink{classParallelIserNorSolver_a10cac84b730cf473723461622f1a74e0
 \index{Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}!single\+\_\+step@{single\+\_\+step}}
 \index{single\+\_\+step@{single\+\_\+step}!Parallel\+Iser\+Nor\+Solver@{Parallel\+Iser\+Nor\+Solver}}
 \subsubsection{\texorpdfstring{single\+\_\+step()}{single\_step()}}
-{\footnotesize\ttfamily Rnvector Parallel\+Iser\+Nor\+Solver\+::single\+\_\+step (\begin{DoxyParamCaption}\item[{const double}]{tn,  }\item[{const Rnvector \&}]{un,  }\item[{const double}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} Parallel\+Iser\+Nor\+Solver\+::single\+\_\+step (\begin{DoxyParamCaption}\item[{const double}]{tn,  }\item[{const \hyperlink{utils_8hpp_a8e0cccfe9e5cee5140bfcfbd9a3a6a0e}{Rnvector} \&}]{un,  }\item[{const double}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -53,5 +65,5 @@ Implements \hyperlink{classBaseSolver_a66b4a8e6b6e0bb2f3564b2df849c79aa}{Base\+S
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Parallel\+Iser\+Nor\+Solver.\+hpp\item 
-Parallel\+Iser\+Nor\+Solver.\+cpp\end{DoxyCompactItemize}
+\hyperlink{ParallelIserNorSolver_8hpp}{Parallel\+Iser\+Nor\+Solver.\+hpp}\item 
+\hyperlink{ParallelIserNorSolver_8cpp}{Parallel\+Iser\+Nor\+Solver.\+cpp}\end{DoxyCompactItemize}

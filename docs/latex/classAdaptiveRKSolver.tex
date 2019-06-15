@@ -2,6 +2,10 @@
 \label{classAdaptiveRKSolver}\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
 
 
+{\ttfamily \#include $<$Adaptive\+R\+K\+Solver.\+hpp$>$}
+
+
+
 Inheritance diagram for Adaptive\+R\+K\+Solver\+:
 % FIG 0
 
@@ -11,31 +15,94 @@ Collaboration diagram for Adaptive\+R\+K\+Solver\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}\label{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}} 
-{\bfseries Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&a\+\_\+, const std\+::vector$<$ double $>$ \&b\+\_\+, const std\+::vector$<$ double $>$ \&c\+\_\+, double tolerance, double min\+\_\+step)
+\hyperlink{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}{Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&a\+\_\+, const std\+::vector$<$ double $>$ \&b\+\_\+, const std\+::vector$<$ double $>$ \&c\+\_\+, double tolerance, double min\+\_\+step)
 \item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}\label{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}} 
-{\bfseries Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, std\+::string name, double tolerance, double min\+\_\+step)
+\hyperlink{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}{Adaptive\+R\+K\+Solver} (double start\+\_\+step, const \hyperlink{classBaseEquation}{Base\+Equation} \&eq, std\+::string name, double tolerance, double min\+\_\+step)
 \item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}\label{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}} 
 void \hyperlink{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}{solve} ()
 \begin{DoxyCompactList}\small\item\em Main solver based on Adaptive Runge-\/\+Kutta method. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}\label{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}} 
 void \hyperlink{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}{print\+\_\+solver\+\_\+spec} () const override
 \begin{DoxyCompactList}\small\item\em Prints the characteristics of the Adaptive Runge-\/\+Kutta solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}\label{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}} 
 double \hyperlink{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}{tol}
 \begin{DoxyCompactList}\small\item\em Error tolerance to select the step size. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}\label{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}} 
 double \hyperlink{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}{hmin}
 \begin{DoxyCompactList}\small\item\em Minimum step size. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}\label{classAdaptiveRKSolver_af3fd0e899dbda2be0ff705f8d8ea7a08}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{Adaptive\+R\+K\+Solver()}{AdaptiveRKSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Adaptive\+R\+K\+Solver\+::\+Adaptive\+R\+K\+Solver (\begin{DoxyParamCaption}\item[{double}]{start\+\_\+step,  }\item[{const \hyperlink{classBaseEquation}{Base\+Equation} \&}]{eq,  }\item[{const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&}]{a\+\_\+,  }\item[{const std\+::vector$<$ double $>$ \&}]{b\+\_\+,  }\item[{const std\+::vector$<$ double $>$ \&}]{c\+\_\+,  }\item[{double}]{tolerance,  }\item[{double}]{min\+\_\+step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}\label{classAdaptiveRKSolver_a6d3aa9cd741ce79167448dfb405f9ff2}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{Adaptive\+R\+K\+Solver()}{AdaptiveRKSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Adaptive\+R\+K\+Solver\+::\+Adaptive\+R\+K\+Solver (\begin{DoxyParamCaption}\item[{double}]{start\+\_\+step,  }\item[{const \hyperlink{classBaseEquation}{Base\+Equation} \&}]{eq,  }\item[{std\+::string}]{name,  }\item[{double}]{tolerance,  }\item[{double}]{min\+\_\+step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}\label{classAdaptiveRKSolver_aba981c5c2b0816506bc3a2e1c21d5bc9}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!print\+\_\+solver\+\_\+spec@{print\+\_\+solver\+\_\+spec}}
+\index{print\+\_\+solver\+\_\+spec@{print\+\_\+solver\+\_\+spec}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{print\+\_\+solver\+\_\+spec()}{print\_solver\_spec()}}
+{\footnotesize\ttfamily void Adaptive\+R\+K\+Solver\+::print\+\_\+solver\+\_\+spec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Prints the characteristics of the Adaptive Runge-\/\+Kutta solver. 
+
+
+
+Implements \hyperlink{classBaseSolver_a44725e315b208c0ee69ba8fd5d172e09}{Base\+Solver}.
+
+\mbox{\Hypertarget{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}\label{classAdaptiveRKSolver_ad4178bf295f9101b27ca96a92deb8c3e}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!solve@{solve}}
+\index{solve@{solve}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily void Adaptive\+R\+K\+Solver\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Main solver based on Adaptive Runge-\/\+Kutta method. 
+
+
+
+Implements \hyperlink{classBaseSolver_a57f3b4ddec8693c61917aa37a2bac660}{Base\+Solver}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}\label{classAdaptiveRKSolver_a771a7c6efdafb13b75ac1f96ef484f46}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!hmin@{hmin}}
+\index{hmin@{hmin}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{hmin}{hmin}}
+{\footnotesize\ttfamily double Adaptive\+R\+K\+Solver\+::hmin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Minimum step size. 
+
+\mbox{\Hypertarget{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}\label{classAdaptiveRKSolver_afc9af0ecd74d4b9a02a6ae5160949d86}} 
+\index{Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}!tol@{tol}}
+\index{tol@{tol}!Adaptive\+R\+K\+Solver@{Adaptive\+R\+K\+Solver}}
+\subsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily double Adaptive\+R\+K\+Solver\+::tol\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Error tolerance to select the step size. 
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Adaptive\+R\+K\+Solver.\+hpp\item 
-Adaptive\+R\+K\+Solver.\+cpp\end{DoxyCompactItemize}
+\hyperlink{AdaptiveRKSolver_8hpp}{Adaptive\+R\+K\+Solver.\+hpp}\item 
+\hyperlink{AdaptiveRKSolver_8cpp}{Adaptive\+R\+K\+Solver.\+cpp}\end{DoxyCompactItemize}

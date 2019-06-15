@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['c',['c',['../classRKSolver.html#af8ae228652ea669839fe260398057724',1,'RKSolver']]]
+  ['b',['b',['../classRKSolver.html#a205a66e4ac1d479de5d7e0677ae32783',1,'RKSolver']]],
+  ['buff',['buff',['../check__solution_8m.html#a70d33b2c159f6503454446f7361fd67a',1,'check_solution.m']]]
 ];

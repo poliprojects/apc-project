@@ -66,35 +66,175 @@ $(function() {
 <div class="title">EquationFunction Struct Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="equations_8hpp_source.html">equations.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for EquationFunction:</div>
 <div class="dyncontent">
 <div class="center"><img src="structEquationFunction__inherit__graph.png" border="0" usemap="#EquationFunction_inherit__map" alt="Inheritance graph"/></div>
 <!-- MAP 0 -->
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+</div>
+<div class="dynheader">
+Collaboration diagram for EquationFunction:</div>
+<div class="dyncontent">
+<div class="center"><img src="structEquationFunction__coll__graph.png" border="0" usemap="#EquationFunction_coll__map" alt="Collaboration graph"/></div>
+<!-- MAP 1 -->
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7383ee64812c81fcb46ad0ccd20bac3b"><td class="memItemLeft" align="right" valign="top"><a id="a7383ee64812c81fcb46ad0ccd20bac3b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EquationFunction</b> (const std::string f_expr)</td></tr>
+<tr class="memitem:a7383ee64812c81fcb46ad0ccd20bac3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEquationFunction.html#a7383ee64812c81fcb46ad0ccd20bac3b">EquationFunction</a> (const std::string f_expr)</td></tr>
 <tr class="separator:a7383ee64812c81fcb46ad0ccd20bac3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade0f7a750ab9e61eea68636ced6dc1b7"><td class="memItemLeft" align="right" valign="top"><a id="ade0f7a750ab9e61eea68636ced6dc1b7"></a>
-virtual Rnvector&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const double &amp;t, Rnvector y) const =0</td></tr>
+<tr class="memitem:ac20bd62157e75f9fb76a6de704f98ae2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEquationFunction.html#ac20bd62157e75f9fb76a6de704f98ae2">EquationFunction</a> ()=default</td></tr>
+<tr class="separator:ac20bd62157e75f9fb76a6de704f98ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7e9440f0578cd6e60de92a4c9bbb2c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEquationFunction.html#a1d7e9440f0578cd6e60de92a4c9bbb2c">~EquationFunction</a> ()=default</td></tr>
+<tr class="separator:a1d7e9440f0578cd6e60de92a4c9bbb2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0f7a750ab9e61eea68636ced6dc1b7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="utils_8hpp.html#a8e0cccfe9e5cee5140bfcfbd9a3a6a0e">Rnvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEquationFunction.html#ade0f7a750ab9e61eea68636ced6dc1b7">operator()</a> (const double &amp;<a class="el" href="check__solution_8m.html#a4bf63048c1b89f72b7a4ffe0f862c6de">t</a>, <a class="el" href="utils_8hpp.html#a8e0cccfe9e5cee5140bfcfbd9a3a6a0e">Rnvector</a> y) const =0</td></tr>
 <tr class="separator:ade0f7a750ab9e61eea68636ced6dc1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a21ef5c7c24a9d4539d150479a07eea32"><td class="memItemLeft" align="right" valign="top"><a id="a21ef5c7c24a9d4539d150479a07eea32"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>f_string</b></td></tr>
+<tr class="memitem:a21ef5c7c24a9d4539d150479a07eea32"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEquationFunction.html#a21ef5c7c24a9d4539d150479a07eea32">f_string</a></td></tr>
 <tr class="separator:a21ef5c7c24a9d4539d150479a07eea32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7383ee64812c81fcb46ad0ccd20bac3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7383ee64812c81fcb46ad0ccd20bac3b">&#9670;&nbsp;</a></span>EquationFunction() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EquationFunction::EquationFunction </td>
+          <td>(</td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>f_expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac20bd62157e75f9fb76a6de704f98ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac20bd62157e75f9fb76a6de704f98ae2">&#9670;&nbsp;</a></span>EquationFunction() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EquationFunction::EquationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d7e9440f0578cd6e60de92a4c9bbb2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7e9440f0578cd6e60de92a4c9bbb2c">&#9670;&nbsp;</a></span>~EquationFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual EquationFunction::~EquationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ade0f7a750ab9e61eea68636ced6dc1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0f7a750ab9e61eea68636ced6dc1b7">&#9670;&nbsp;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="utils_8hpp.html#a8e0cccfe9e5cee5140bfcfbd9a3a6a0e">Rnvector</a> EquationFunction::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="utils_8hpp.html#a8e0cccfe9e5cee5140bfcfbd9a3a6a0e">Rnvector</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="structEquationFunction__6.html#ab3495f4f08e69f8ce99e9feac9a15eb2">EquationFunction_6</a>, <a class="el" href="structEquationFunction__5.html#a2279d1fd62c1e2e5f1193ff5686beab4">EquationFunction_5</a>, <a class="el" href="structEquationFunction__4.html#add98470227ffa4d8ef59e67f89c7ce43">EquationFunction_4</a>, <a class="el" href="structEquationFunction__3.html#a304fca5cdb905f3d498ebacbff323c50">EquationFunction_3</a>, <a class="el" href="structEquationFunction__2.html#ac1602012658612cac3e53fcacbcb710c">EquationFunction_2</a>, and <a class="el" href="structEquationFunction__1.html#aff18a2dd1fae6d49016f1eccead8e62f">EquationFunction_1</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a21ef5c7c24a9d4539d150479a07eea32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ef5c7c24a9d4539d150479a07eea32">&#9670;&nbsp;</a></span>f_string</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string EquationFunction::f_string</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="equations_8hpp_source.html">equations.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 15 2019 22:56:14 for ODE Solver by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 15 2019 23:32:38 for ODE Solver by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
