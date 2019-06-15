@@ -17,12 +17,11 @@ $(OBJS): BaseEquation.hpp BaseSolver.hpp equations.hpp RuntimeUtils.hpp
 main.o: FESolver.hpp AdaptiveFESolver.hpp RKSolver.hpp AdaptiveRKSolver.hpp \
 	ParallelIserNorSolver.hpp AdaptiveParallelIserNorSolver.hpp
 FESolver.o: FESolver.hpp
-AdaptiveFESolver.o: FESolver.hpp AdaptiveFESolver.hpp
+AdaptiveFESolver.o: AdaptiveFESolver.hpp
 RKSolver.o: RKSolver.hpp
-AdaptiveRKSolver.o: RKSolver.hpp AdaptiveRKSolver.hpp
-ParallelIserNorSolver.o: RKSolver.hpp ParallelIserNorSolver.hpp
-AdaptiveParallelIserNorSolver.o: RKSolver.hpp ParallelIserNorSolver.hpp \
-	AdaptiveParallelIserNorSolver.hpp
+AdaptiveRKSolver.o: AdaptiveRKSolver.hpp
+ParallelIserNorSolver.o: ParallelIserNorSolver.hpp
+AdaptiveParallelIserNorSolver.o: AdaptiveParallelIserNorSolver.hpp
 
 clean:
 	$(RM) *.o
