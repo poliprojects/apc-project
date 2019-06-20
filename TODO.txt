@@ -6,3 +6,5 @@ TODO LIST
 * Update README.md
 * Remove all TODO and DEBUG
 * Test all possible combinations of functions and solvers
+* Fix adapIserNor
+* run time.sh
