@@ -34,7 +34,7 @@ Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
 // TODO
 Rnvector EquationFunction_5::operator() ( const double &t, Rnvector y ) const
 {
-    return (-16.8)*y; // Tante iterazioni di punto fisso ma sbilanciate
+    return (-16.0)*y; // Tante iterazioni di punto fisso ma sbilanciate
 }
 
 

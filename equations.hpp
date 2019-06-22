@@ -49,7 +49,7 @@ struct EquationFunction_4: public EquationFunction
 struct EquationFunction_5: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
-    EquationFunction_5(): EquationFunction( "y'(t) = -16.8*y(t)" ) {}
+    EquationFunction_5(): EquationFunction( "y'(t) = -16.0*y(t)" ) {}
 };
 
 
