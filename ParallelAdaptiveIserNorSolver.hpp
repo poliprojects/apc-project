@@ -1,10 +1,10 @@
-#ifndef ADAPTIVEPARALLELISERNORSOLVER_HPP
-#define ADAPTIVEPARALLELISERNORSOLVER_HPP
+#ifndef PARALLELADAPTIVEISERNORSOLVER_HPP
+#define PARALLELADAPTIVEISERNORSOLVER_HPP
 
 #include "ParallelIserNorSolver.hpp"
 
 
-class AdaptiveParallelIserNorSolver: public ParallelIserNorSolver
+class ParallelAdaptiveIserNorSolver: public ParallelIserNorSolver
 {
     private:
         //! Error tolerance to select the step size
@@ -15,7 +15,7 @@ class AdaptiveParallelIserNorSolver: public ParallelIserNorSolver
 
     public:
         // Constructors
-        AdaptiveParallelIserNorSolver( double step, const BaseEquation &eq,
+        ParallelAdaptiveIserNorSolver( double step, const BaseEquation &eq,
             double tolerance, double min_step );
 
         //! Main solver based on Adaptive Parallel Iserles-Nørsett method
@@ -23,4 +23,4 @@ class AdaptiveParallelIserNorSolver: public ParallelIserNorSolver
 };
 
 
-#endif // ADAPTIVEPARALLELISERNORSOLVER_HPP
+#endif // PARALLELADAPTIVEISERNORSOLVER_HPP
