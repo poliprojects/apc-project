@@ -21,7 +21,7 @@ Compile running ```make```
     regular one), include ```mpiexec -np 2``` when calling main
 * After running, information about the equation solved will appear on screen
 * The solution and time instants will be saved in
-    solution\_<#test>\_<method>.txt
+    solution\_<#test>\_\<method>.txt
 * Run the ```check_solutions.m``` script with Matlab selecting the number of the
 test to see a plot of exact vs computed solution
 * Run the ```time.sh``` script directly from the ```time``` folder (*not* from
