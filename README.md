@@ -18,7 +18,7 @@ Compile running ```make```
 	* initial step [ any double, default set to 0.1 ]
 	* tolerance [ any double, default set to 0.01 ]
 * Note that the inital step needs not be an even divisor of the time interval;
-    if it's not, the last step will be shortened to fit the remaining intervali
+    if it's not, the last step will be shortened to fit the remaining intervals
 * To execute the IserNor method in parallel (either the adaptive version or the
     regular one), include ```mpiexec -np 2``` when calling main
 * After running, information about the equation solved will appear on screen
