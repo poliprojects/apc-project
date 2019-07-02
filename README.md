@@ -12,8 +12,8 @@ Compile running ```make```
 	* number of the test function (see ```equations.hpp``` file):
 	    ```[ 1, 2, 3, 4, 5, 6 ]```
 	* solver identification code:
-	    ```[ FE, Heun, RK4, IserNor, RK,
-			adapFE, adapHeun, adapRK4, adapIserNor, adapRK ]```
+	    ```[ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4,
+    adapIserNor, adapRK ]```
 * Optional parameters:
 	* initial step [ any double, default set to 0.1 ]
 	* tolerance [ any double, default set to 0.01 ]
