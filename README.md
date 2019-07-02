@@ -1,4 +1,4 @@
-# Adaptive Numerical Solvers for Ordinary Differential Equations
+# Adaptive Numerical Solvers for ODEs
 ## Instructions
 You will need a terminal to run the following commands.
 
