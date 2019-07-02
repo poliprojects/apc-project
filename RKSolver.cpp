@@ -176,7 +176,7 @@ void RKSolver::solve()
 
     // Solution loop (except for the last step)
     Rnvector un1( un.size() ); // solution at time n+1
-    for( unsigned n = 0; n < Nh; n++ )
+    for( unsigned n = 0; n < Nh-1; n++ )
     {
         un1 = single_step( times[n], un, h );    
         solution.push_back( un1 );
