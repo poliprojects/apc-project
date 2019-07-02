@@ -1,7 +1,7 @@
-#include "AdaptiveParallelIserNorSolver.hpp"
+#include "ParallelAdaptiveIserNorSolver.hpp"
 
 
-AdaptiveParallelIserNorSolver::AdaptiveParallelIserNorSolver(
+ParallelAdaptiveIserNorSolver::ParallelAdaptiveIserNorSolver(
     double step, const BaseEquation &eq, double tolerance, double min_step ):
     ParallelIserNorSolver( step, eq ), tol( tolerance ), hmin( min_step )
 {
@@ -10,7 +10,7 @@ AdaptiveParallelIserNorSolver::AdaptiveParallelIserNorSolver(
 }
 
 
-void AdaptiveParallelIserNorSolver::solve()
+void ParallelAdaptiveIserNorSolver::solve()
 {
     // Initialization of the time instants vector
     times.push_back( equation.get_tin() );
