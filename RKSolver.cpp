@@ -1,5 +1,7 @@
 #include "RKSolver.hpp"
 
+#include <cmath>
+
 
 RKSolver::RKSolver( double step, const BaseEquation &eq,
     const std::vector<std::vector<double>> &a_,
@@ -14,7 +16,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
     n_stages = b.size();
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
-    Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+    Nh = ceil ( ( equation.get_tfin() - equation.get_tin() ) / h );
     // User defined version of RK (to be printed on screen)
     method_name = "User defined";
 }
@@ -181,6 +183,14 @@ void RKSolver::solve()
         un = un1;
         un1.clear();
       }
+
+    // Last time instant is exactly equal to tfin
+    hn = tfin - tn;
+    if( hn != 0 ){
+        times.push_back( tfin );
+        un1 = single_step( times[n], un, h );
+        solution.push_back( un1 );
+    }
 }
 
 

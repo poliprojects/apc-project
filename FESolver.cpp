@@ -1,10 +1,12 @@
 #include "FESolver.hpp"
 
+#include <cmath>
+
 
 FESolver::FESolver( double step, const BaseEquation &eq ):
     BaseSolver( step, eq )
 {
-    Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+    Nh = ceil( ( equation.get_tfin() - equation.get_tin() ) / h );
 }
 
 
@@ -43,6 +45,14 @@ void FESolver::solve()
         solution.push_back( un1 );
         un = un1;
         un1.clear();
+    }
+
+    // Last time instant is exactly equal to tfin
+    hn = tfin - tn;
+    if( hn != 0 ){
+        times.push_back( tfin );
+        un1 = single_step( times[n], un, h );
+        solution.push_back( un1 );
     }
 }
 
