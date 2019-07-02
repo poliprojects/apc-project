@@ -1,5 +1,3 @@
 TODO LIST
-* Can we lift the assumption that h evenly divides the time interval?
-* Test Adaptive Parallel IserNor on Matlab
 * Update README.md
 * Test all possible combinations of functions and solvers

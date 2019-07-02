@@ -162,10 +162,10 @@ bool RKSolver::is_implicit( const size_t K_index ) const
 
 void RKSolver::solve()
 {
-    // Initialization of time instants
+    // Initialization of time instants (except for the last one)
     times.resize( Nh+1 );
     double tn = equation.get_tin();
-    for( std::size_t i = 0; i < Nh+1; i++ )
+    for( std::size_t i = 0; i < Nh; i++ )
     {
         times[i] = tn;
         tn += h;
@@ -174,7 +174,7 @@ void RKSolver::solve()
     // Take solution at time 0 and function f from data
     Rnvector un = solution[0];
 
-    // Solution loop
+    // Solution loop (except for the last step)
     Rnvector un1( un.size() ); // solution at time n+1
     for( unsigned n = 0; n < Nh; n++ )
     {
@@ -184,13 +184,12 @@ void RKSolver::solve()
         un1.clear();
       }
 
-    // Last time instant is exactly equal to tfin
-    hn = tfin - tn;
-    if( hn != 0 ){
-        times.push_back( tfin );
-        un1 = single_step( times[n], un, h );
-        solution.push_back( un1 );
-    }
+    // Last step (to account for case where interval-step ratio is not integer)
+    double tfin = equation.get_tfin();
+    double hfin = tfin - times[Nh-1];
+    times[Nh] = tfin;
+    un1 = single_step( times[Nh-1], solution[Nh-1], hfin );
+    solution.push_back( un1 );
 }
 
 
