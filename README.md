@@ -10,10 +10,10 @@ Compile running ```make```
 ## Usage
 * Run ```main``` or ```./main```, providing the following parameters:
 	* number of the test function (see ```equations.hpp``` file):
-	    [ 1, 2, 3, 4, 5, 6 ]
+	    ```[ 1, 2, 3, 4, 5, 6 ]```
 	* solver identification code:
-	    [ FE, Heun, RK4, IserNor, RK,
-			adapFE, adapHeun, adapRK4, adapIserNor, adapRK ]
+	    ```[ FE, Heun, RK4, IserNor, RK,
+			adapFE, adapHeun, adapRK4, adapIserNor, adapRK ]```
 * Optional parameters:
 	* initial step [ any double, default set to 0.1 ]
 	* tolerance [ any double, default set to 0.01 ]
@@ -24,12 +24,12 @@ Compile running ```make```
 * After running, information about the equation solved will appear on screen
 * The solution and time instants will be saved in
     solution\_<#test>\_\<method>.txt
-* Run the ```check_solutions.m``` script with Matlab selecting the number of the
-test to see a plot of exact vs computed solution
-* Run the ```time.sh``` script directly from the ```time``` folder (*not* from
-    the root folder!) to compare time executions of both the sequential and
-    the parallel version of the IserNor method on the tests number 4, 5, and 6.
-    Information will be saved into the ```timeres.txt``` file
+* Run with Matlab the ```check_solutions.m``` script directly from the
+   ```test``` subfolder with Matlab selecting the number of the test to see a
+   plot of exact vs computed solution
+* Run on the terminal the ```time.sh``` script directly from the ```test```
+    subfolder to compare time executions of both the sequential and the parallel version of the IserNor method on the tests number 4, 5, and 6. Information
+    will be saved into the ```timeres.txt``` file
 
 ## Examples
 * ```./main 3 RK 0.2 1e-3```
@@ -44,7 +44,7 @@ test to see a plot of exact vs computed solution
     add the specifications of the new test
 
 ## Adding new Runge-Kutta methods
-* To introduce a new Runge-Kutta method exploiting the RK or adapRK class, it's
-    enough to provide the appropriate Butcher's tableau in the function
-    ```initialize_solver``` inside the ```RuntimeUtils.cpp``` file (default
-    values are the ones for FE and adapHeun, respectively)
+* To introduce a new Runge-Kutta method exploiting the RK or adapRK classes,
+    it is enough to provide the appropriate Butcher tableau in the
+    ```initialize_solver``` function inside the ```RuntimeUtils.cpp``` file
+    (default values are the ones for FE and adapHeun, respectively)
