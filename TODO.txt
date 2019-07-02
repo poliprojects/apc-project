@@ -1,3 +1,2 @@
 TODO LIST
-* Update README.md
 * Test all possible combinations of functions and solvers
