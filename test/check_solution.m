@@ -39,7 +39,7 @@ available_methods = ...
 % Build the vector of methods that have been actually used
 k = 1;
 for i = 1 : length( available_methods )
-    ID = fopen( ['solution_',num2str(Test),'_', ...
+    ID = fopen( ['../solution_',num2str(Test),'_', ...
             char(available_methods(i)),'.txt']);
     if( ID ~= -1 ) % if the corresponding file exists
         methods(k) = available_methods(i);
@@ -62,7 +62,7 @@ colors = [ [      0    0.4470    0.7410 ]
 % Read computed solution and time instants from file
 for i = 1 : length( methods )
     method = methods(i);
-    FileID = fopen( ['solution_',num2str(Test),'_',char(method), ...
+    FileID = fopen( ['../solution_',num2str(Test),'_',char(method), ...
         '.txt'], 'r' );
     buff = fscanf( FileID, '%s', 1 ); % Solution: 
     [ un_to_be_formatted, un_count ] = fscanf( FileID, '%f' );
