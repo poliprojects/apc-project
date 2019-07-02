@@ -40,8 +40,8 @@ test to see a plot of exact vs computed solution
 ## Adding new equations
 1) Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
     files
-2) In function ```initialize_data``` inside ```RuntimeUtils.cpp``` add the
-    specifications of the new test
+2) In function ```initialize_data``` inside the ```RuntimeUtils.cpp``` file,
+    add the specifications of the new test
 
 ## Adding new Runge-Kutta methods
 * To introduce a new Runge-Kutta method exploiting the RK or adapRK class, it's
