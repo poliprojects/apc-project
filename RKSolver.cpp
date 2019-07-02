@@ -1,5 +1,7 @@
 #include "RKSolver.hpp"
 
+#include <cmath>
+
 
 RKSolver::RKSolver( double step, const BaseEquation &eq,
     const std::vector<std::vector<double>> &a_,
@@ -14,7 +16,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
     n_stages = b.size();
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
-    Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+    Nh = ceil ( ( equation.get_tfin() - equation.get_tin() ) / h );
     // User defined version of RK (to be printed on screen)
     method_name = "User defined";
 }
@@ -127,16 +129,13 @@ Rnvector RKSolver::fixed_point( const EquationFunction &f, const double tn,
     Rnvector K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
     double error = compute_error( K0, K1 );
     K0 = K1;
-    // unsigned iter = 0; // TODO DEBUG
 
     while( error > fixed_point_tol )
     {
         K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
         error = compute_error( K0, K1 );
         K0 = K1;
-        // iter++; // TODO DEBUG
     }
-    // std::cout << "Iter: " << iter << std::endl; // TODO DEBUG
 
     return K0;
 }
@@ -179,31 +178,19 @@ void RKSolver::solve()
     Rnvector un1( un.size() ); // solution at time n+1
     for( unsigned n = 0; n < Nh; n++ )
     {
-        // int rank; // TODO DEBUG
-        // MPI_Comm_rank( MPI_COMM_WORLD, &rank ); // 0 or 1
-        //
-        // // Chrono starts
-        // high_resolution_clock::time_point t1 = high_resolution_clock::now();
-
-        un1 = single_step( times[n], un, h );
-
-        // // Chrono ends
-        // high_resolution_clock::time_point t2 = high_resolution_clock::now();
-        //
-        // // Compute duration of the solution process
-        // auto duration = duration_cast<microseconds>( t2 - t1 ).count();
-        //
-        // // Prints duration of the solution process
-        // if( rank == 0 )
-            // std::cout << "Step time: " << duration << " μs" << std::endl <<
-                    //std::endl;
-            
+        un1 = single_step( times[n], un, h );    
         solution.push_back( un1 );
         un = un1;
         un1.clear();
-        // if( n == 30 )
-        //     exit(1);
       }
+
+    // Last time instant is exactly equal to tfin
+    hn = tfin - tn;
+    if( hn != 0 ){
+        times.push_back( tfin );
+        un1 = single_step( times[n], un, h );
+        solution.push_back( un1 );
+    }
 }
 
 

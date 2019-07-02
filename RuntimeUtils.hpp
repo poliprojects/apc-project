@@ -3,6 +3,8 @@
 
 #include "includes.hpp"
 
+using namespace std::chrono;
+
 
 // Runtime checks
 void check_minimum_parameters_number( const int argc );

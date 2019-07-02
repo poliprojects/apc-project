@@ -9,8 +9,6 @@
 #include <mpi.h>
 #include "BaseSolver.hpp"
 
-using namespace std::chrono; // TODO can we move it elsewhere?
-
 
 class RKSolver: public BaseSolver
 {
