@@ -9,14 +9,14 @@ Compile running ```make```
 
 ## Usage
 * Run ```main``` or ```./main```, providing the following parameters:
-	* number of the test function (see ```equations.hpp``` file):
-	    [ 1, 2, 3, 4, 5, 6 ]
+    * number of the test function (see ```equations.hpp``` file):
+        [ 1, 2, 3, 4, 5, 6 ]
 	* solver identification code:
-	    [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
+        [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
 * Optional parameters:
-	* initial step [ any double, default 0.1 ]
-	* tolerance [ any double, default 0.01 ]
+    * initial step [ any double, default 0.1 ]
+    * tolerance [ any double, default 0.01 ]
 * Note that the inital step needs not be an even divisor of the time interval;
     if it's not, the last step will be shortened to fit the remaining intervals
 * To execute the IserNor method in parallel (either the adaptive version or the
@@ -25,10 +25,11 @@ Compile running ```make```
 * The solution and time instants will be saved in
     solution\_<#test>\_\<method>.txt
 * Run with Matlab the ```check_solutions.m``` script directly from the
-   ```test``` subfolder with Matlab selecting the number of the test to see a
-   plot of exact vs computed solution
+    ```test``` subfolder selecting the number of the test to see a plot of exact
+    vs computed solution
 * Run on the terminal the ```time.sh``` script directly from the ```test```
-    subfolder to compare time executions of both the sequential and the parallel version of the IserNor method on the tests number 4, 5, and 6. Information
+    subfolder to compare time executions of both the sequential and the parallel
+    version of the IserNor method on the tests number 4, 5, and 6. Information
     will be saved into the ```timeres.txt``` file
 
 ## Examples
