@@ -1,13 +1,14 @@
-# Instructions
+# Adaptive Numerical Solvers for Ordinary Differential Equations
+## Instructions
 You will need a terminal to run the following commands.
 
-## Downloading from GitHub
+### Downloading from GitHub
 Run ```git clone https://github.com/poliprojects/apc-project.git```
 
-## Installing
+### Installing
 Compile running ```make```
 
-## Usage
+### Usage
 * Run ```main``` or ```./main```, providing the following parameters:
     * number of the test function (see ```equations.hpp``` file):
         [ 1, 2, 3, 4, 5, 6 ]
@@ -32,19 +33,19 @@ Compile running ```make```
     version of the IserNor method on the tests number 4, 5, and 6. Information
     will be saved into the ```timeres.txt``` file
 
-## Examples
+### Examples
 * ```./main 3 RK 0.2 1e-3```
 * ```./main 2 adapFE```
 * ```mpiexec -np 2 ./main 4 IserNor```
 * ```mpiexec -np 2 ./main 6 adapIserNor```
 
-## Adding new equations
+### Adding new equations
 1) Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
     files
 2) In function ```initialize_data``` inside the ```RuntimeUtils.cpp``` file,
     add the specifications of the new test
 
-## Adding new Runge-Kutta methods
+### Adding new Runge-Kutta methods
 * To introduce a new Runge-Kutta method exploiting the RK or adapRK classes,
     it is enough to provide the appropriate Butcher tableau in the
     ```initialize_solver``` function inside the ```RuntimeUtils.cpp``` file
