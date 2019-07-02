@@ -1,10 +1,5 @@
 TODO LIST
 * Can we lift the assumption that h evenly divides the time interval?
-* Should we include complex analysis (absolute stability region...) in the
-  presentation?
 * Test Adaptive Parallel IserNor on Matlab
 * Update README.md
-* Remove all TODO and DEBUG
 * Test all possible combinations of functions and solvers
-* Fix adapIserNor
-* run time.sh

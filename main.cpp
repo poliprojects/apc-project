@@ -1,6 +1,5 @@
 #include "RuntimeUtils.hpp"
 
-using namespace std::chrono;
 
 // Expected arguments:
 // argv[1] = test number

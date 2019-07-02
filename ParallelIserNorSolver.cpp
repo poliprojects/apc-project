@@ -6,7 +6,6 @@ ParallelIserNorSolver::ParallelIserNorSolver( double step,
 {
     // Parallel version of Iserles-Nørsett
     method_name = "Parallel IserNor";
-    // TODO fix: when calling mpiexec, "IserNor" shows up instead!
 }
 
 
@@ -70,7 +69,7 @@ Rnvector ParallelIserNorSolver::single_step( const double tn,
         }
     }
 
-    else if( rank == 1 ) // TODO is this check necessary?
+    else if( rank == 1 )
     {
         for( unsigned i = 0; i < 2; i++ )
         {
@@ -85,14 +84,8 @@ Rnvector ParallelIserNorSolver::single_step( const double tn,
                 MPI_COMM_WORLD );
         }
     }
-    // t2 = high_resolution_clock::now();
-    // duration = duration_cast<microseconds>( t2 - t1 ).count();
-    // if( rank == 0 )
-    //     std::cout << "Communication 0: " << duration << " μs" << std::endl;
-    // if( rank == 1 )
-    //     std::cout << "Communication 1: " << duration << " μs" << std::endl;
 
-    for( unsigned i = 0; i < n_stages; i++ )
+    for( unsigned i = 0; i < n_stages; i++ ) // TODO
         un1 = un1 + h * b[i] * K[i];
 
     return un1;

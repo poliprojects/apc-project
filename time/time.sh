@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# RUN THIS SCRIPT WHILE IN time FOLDER!!!!!
+# Run this script while in time folder!
 
 # Remove files, if any, of a previous run of this script (the ones not starting
 # with "time" will not be deleted)
@@ -29,7 +29,7 @@ for (( i=1; i<=$n; i++ )); do
     echo "Round $i of $n"
 done
 
-# Remove useless solution files
+# Remove produced solution files
 rm sol*.txt
 
 
