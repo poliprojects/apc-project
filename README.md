@@ -20,7 +20,8 @@ Compile running ```make```
 * To execute the IserNor method in parallel (either the adaptive version or the
     regular one), include ```mpiexec -np 2``` when calling main
 * After running, information about the equation solved will appear on screen
-* The solution and time instants will be saved in solution_<#test>\_<method>.txt
+* The solution and time instants will be saved in
+    solution\_<#test>\_<method>.txt
 * Run the ```check_solutions.m``` script with Matlab selecting the number of the
 test to see a plot of exact vs computed solution
 * Run the ```time.sh``` script directly from the ```time``` folder (*not* from
@@ -34,10 +35,14 @@ test to see a plot of exact vs computed solution
 * ```mpiexec -np 2 ./main 4 IserNor```
 * ```mpiexec -np 2 ./main 6 adapIserNor```
 
-## Adding new test functions
-1) Add a new EquationFunction in the ```equations.cpp``` and
-```equations.hpp``` files
-2) In function ```initialize_data``` inside ```RuntimeUtils.cpp``` add the specifications of the new test
+## Adding new equations
+1) Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
+    files
+2) In function ```initialize_data``` inside ```RuntimeUtils.cpp``` add the
+    specifications of the new test
 
 ## Adding new Runge-Kutta methods
-To introduce a new Runge-Kutta method exploiting the RK or adapRK class it's enough to provide the Butcher's tableau in the function ```initialize_solver``` inside ```RuntimeUtils.cpp``` (default values are, respectively, the ones of FE and adapHeun)
+To introduce a new Runge-Kutta method exploiting the RK or adapRK class it's
+enough to provide the Butcher's tableau in the function ```initialize_solver```
+inside ```RuntimeUtils.cpp``` (default values are, respectively, the ones of FE
+and adapHeun)
