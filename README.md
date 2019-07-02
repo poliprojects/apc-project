@@ -20,10 +20,10 @@ Compile running ```make```
 * Note that the inital step needs not be an even divisor of the time interval;
     if it's not, the last step will be shortened so as to fit the remaining time
 * To execute the IserNor method in parallel (either the adaptive version or the
-    regular one), include ```mpiexec -np 2``` when calling main
+    regular one), include ```mpiexec -np 2``` when calling ```main```
 * After running, information about the equation solved will appear on screen
 * The solution and time instants will be saved in
-    solution\_<#test>\_\<method>.txt
+    ```solution\_<#test>\_\<method>.txt```
 * Run with Matlab the ```check_solutions.m``` script directly from the
     ```test``` subfolder selecting the number of the test to see a plot of exact
     vs computed solution
