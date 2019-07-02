@@ -33,7 +33,7 @@ Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
 
 Rnvector EquationFunction_5::operator() ( const double &t, Rnvector y ) const
 {
-    return (-16.5)*y;
+    return (-16.0)*y;
 }
 
 
