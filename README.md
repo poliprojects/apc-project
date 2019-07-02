@@ -39,6 +39,7 @@ Compile running ```make```
 * ```mpiexec -np 2 ./main 4 IserNor```
 * ```mpiexec -np 2 ./main 6 adapIserNor```
 
+## Customization
 ### Adding new equations
 1) Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
     files
