@@ -1,2 +1,4 @@
 TODO LIST
 * Test all possible combinations of functions and solvers
+* Check all TODO in the slides, particularly...
+* Proof of consistency of Runge-Kutta
