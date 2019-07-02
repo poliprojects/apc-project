@@ -17,6 +17,8 @@ Compile running ```make```
 * Optional parameters:
 	* initial step [ any double, default set to 0.1 ]
 	* tolerance [ any double, default set to 0.01 ]
+* Note that the inital step needs not be an even divisor of the time interval;
+    if it's not, the last step will be shortened to fit the remaining intervali
 * To execute the IserNor method in parallel (either the adaptive version or the
     regular one), include ```mpiexec -np 2``` when calling main
 * After running, information about the equation solved will appear on screen
@@ -42,7 +44,7 @@ test to see a plot of exact vs computed solution
     specifications of the new test
 
 ## Adding new Runge-Kutta methods
-To introduce a new Runge-Kutta method exploiting the RK or adapRK class it's
-enough to provide the Butcher's tableau in the function ```initialize_solver```
-inside ```RuntimeUtils.cpp``` (default values are, respectively, the ones of FE
-and adapHeun)
+* To introduce a new Runge-Kutta method exploiting the RK or adapRK class, it's
+    enough to provide the appropriate Butcher's tableau in the function
+    ```initialize_solver``` inside the ```RuntimeUtils.cpp``` file (default
+    values are the ones for FE and adapHeun, respectively)
