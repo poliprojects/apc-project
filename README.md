@@ -15,8 +15,8 @@ Compile running ```make```
 	    [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
 * Optional parameters:
-	* initial step [ any double, default set to 0.1 ]
-	* tolerance [ any double, default set to 0.01 ]
+	* initial step [ any double, default 0.1 ]
+	* tolerance [ any double, default 0.01 ]
 * Note that the inital step needs not be an even divisor of the time interval;
     if it's not, the last step will be shortened to fit the remaining intervals
 * To execute the IserNor method in parallel (either the adaptive version or the
