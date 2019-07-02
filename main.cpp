@@ -90,7 +90,8 @@ int main( int argc, char * argv[] )
         std::string method_name = argv[2];
         std::string file_name = "solution_"+test_number+"_"+method_name+".txt";
         problem.save_sol_to_file( file_name );
-        std::cout << "Saved solution to file " << file_name << std::endl;
+        std::cout << "Saved solution to file " << file_name << std::endl
+            << std::endl << std::endl;
     }
 
     // Releases dynamically allocated resources
