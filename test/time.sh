@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run this script while in time folder!
+# Run this script while in test folder!
 
 # Remove files, if any, of a previous run of this script (the ones not starting
 # with "time" will not be deleted)
