@@ -11,7 +11,7 @@
 \title[Numerical solvers for ODEs]{\textbf{Adaptive numerical solvers}}
 \subtitle{for Ordinary Differential Equations}
 \author[Guindani, Vidulis]{Bruno Guindani \\ Michele Vidulis}
-\institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_lungo.jpg}}
+\institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_long.jpg}}
 \date[2019/07/TODO]{July TODO, 2019}
 
 \begin{document}
@@ -20,7 +20,7 @@
 
 %\addtobeamertemplate{frametitle}{}{
 %	\begin{textblock*}{100mm}(.85\textwidth,-0.5cm)
-%		\includegraphics[scale=0.1]{etc/logo.png}
+%		\includegraphics[scale=0.1]{etc/logo_only.png}
 %	\end{textblock*}
 %}
 
@@ -48,7 +48,8 @@
 		%Ordinary: derive only wrt y
 		%Higher-order EDOs can be reduced to a set of order 1 EDOs
 	\end{center}
-	Existence and uniqueness are guaranteed under \textit{Lipschitz continuity} of $f$
+	\vspace{10pt}
+	Existence and uniqueness guaranteed under \textit{Lipschitz continuity} of $f$
 \end{frame}
 
 
@@ -84,7 +85,7 @@
 			\kk_i = f(t_0 + c_i h, \ \uu_n + \sum_{j=1}^s a_{ij} \kk_j)
 		\end{align*}
 		\pause
-		\vspace{-20pt}
+		\vspace{-22pt}
 		\item \textit{Butcher tableau}:
 		\begin{center}
 			\begin{tabular}{c|ccc}
@@ -145,7 +146,7 @@
 				$\frac{3+\sqrt{3}}{6}$ & & & $\frac{\sqrt{3}}{6}$ & $\frac{1}{2}$ \\
 				\hline
 				& $\frac{3}{2}$ & $\frac{3}{2}$ & $1$ & $1$
-				\end{tabular}
+				\end{tabular} %TODO change if IserNor is changed!
 		\end{center}
 	\end{itemize}
 \end{frame}
@@ -162,7 +163,7 @@
 		\item Steep limitations on order of convergence:
 		\begin{itemize}
 			\item Maximum order is the number of stages
-			\item If $s \ge 5$, equality cannot be achieved in explicit variants \\[10pt]
+			\item If $s \ge 5$, equality cannot be achieved in explicit variants \\[15pt]
 		\end{itemize}
 	\end{itemize}
 	\begin{center}
@@ -206,7 +207,7 @@
 	\pause
 	Runge-Kutta:
 	\begin{itemize}
-		\item \dots %TODO
+		\item \dots %TODO!!!
 	\end{itemize}
 \end{frame}
 
@@ -233,7 +234,7 @@
 		% are some unknown (in the general case) quantities that need to be
 		% estimated
 		\includegraphics[scale=0.2]{etc/test.jpg}
-		\item Adaptive single\_step() class methods are not efficient
+		\item Adaptive \texttt{single\_step()} class methods are not efficient
 	\end{itemize}
 \end{frame}
 
@@ -261,6 +262,77 @@
 	\frametitle{Results}
 	\includegraphics[scale=0.2]{etc/test.jpg}
 \end{frame}
+
+
+\begin{frame} %#17
+	\frametitle{Actual efficiency of parallelism}
+	Speedup is heavily dependent on the problem function:
+	\begin{figure}
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{Test \#4}
+			\subcaption*{
+			$\boldsymbol f =
+			\left[\begin{smallmatrix}
+			-3 & -1 \\ 1 & -5
+			\end{smallmatrix}\right]
+			\boldsymbol y + 
+			\left[\begin{smallmatrix}
+			\sin(t) \\ -2t
+			\end{smallmatrix}\right]$
+			}
+			\vspace{-6pt}
+			\includegraphics[width=\linewidth]{etc/test4_2.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{Test \#5}
+			\subcaption*{$f = -16 y(t)$}
+			\includegraphics[width=\linewidth]{etc/test5_2.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{Test \#6}
+			\subcaption*{$f = \exp_2( -\frac y 4 + 6 + 10t) $}
+			\includegraphics[width=\linewidth]{etc/test6_2.jpeg}
+		\end{subfigure}%
+	\end{figure}
+\end{frame}
+
+
+\begin{frame} %#18
+	\frametitle{Load imbalance}
+	\begin{figure}
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{
+				$\boldsymbol f =
+				\left[\begin{smallmatrix}
+				-3 & -1 \\ 1 & -5
+				\end{smallmatrix}\right]
+				\boldsymbol y + 
+				\left[\begin{smallmatrix}
+				\sin(t) \\ -2t
+				\end{smallmatrix}\right]$
+			}
+			\includegraphics[width=\linewidth]{etc/test4_1.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{$f = -16 y(t)$}
+			\includegraphics[width=\linewidth]{etc/test5_1.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\subcaption*{$f = \exp_2( -\frac y 4 + 6 + 10t) $}
+			\includegraphics[width=\linewidth]{etc/test6_1.jpeg}
+		\end{subfigure}
+		\begin{subfigure}{.333\textwidth}
+			\includegraphics[width=\linewidth]{etc/test4_3.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\includegraphics[width=\linewidth]{etc/test5_3.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.333\textwidth}
+			\includegraphics[width=\linewidth]{etc/test6_3.jpeg}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
 
 
 \begin{frame} %#last
