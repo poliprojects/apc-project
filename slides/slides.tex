@@ -12,7 +12,7 @@
 \subtitle{for Ordinary Differential Equations}
 \author[Guindani, Vidulis]{Bruno Guindani \\ Michele Vidulis}
 \institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_long.jpg}}
-\date[2019/07/TODO]{July TODO, 2019}
+\date[2019/07/22]{July 22, 2019}
 
 \begin{document}
 
@@ -140,12 +140,12 @@
 		\item \textbf{Iserles-Nørsett} (implicit):
 		\begin{center}
 			\begin{tabular}{c|cccc}
-				$\frac{3-\sqrt{3}}{6}$ & $\frac{5}{12}$ & $\frac{1-2\sqrt{3}}{12}$ & & \\
-				$\frac{3+\sqrt{3}}{6}$ & $\frac{1+2\sqrt{3}}{12}$ & $\frac{5}{12}$ & & \\
-				$\frac{3-\sqrt{3}}{6}$ & & & $\frac{1}{2}$ & $-\frac{\sqrt{3}}{6}$ \\
-				$\frac{3+\sqrt{3}}{6}$ & & & $\frac{\sqrt{3}}{6}$ & $\frac{1}{2}$ \\
+				$\frac{1}{3}$ & $\frac{1}{3}$ & & & \\
+				$\frac{2}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & & \\
+				$\frac{21+\sqrt{57}}{48}$ & & & $\frac{21+\sqrt{57}}{48}$ & \\
+				$\frac{21-\sqrt{57}}{48}$ & & & $\frac{3-\sqrt{57}}{24}$ & $\frac{21+\sqrt{57}}{48}$ \\
 				\hline
-				& $\frac{3}{2}$ & $\frac{3}{2}$ & $1$ & $1$
+				& $\frac{9+3\sqrt{57}}{16}$ & $\frac{9+3\sqrt{57}}{16}$ & $-\frac{1+3\sqrt{57}}{16}$ & $-\frac{1+3\sqrt{57}}{16}$
 				\end{tabular} %TODO change if IserNor is changed!
 		\end{center}
 	\end{itemize}
@@ -227,7 +227,7 @@
 
 
 \begin{frame} %#13
-	\frametitle{Programming choices}
+	\frametitle{Implementation choices}
 	\begin{itemize}
 		\item Separate FE class is more efficient than RK specialized class
 		% Moreover, the adaptive RK error is computed differently because there
@@ -268,29 +268,14 @@
 	\frametitle{Actual efficiency of parallelism}
 	Speedup is heavily dependent on the problem function:
 	\begin{figure}
-		\begin{subfigure}{.333\textwidth}
-			\subcaption*{Test \#4}
-			\subcaption*{
-			$\boldsymbol f =
-			\left[\begin{smallmatrix}
-			-3 & -1 \\ 1 & -5
-			\end{smallmatrix}\right]
-			\boldsymbol y(t) + 
-			\left[\begin{smallmatrix}
-			\sin(t) \\ -2t
-			\end{smallmatrix}\right]$
-			}
-			\vspace{-6pt}
-			\includegraphics[width=\linewidth]{etc/test4_2.jpeg}
-		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
+		\begin{subfigure}{.5\textwidth}
 			\subcaption*{Test \#5}
-			\subcaption*{$f = -16 y(t)$}
+			\subcaption*{$f(t,y(t)) = -16 y(t)$}
 			\includegraphics[width=\linewidth]{etc/test5_2.jpeg}
 		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
+		\begin{subfigure}{.5\textwidth}
 			\subcaption*{Test \#6}
-			\subcaption*{$f = \exp_2( -\frac{y(t)}{4} + 6 + 10t) $}
+			\subcaption*{$f(t,y(t)) = \exp_2( -\frac{y(t)}{4} + 6 + 10t) $}
 			\includegraphics[width=\linewidth]{etc/test6_2.jpeg}
 		\end{subfigure}%
 	\end{figure}
@@ -298,42 +283,66 @@
 
 
 \begin{frame} %#18
-	\frametitle{Load imbalance}
+	\frametitle{Multiple runs results}
 	\begin{figure}
-		\begin{subfigure}{.333\textwidth}
-			\subcaption*{
-				$\boldsymbol f =
-				\left[\begin{smallmatrix}
-				-3 & -1 \\ 1 & -5
-				\end{smallmatrix}\right]
-				\boldsymbol y(t) + 
-				\left[\begin{smallmatrix}
-				\sin(t) \\ -2t
-				\end{smallmatrix}\right]$
-			}
-			\vspace{-6pt}
-			\includegraphics[width=\linewidth]{etc/test4_1.jpeg}
-		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
-			\subcaption*{$f = -16 y(t)$}
-			\includegraphics[width=\linewidth]{etc/test5_1.jpeg}
-		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
-			\subcaption*{$f = \exp_2( -\frac{y(t)}{4} + 6 + 10t) $}
-			\includegraphics[width=\linewidth]{etc/test6_1.jpeg}
-		\end{subfigure}
-		\begin{subfigure}{.333\textwidth}
-			\includegraphics[width=\linewidth]{etc/test4_3.jpeg}
-		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
+		\begin{subfigure}{.5\textwidth}
+			\subcaption*{Test \#5}
 			\includegraphics[width=\linewidth]{etc/test5_3.jpeg}
 		\end{subfigure}%
-		\begin{subfigure}{.333\textwidth}
+		\begin{subfigure}{.5\textwidth}
+			\subcaption*{Test \#6}
 			\includegraphics[width=\linewidth]{etc/test6_3.jpeg}
 		\end{subfigure}
 	\end{figure}
+	\begin{center}
+		\vspace{16pt}
+		Why?
+	\end{center}
 \end{frame}
 
+
+\begin{frame} %#19
+	\frametitle{Workload distribution}
+	\begin{figure}
+		\begin{subfigure}{.5\textwidth}
+			\subcaption*{Test \#5}
+			\includegraphics[width=\linewidth]{etc/test5_1.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\subcaption*{Test \#6}
+			\includegraphics[width=\linewidth]{etc/test6_1.jpeg}
+		\end{subfigure}
+	\end{figure}
+\begin{center}
+	\vspace{16pt}
+	$\implies$ \textbf{load imbalance}
+\end{center}
+\end{frame}
+
+
+\begin{frame} %#20
+	\frametitle{A vectorial example}
+	\begin{itemize}
+		\item Efficiency still depends on the function
+		\item Here fixed point iterations are well-balanced among processors:
+		% similarly to test 6
+	\end{itemize}	
+	\begin{center}
+		Test \#4: \quad
+		$\boldsymbol f(t,\yy(t)) =
+		\left[\begin{smallmatrix} -3 & -1 \\ 1 & -5 \end{smallmatrix}\right]
+		\yy(t) +
+		\left[\begin{smallmatrix} \sin(t) \\ -2t \end{smallmatrix}\right]$
+	\end{center}
+	\begin{figure}
+		\begin{subfigure}{.5\textwidth}
+			\includegraphics[width=\linewidth]{etc/test4_1.jpeg}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\includegraphics[width=\linewidth]{etc/test4_2.jpeg}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
 
 
 \begin{frame} %#last
