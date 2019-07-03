@@ -3,10 +3,15 @@
 You will need a terminal to run the following commands.
 
 ### Downloading from GitHub
-Run ```git clone https://github.com/poliprojects/apc-project.git```
+* Run ```git clone https://github.com/poliprojects/apc-project.git```
 
 ### Installing
-Compile running ```make```
+* Compile by running ```make```
+
+### Documentation
+* Produce documentation by running ```doxygen```
+* ```docs``` subfolder will appear that contains documentation in both LaTex and
+    HTML forms
 
 ### Usage
 * Run ```main``` or ```./main```, providing the following parameters:
