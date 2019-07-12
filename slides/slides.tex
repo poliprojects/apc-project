@@ -221,18 +221,40 @@
 
 \begin{frame} %#12
 	\frametitle{Code structure}
-	\includegraphics[scale=0.2]{etc/test.jpg}
-	%TODO: choose what to show and what not to
+	\begin{center}
+		\includegraphics[scale=0.25]{etc/classes_full.png}
+	\end{center}
 \end{frame}
 
 
 \begin{frame} %#13
-	\frametitle{...}
-	\includegraphics[scale=0.2]{etc/test.jpg}
+	\frametitle{Base classes}
+	\begin{figure}
+		\begin{subfigure}{.5\textwidth}
+			\begin{center}
+				\includegraphics[width=0.5 \linewidth]{etc/classes_base.jpg}
+			\end{center}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\includegraphics[width=\linewidth]{etc/classes_plain.jpg}
+		\end{subfigure}
+	\end{figure}
 \end{frame}
 
 
 \begin{frame} %#14
+	\frametitle{Adaptive classes}
+	\includegraphics[width=\linewidth]{etc/classes_adaptive.jpg}
+\end{frame}
+
+
+\begin{frame} %#15
+	\frametitle{Dependences}
+	\includegraphics[width=\linewidth]{etc/headers.png}
+\end{frame}
+
+
+\begin{frame} %#16
 	\frametitle{Implementation choices}
 	\begin{itemize}
 		\item Separate FE class is much more efficient than RK specialized class:
@@ -247,7 +269,7 @@
 \end{frame}
 
 
-\begin{frame} %#15
+\begin{frame} %#17
 	\frametitle{Parallel Iserles-Nørsett}
 	\begin{itemize}
 		\item Exploits block-diagonal structure of Butcher array
@@ -259,20 +281,20 @@
 \end{frame}
 
 
-\begin{frame}[c] %#16
+\begin{frame}[c] %#18
 \begin{center}
 	\Huge \color{blue} Results
 \end{center}
 \end{frame}
 
 
-\begin{frame} %#17
+\begin{frame} %#19
 	\frametitle{Results}
 	\includegraphics[scale=0.2]{etc/test.jpg}
 \end{frame}
 
 
-\begin{frame} %#18
+\begin{frame} %#20
 	\frametitle{Actual efficiency of parallelism}
 	Speedup is heavily dependent on the problem function:
 	\begin{figure}
@@ -290,7 +312,7 @@
 \end{frame}
 
 
-\begin{frame} %#19
+\begin{frame} %#21
 	\frametitle{Multiple run results}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -309,7 +331,7 @@
 \end{frame}
 
 
-\begin{frame} %#20
+\begin{frame} %#22
 	\frametitle{Workload distribution}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -328,7 +350,7 @@
 \end{frame}
 
 
-\begin{frame} %#21
+\begin{frame} %#23
 	\frametitle{A vectorial example}
 	\begin{itemize}
 		\item Efficiency still depends on the function
