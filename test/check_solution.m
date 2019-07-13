@@ -29,7 +29,7 @@ close all
 % y'(t) = 2^( -x/4 + 6 + 10*t )   in [ 0, 100 ]
 %  y(0) = 1
 
-Test = 6;
+Test = 1;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -101,7 +101,7 @@ elseif( Test == 6 )
 end
 
 % Plot
-figure
+figure(1)
 hold on
 h = plot( t, u, 'color', [0,0,0] );
 set(get(get(h(1:n-1),'Annotation'),'LegendInformation'), ...
@@ -127,3 +127,30 @@ legend(Legend)
 
 % Title
 title( 'ODE solution' )
+
+
+%% Compute and compare the relative Mean Square Error
+MSE = zeros( 1, length( methods ) );
+
+for i = 1 : length( methods )
+    if n == 2
+        [u_ex_eval_1,u_ex_eval_2] = u_ex( tn{i} );
+        norm_ex = sqrt( u_ex_eval_1.^2 + u_ex_eval_2.^2 );
+        err_1 = un{i}(:,1) - u_ex_eval_1;
+        err_2 = un{i}(:,2) - u_ex_eval_2;
+        err_norm = sqrt( err_1.^2 + err_2.^2 );
+        errors = err_norm ./ norm_ex;
+    elseif n == 1
+        u_ex_eval = u_ex( tn{i} );
+        errors = ( un{i} - u_ex_eval ) ./ u_ex_eval;
+    end
+    
+    % Replace NaNs produced by division by u_ex=0 with absolute error
+    errors( isnan( errors ) ) = un{i}( isnan( errors ) );
+    
+    % Compute MSE
+    MSE(i) = mean( errors.^2 );
+end
+
+figure(2)
+bar( categorical( methods ), MSE )
