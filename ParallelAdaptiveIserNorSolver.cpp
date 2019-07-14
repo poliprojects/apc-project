@@ -57,7 +57,7 @@ void ParallelAdaptiveIserNorSolver::solve()
 
     // Last time instant is exactly equal to tfin
     hn = tfin - tn;
-    if( hn != 0 )
+    if( hn > 1e-5 ) // i.e. is nonzero: a last step is needed
     {
         times.push_back( tfin );
         Rnvector utemp = ParallelIserNorSolver::single_step( tn, un, hn/2 );
