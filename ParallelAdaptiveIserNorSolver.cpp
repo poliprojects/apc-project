@@ -13,8 +13,9 @@ ParallelAdaptiveIserNorSolver::ParallelAdaptiveIserNorSolver(
 void ParallelAdaptiveIserNorSolver::solve()
 {
     // Initialization of the time instants vector
-    times.push_back( equation.get_tin() );
+    double tin = equation.get_tin();
     double tfin = equation.get_tfin();
+    times.push_back( tin );
 
     Rnvector un = solution[0]; // solution at n-th time, initialized at t=tin
 
@@ -57,7 +58,7 @@ void ParallelAdaptiveIserNorSolver::solve()
 
     // Last time instant is exactly equal to tfin
     hn = tfin - tn;
-    if( hn > 1e-5 ) // i.e. is nonzero: a last step is needed
+    if( hn > 1e-3 * ( tfin - tin ) ) // i.e. is nonzero: a last step is needed
     {
         times.push_back( tfin );
         Rnvector utemp = ParallelIserNorSolver::single_step( tn, un, hn/2 );
