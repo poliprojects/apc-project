@@ -39,7 +39,7 @@ void ParallelAdaptiveIserNorSolver::solve()
 
         if( error < tol or hn < hmin ) // termination criteria
         {
-            if( tn + hn < tfin ) // out of range: end cycle
+            if( tn + hn > tfin ) // out of range: end cycle
                 break;
             
             times.push_back( tn + hn );

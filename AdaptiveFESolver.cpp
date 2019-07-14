@@ -28,7 +28,7 @@ void AdaptiveFESolver::solve()
 
         if( error < tol/2 or hn < hmin ) // termination criteria
         {
-            if( tn + hn < tfin ) // out of range: end cycle
+            if( tn + hn > tfin ) // out of range: end cycle
                 break;
             
             times.push_back( tn + hn );
