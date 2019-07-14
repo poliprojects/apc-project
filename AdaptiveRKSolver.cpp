@@ -13,7 +13,7 @@ void AdaptiveRKSolver::solve()
     double hn = h;
     double tn = times[0];
 
-    while( tn+hn < tfin )
+    while( 1 )
     {
         // Single iteration with step hn
         Rnvector uh1 = RKSolver::single_step( tn, un, hn );
@@ -29,6 +29,9 @@ void AdaptiveRKSolver::solve()
 
         if( error < tol or hn < hmin ) // termination criteria
         {
+            if( tn + hn < tfin ) // out of range: end cycle
+                break;
+            
             times.push_back( tn + hn );
             tn += hn;
             solution.push_back( uh2 );
