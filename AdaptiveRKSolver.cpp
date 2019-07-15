@@ -1,6 +1,16 @@
 #include "AdaptiveRKSolver.hpp"
 
 
+AdaptiveRKSolver::AdaptiveRKSolver( double start_step, const BaseEquation &eq,
+    std::string name, double tolerance, double min_step, double max_step ):
+    RKSolver( start_step, eq, name ), tol( tolerance ),
+    hmin( min_step ), hmax( max_step )
+    {
+      // Makes hmax useless in case of explicit methods
+      if( name != "IserNor" )
+        hmax = std::numeric_limits<double>::infinity();
+    }
+
 void AdaptiveRKSolver::solve()
 {
     // Initialization of the time instants vector

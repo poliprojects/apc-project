@@ -28,9 +28,7 @@ class AdaptiveRKSolver: public RKSolver
             hmin( min_step ), hmax( max_step ) {}
         AdaptiveRKSolver( double start_step, const BaseEquation &eq,
             std::string name, double tolerance, double min_step,
-            double max_step ):
-            RKSolver( start_step, eq, name ), tol( tolerance ),
-            hmin( min_step ), hmax( max_step ) {}
+            double max_step );
 
         //! Main solver based on Adaptive Runge-Kutta method
         void solve();
