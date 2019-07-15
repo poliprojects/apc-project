@@ -22,14 +22,14 @@ close all
 % y(0) = 1 1
 %
 % Test 5:
-% y'(t) = -16.8*y(t)   in [ 0, 1 ]
+% y'(t) = -16.0*y(t)   in [ 0, 1 ]
 %  y(0) = 1
 %
 % Test 6:
 % y'(t) = 2^( -x/4 + 6 + 10*t )   in [ 0, 100 ]
 %  y(0) = 1
 
-Test = 1;
+Test = 6;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -128,6 +128,12 @@ legend(Legend)
 % Title
 title( 'ODE solution' )
 
+% Close all open files
+fclose('all');
+
+% xlim( [ 0, 0.05 ] )
+% ylim( [ -0.2, 0 ] )
+
 
 %% Compute and compare the relative Mean Square Error
 MSE = zeros( 1, length( methods ) );
@@ -154,3 +160,4 @@ end
 
 figure(2)
 bar( categorical( methods ), MSE )
+set(gca,'YScale','log')
