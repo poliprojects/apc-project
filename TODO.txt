@@ -5,4 +5,5 @@ TODO LIST
 * Add new Matlab stuff to README
 * Checks on args in the main
 * Github link in slides (?)
-* use PDF/SVG images instead of PNG/JPG if possible
+* Use PDF/SVG images instead of PNG/JPG if possible
+* Correct error of adaptive methods in slides
