@@ -18,7 +18,6 @@ void AdaptiveRKSolver::solve()
     {
         // Single iteration with step hn
         Rnvector uh1 = RKSolver::single_step( tn, un, hn );
-// std::cout << "RKSolver::single_step( " << tn << ", " << un[0] << ", " << hn << " ) = " << uh1[0] << '\n' << '\n';
         // Double iteration with step hn/2
         Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
         Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );

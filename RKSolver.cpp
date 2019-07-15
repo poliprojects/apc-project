@@ -193,8 +193,6 @@ void RKSolver::solve()
     for( unsigned n = 0; n < Nh-1; n++ )
     {
         un1 = single_step( times[n], un, h );
-// std::cout << "single_step( " << times[n] << ", " << un[0] << ", " << h << " ) = " << un1[0] << '\n' << '\n';
-
         solution.push_back( un1 );
         un = un1;
         un1.clear();
