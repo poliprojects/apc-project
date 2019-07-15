@@ -45,11 +45,13 @@ int main( int argc, char * argv[] )
 
     BaseSolver* problem_ptr = nullptr;
     double initial_step = 0.1; // Changes mid-solving only in adaptive methods
-    double tolerance = 1e-2; // Used only in adaptive methods
+    double tolerance = 0.01; // Used only in adaptive methods
+    double min_step = 0.005; // Used only in adaptive methods
+    double max_step = 0.1; // Used only in implicit adaptive methods (IserNor)
 
     // Solver inizialization from runtime parameters
     initialize_solver( argc, argv, problem_ptr, initial_step, tolerance,
-        equation );
+        min_step, max_step, equation );
 
     // Problem initialization using the chosen solver
     BaseSolver &problem = *problem_ptr;

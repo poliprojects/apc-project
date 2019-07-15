@@ -108,7 +108,8 @@ void initialize_data(const int rank, char* test_number,
 /// \param   tolerance    Tolerance for error in adaptive methods
 /// \param   equation     Previously initialized equation
 void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
-    double initial_step, double tolerance, const BaseEquation & equation )
+    double initial_step, double tolerance, double min_step, double max_step,
+    const BaseEquation & equation )
 {
     int size;
     MPI_Comm_size( MPI_COMM_WORLD, &size );
@@ -121,6 +122,12 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
     if ( argc > 4 )
         tolerance = atof( argv[4] );
 
+    if ( argc > 5 )
+        min_step = atof( argv[5] );
+
+    if ( argc > 6 )
+        max_step = atof( argv[6] );
+
     // Parallel Iserles-Nørsett method
     if( size == 2 && strcmp(argv[2], "IserNor") == 0 )
         problem_ptr = new ParallelIserNorSolver( initial_step, equation );
@@ -128,7 +135,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
     // Adaptive parallel Iserles-Nørsett method
     else if( size == 2 && strcmp(argv[2], "adapIserNor") == 0 )
         problem_ptr = new ParallelAdaptiveIserNorSolver( initial_step,
-            equation, tolerance, tolerance );
+            equation, tolerance, min_step, max_step );
 
     // Forward Euler method
     else if ( strcmp(argv[2], "FE") == 0 )
@@ -137,7 +144,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
     // Adaptive Forward Euler method
     else if ( strcmp(argv[2], "adapFE") == 0 )
         problem_ptr = new AdaptiveFESolver( initial_step, equation,
-            tolerance, tolerance );
+            tolerance, min_step );
 
     // Runge-Kutta method (user defined coefficients)
     else if ( strcmp(argv[2], "RK") == 0 )
@@ -163,7 +170,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
         std::vector<double> b{ 0.5, 0.5 };
         std::vector<double> c{   0,  1  };
         problem_ptr = new AdaptiveRKSolver( initial_step, equation, a, b, c,
-            tolerance, tolerance );
+            tolerance, min_step, max_step );
     }
 
     // Adaptive Runge-Kutta method (chosen among predefined ones)
@@ -172,7 +179,7 @@ void initialize_solver( int argc, char* argv[], BaseSolver* & problem_ptr,
         std::string name_prefix( argv[2] );
         std::string name_no_prefix = name_prefix.substr( 4, std::string::npos );
         problem_ptr = new AdaptiveRKSolver( initial_step, equation,
-            name_no_prefix, tolerance, tolerance );
+            name_no_prefix, tolerance, min_step, max_step );
     }
 
     // Runge-Kutta method (chosen among predefined ones)

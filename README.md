@@ -21,8 +21,12 @@ You will need a terminal to run the following commands.
         [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
 * Optional parameters:
-    * initial step [ any double, default 0.1 ]
-    * tolerance [ any double, default 0.01 ]
+    * initial step [ positive double, default 0.1 ]
+    * tolerance, maximum error in adaptive methods
+      [ positive double, default 0.01 ]
+    * minimum step size in adaptive methods [ positive double, default 0.005 ]
+    * maximum step size in implicit adaptive methods
+      [ positive double, default 0.5 ]
 * Note that the inital step needs not be an even divisor of the time interval;
     if it's not, the last step will be shortened so as to fit the remaining time
 * To execute the IserNor method in parallel (either the adaptive version or the

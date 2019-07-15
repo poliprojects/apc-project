@@ -39,7 +39,7 @@ void AdaptiveRKSolver::solve()
             solution.push_back( uh2 );
             un = uh2;
 
-            if( error < tol / exp2( n_stages+1 ) )
+            if( error < tol / exp2( n_stages+1 ) and 2*hn < hmax )
                 hn *= 2;
             n++;
         }
@@ -65,6 +65,8 @@ void AdaptiveRKSolver::print_solver_spec() const
                         << std::endl;
     std::cout << "Starting h = " << h    << std::endl;
     std::cout << "Minimum h  = " << hmin << std::endl;
+    if( method_name == "IserNor" )
+      std::cout << "Maximum h = " << hmax << '\n';
     std::cout << "Tolerance  = " << tol  << std::endl;
     std::cout << std::endl;
 }

@@ -2,8 +2,10 @@
 
 
 ParallelAdaptiveIserNorSolver::ParallelAdaptiveIserNorSolver(
-    double step, const BaseEquation &eq, double tolerance, double min_step ):
-    ParallelIserNorSolver( step, eq ), tol( tolerance ), hmin( min_step )
+    double step, const BaseEquation &eq, double tolerance, double min_step,
+    double max_step ):
+    ParallelIserNorSolver( step, eq ), tol( tolerance ), hmin( min_step ),
+    hmax( max_step )
 {
     // Adaptive version of Parallel Iserles-Nørsett
     method_name = "Adaptive Parallel IserNor";
@@ -49,7 +51,7 @@ void ParallelAdaptiveIserNorSolver::solve()
             solution.push_back( uh2 );
             un = uh2;
 
-            if( error < tol / exp2( n_stages+1 ) )
+            if( error < tol / exp2( n_stages+1 ) and 2*hn < hmax )
                 hn *= 2;
             n++;
         }

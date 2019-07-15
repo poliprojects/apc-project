@@ -13,10 +13,13 @@ class ParallelAdaptiveIserNorSolver: public ParallelIserNorSolver
         //! Minimum step size
         double hmin;
 
+        //! Maximum step size
+        double hmax;
+
     public:
         // Constructors
         ParallelAdaptiveIserNorSolver( double step, const BaseEquation &eq,
-            double tolerance, double min_step );
+            double tolerance, double min_step, double max_step );
 
         //! Main solver based on Adaptive Parallel Iserles-Nørsett method
         void solve();
