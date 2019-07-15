@@ -100,7 +100,7 @@ Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
         // K_i is defined implicitly ( A[i][i] != 0 )
         if( is_implicit( i ) )
         {
-            K[i] = fixed_point( f, tn, un, sum_aij_Kj, i );
+            K[i] = fixed_point( f, tn, un, h, sum_aij_Kj, i );
             sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
         }
 
@@ -123,18 +123,32 @@ Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
 /// \param   i           Index of the K to be computed by fixed point
 /// \return              K computed by fixed point
 Rnvector RKSolver::fixed_point( const EquationFunction &f, const double tn,
-    const Rnvector &un, const Rnvector &sum_aij_Kj, const size_t i ) const
+    const Rnvector &un, const double h_local, const Rnvector &sum_aij_Kj,
+    const size_t i ) const
 {
+    unsigned n_iter = 0;
+    unsigned Max_iter = 10000;
+
     Rnvector K0 = un;
-    Rnvector K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
+    Rnvector K1 = f( tn + c[i] * h_local,
+        un + h_local * sum_aij_Kj + h_local * a[i][i] * K0 );
     double error = compute_error( K0, K1 );
     K0 = K1;
 
-    while( error > fixed_point_tol )
+    while( error > fixed_point_tol && n_iter < Max_iter )
     {
-        K1 = f( tn + c[i] * h, un + h * sum_aij_Kj + h * a[i][i] * K0 );
+        K1 = f( tn + c[i] * h_local,
+            un + h_local * sum_aij_Kj + h_local * a[i][i] * K0 );
         error = compute_error( K0, K1 );
         K0 = K1;
+        n_iter++;
+    }
+
+    if( n_iter == Max_iter )
+    {
+        std::cout << "Fixed point algorithm cannot converge, try with a "
+            << "smaller step size. " << std::endl << "Aborting..." << '\n';
+        exit(1);
     }
 
     return K0;
@@ -178,7 +192,9 @@ void RKSolver::solve()
     Rnvector un1( un.size() ); // solution at time n+1
     for( unsigned n = 0; n < Nh-1; n++ )
     {
-        un1 = single_step( times[n], un, h );    
+        un1 = single_step( times[n], un, h );
+// std::cout << "single_step( " << times[n] << ", " << un[0] << ", " << h << " ) = " << un1[0] << '\n' << '\n';
+
         solution.push_back( un1 );
         un = un1;
         un1.clear();

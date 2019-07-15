@@ -38,7 +38,7 @@ Rnvector ParallelIserNorSolver::single_step( const double tn,
             sum_aij_Kj = sum_aij_Kj + a[i][j] * K[j];
 
         // Computes the new K_i
-        K[i] = fixed_point( f, tn, un, sum_aij_Kj, i );
+        K[i] = fixed_point( f, tn, un, h, sum_aij_Kj, i );
         sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
     }
 

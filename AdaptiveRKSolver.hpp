@@ -2,6 +2,7 @@
 #define ADAPTIVERKSOLVER_HPP
 
 #include "RKSolver.hpp"
+#include <cmath>
 
 
 class AdaptiveRKSolver: public RKSolver

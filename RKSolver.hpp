@@ -38,8 +38,8 @@ class RKSolver: public BaseSolver
 
         //! Computes the K-th coefficient for an implicit method
         Rnvector fixed_point( const EquationFunction &f, const double tn,
-            const Rnvector &un, const Rnvector &sum_aij_Kj, const size_t i )
-            const;
+            const Rnvector &un, const double h, const Rnvector &sum_aij_Kj,
+            const size_t i ) const;
 
         //! Computes the error at a set iteration of the fixed point algorithm
         double compute_error( const Rnvector &K0, const Rnvector &K1 ) const;

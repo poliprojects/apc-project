@@ -18,7 +18,7 @@ void AdaptiveRKSolver::solve()
     {
         // Single iteration with step hn
         Rnvector uh1 = RKSolver::single_step( tn, un, hn );
-
+// std::cout << "RKSolver::single_step( " << tn << ", " << un[0] << ", " << hn << " ) = " << uh1[0] << '\n' << '\n';
         // Double iteration with step hn/2
         Rnvector utemp = RKSolver::single_step( tn, un, hn/2 );
         Rnvector uh2   = RKSolver::single_step( tn+hn/2, utemp, hn/2 );
@@ -26,13 +26,14 @@ void AdaptiveRKSolver::solve()
         // Compute error in infinity norm
         Rnvector diff = abs( uh2 - uh1 );
         double error = *std::max_element( diff.cbegin(), diff.cend() ) /
-            ( exp2( n_stages+1 ) - 1 );
+            std::abs( *std::max_element( solution[n].cbegin(),
+                solution[n].cend() ) );
 
-        if( error < tol or hn < hmin ) // termination criteria
+        if( error < tol / 2 or hn < hmin ) // termination criteria
         {
             if( tn + hn > tfin ) // out of range: end cycle
                 break;
-            
+
             times.push_back( tn + hn );
             tn += hn;
             solution.push_back( uh2 );

@@ -25,13 +25,15 @@ void AdaptiveFESolver::solve()
 
         // Compute error in infinity norm
         Rnvector diff = abs( uh2 - uh1 );
-        double error = *std::max_element( diff.cbegin(), diff.cend() );
+        double error = *std::max_element( diff.cbegin(), diff.cend() ) /
+            std::abs( *std::max_element( solution[n].cbegin(),
+                solution[n].cend() ) );
 
         if( error < tol/2 or hn < hmin ) // termination criteria
         {
             if( tn + hn > tfin ) // out of range: end cycle
                 break;
-            
+
             times.push_back( tn + hn );
             tn += hn;
             solution.push_back( uh2 );
