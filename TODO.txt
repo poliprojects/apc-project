@@ -2,3 +2,7 @@ TODO LIST
 * Test all possible combinations of functions and solvers
 * Check all TODO in the slides, particularly...
 * Proof of consistency of Runge-Kutta
+* Add new Matlab stuff to README
+* Checks on args in the main
+* Github link in slides (?)
+* use PDF/SVG images instead of PNG/JPG if possible
