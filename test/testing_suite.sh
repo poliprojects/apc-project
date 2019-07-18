@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Total number of test equations
-n=6
+n=7
 
 for (( i=1; i<=$n; i++ )); do
 

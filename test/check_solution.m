@@ -29,7 +29,7 @@ close all
 % y'(t) = 2^( -x/4 + 6 + 10*t )   in [ 0, 100 ]
 %  y(0) = 1
 
-Test = 7;
+Test = 4;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -128,8 +128,10 @@ for k = 2 : length(methods)+1
 end
 legend(Legend)
 
-% Title
+% Title and labels
 title( 'ODE solution' )
+xlabel( 'Time' )
+ylabel( 'y(t)' )
 
 % Close all open files
 fclose('all');
