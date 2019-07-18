@@ -29,7 +29,7 @@ close all
 % y'(t) = 2^( -x/4 + 6 + 10*t )   in [ 0, 100 ]
 %  y(0) = 1
 
-Test = 6;
+Test = 7;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -97,6 +97,9 @@ elseif( Test == 5 )
     u = u_ex( t );
 elseif( Test == 6 )
     u_ex = @(t) (4*(log((20*2^(1/4) - 32)/(5*log(2)) + (32*2.^(10*t))/(5*log(2))) - 2*log(2) + log(log(2))))/log(2);
+    u = u_ex( t );
+elseif( Test == 7 )
+    u_ex = @(t) (3119084307157359*exp(log((5.*t - 5).^2 + 1)/10 - atan(5*t - 5).*(t - 1))*exp(atan(5) - log(26)/10))/2251799813685248;
     u = u_ex( t );
 end
 

@@ -43,3 +43,10 @@ Rnvector EquationFunction_6::operator() ( const double &t, Rnvector y ) const
             y[i] = exp2( -0.25*y[i] + 6 + 10*t );
         return y;
 }
+
+Rnvector EquationFunction_7::operator() ( const double &t, Rnvector y ) const
+{
+        for( unsigned i = 0; i < y.size(); i++ )
+            y[i] = atan( 5 * ( 1 - t ) ) * y[i];
+        return y;
+}

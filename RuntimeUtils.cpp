@@ -98,6 +98,18 @@ void initialize_data(const int rank, char* test_number,
         final_time = 100;
         initial_condition.push_back( 1 );
     }
+
+    // Test 7
+    else if ( strcmp(test_number, "7") == 0 )
+    {
+        if( rank == 0 )
+            std::cout << std::endl << "Running Test 7" << std::endl <<
+                std::endl;
+        fun_ptr = new EquationFunction_7;
+        initial_time = 0;
+        final_time = 3;
+        initial_condition.push_back( 1.385151685421242 ); // 26^0.1
+    }
 }
 
 
