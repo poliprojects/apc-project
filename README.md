@@ -16,7 +16,7 @@ You will need a terminal to run the following commands.
 ### Usage
 * Run ```main``` or ```./main```, providing the following parameters:
     * number of the test function (see ```equations.hpp``` file):
-        [ 1, 2, 3, 4, 5, 6 ]
+        [ 1, 2, 3, 4, 5, 6, 7 ]
 	* solver identification code:
         [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
@@ -36,7 +36,7 @@ You will need a terminal to run the following commands.
     ```solution\_<#test>\_\<method>.txt```
 * Run with Matlab the ```check_solutions.m``` script directly from the
     ```test``` subfolder selecting the number of the test to see a plot of exact
-    vs computed solution
+    vs computed solution, as well as produce a plot for the mean square error
 * Run on the terminal the ```time.sh``` script directly from the ```test```
     subfolder to compare time executions of both the sequential and the parallel
     version of the IserNor method on the tests number 4, 5, and 6. Information
