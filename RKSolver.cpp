@@ -146,9 +146,9 @@ Rnvector RKSolver::fixed_point( const EquationFunction &f, const double tn,
 
     if( n_iter == Max_iter )
     {
-        std::cout << "Fixed point algorithm cannot converge. Try with a "
+        std::cerr << "Fixed point algorithm cannot converge. Try with a "
             << "smaller step size and/or decrease hmax." << std::endl
-            << "Aborting..." << '\n';
+            << "Aborting..." << std::endl;
         exit(1);
     }
 
