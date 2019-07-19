@@ -8,7 +8,7 @@
 \input{etc/_includes}
 \include{etc/_commands}
 
-\title[Numerical solvers for ODEs]{\textbf{Adaptive numerical solvers}}
+\title[Adaptive solvers for ODEs]{\textbf{Adaptive numerical solvers}}
 \subtitle{for Ordinary Differential Equations}
 \author[Guindani, Vidulis]{Bruno Guindani \\ Michele Vidulis}
 \institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_long.jpg}}
@@ -192,30 +192,25 @@
 		\begin{itemize}
 			\item Small $h$ near steep slopes, large $h$ near flat points
 			% In model problem, lam(t) decreasing => function is flat
-			\item \textit{A posteriori} \textbf{estimate of error} is needed
-			\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
+			\item A posteriori \textbf{estimate of error} is needed
+			\item Compare two-round solution computed with step $\frac{h}{2}$, with single-round solution computed with step $h$
 		\end{itemize}
 		\item No need for input of ``correct'' step
-		\item Computational gain
+		\item Computational gain %TODO is it true?
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame} %#10
-	\frametitle{Consistency of adaptive methods}
-	Forward Euler:
+	\frametitle{Error computation for adaptive methods}
 	\begin{itemize}
-		\item Truncation errors:
-		$$ e_h = h^2/2 y''(\xi), \qquad e_{h/2} = h^2/8 y''(\eta) \cdot 2 + o(h^2) $$
-		\item Error estimate:
-		$$ \abs{u_{h/2} - u_h} \simeq \abs{e_{h/2}} \simeq h^2/4 \abs{y''(\widehat\eta)}
-		+ o(h^2) \stackrel{\downarrow}{<} \frac{\varepsilon}{2}
-		\quad \text{(tolerance)} $$
-	\end{itemize}
-	\pause
-	Runge-Kutta:
-	\begin{itemize}
-		\item \dots %TODO!!! (RK consistency)
+		\item Relative error of infinity norm is used:
+		$$\frac{\norm{\uu_{h/2}-\uu_h}_\infty}{\norm{\uu_n}_\infty} <
+		\frac{\varepsilon}{2} \quad \text{(tolerance)}$$
+		\item This guaratees consistency ($\implies$ convergence)
+		\item At each iteration $h$ can be doubled, halved, or unchanged
+		\item $h_{min}$ and $h_{max}$ are required for some methods
+		% Runge-Kutta methods in our case
 	\end{itemize}
 \end{frame}
 
@@ -307,6 +302,15 @@
 
 
 \begin{frame} %#20
+\frametitle{Comparison of Mean Square Errors}
+\begin{center}
+	\includegraphics[width=0.8\linewidth]{etc/test.jpg} \\
+	(components of test \#?) %TODO
+\end{center}
+\end{frame}
+
+
+\begin{frame} %#21
 	\frametitle{Trend of step in adaptive methods}
 	\begin{center}
 		\includegraphics[width=0.8\linewidth]{etc/step_history_7_adapHeun.png} \\
@@ -315,7 +319,7 @@
 \end{frame}
 
 
-\begin{frame} %#21
+\begin{frame} %#22
 	\frametitle{Actual efficiency of parallelism}
 	Speedup is heavily dependent on the problem function:
 	\begin{figure}
@@ -333,7 +337,7 @@
 \end{frame}
 
 
-\begin{frame} %#22
+\begin{frame} %#23
 	\frametitle{Multiple run results}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -352,7 +356,7 @@
 \end{frame}
 
 
-\begin{frame} %#23
+\begin{frame} %#24
 	\frametitle{Workload distribution}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -371,7 +375,7 @@
 \end{frame}
 
 
-\begin{frame} %#24
+\begin{frame} %#25
 	\frametitle{A vectorial example}
 	\begin{itemize}
 		\item Efficiency still depends on the function
