@@ -74,7 +74,7 @@ Rnvector ParallelIserNorSolver::single_step( const double tn,
         }
     }
 
-    for( unsigned i = 0; i < n_stages; i++ ) // TODO
+    for( unsigned i = 0; i < n_stages; i++ )
         un1 = un1 + h * b[i] * K[i];
 
     return un1;

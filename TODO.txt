@@ -1,9 +1,4 @@
 TODO LIST
 * Test all possible combinations of functions and solvers
-* Check all TODO in the slides, particularly...
-* Proof of consistency of Runge-Kutta
-* Add new Matlab stuff to README
+* Check all TODO in the slides
 * Checks on args in the main
-* Github link in slides (?)
-* Use PDF/SVG images instead of PNG/JPG if possible
-* Correct error of adaptive methods in slides

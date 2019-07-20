@@ -8,7 +8,7 @@
 \input{etc/_includes}
 \include{etc/_commands}
 
-\title[Numerical solvers for ODEs]{\textbf{Adaptive numerical solvers}}
+\title[Adaptive solvers for ODEs]{\textbf{Adaptive numerical solvers}}
 \subtitle{for Ordinary Differential Equations}
 \author[Guindani, Vidulis]{Bruno Guindani \\ Michele Vidulis}
 \institute[PoliMi]{\includegraphics[scale=.5]{etc/logo_long.jpg}}
@@ -16,7 +16,15 @@
 
 \begin{document}
 
-\frame{\titlepage} %#01
+\frame{  %#01
+	\titlepage
+	{ \color{blue}
+	\begin{center}
+		\href{https://github.com/poliprojects/apc-project}
+		{https://github.com/poliprojects/apc-project}
+	\end{center}
+	}
+}
 
 %\addtobeamertemplate{frametitle}{}{
 %	\begin{textblock*}{100mm}(.85\textwidth,-0.5cm)
@@ -54,7 +62,7 @@
 
 
 \begin{frame} %#04
-	\frametitle{Iterative methods}
+	\frametitle{Iterative methods} %TODO remove slide?
 	\begin{itemize}
 		\item Discretization of time into $N$ intervals: $t_0, \ t_1, \ \dots, \ t_{N} = t_F$ through a scretization step $h$: $t_{n+1} = t_n + h$, with $n = 0, 1, \dots, N$
 		\item $\yy(t_n)$ is numerically approximated by $\uu_n$:
@@ -146,7 +154,7 @@
 				$\frac{21-\sqrt{57}}{48}$ & & & $\frac{3-\sqrt{57}}{24}$ & $\frac{21+\sqrt{57}}{48}$ \\
 				\hline
 				& $\frac{9+3\sqrt{57}}{16}$ & $\frac{9+3\sqrt{57}}{16}$ & $-\frac{1+3\sqrt{57}}{16}$ & $-\frac{1+3\sqrt{57}}{16}$
-				\end{tabular} %TODO change if IserNor is changed!
+				\end{tabular}
 		\end{center}
 	\end{itemize}
 \end{frame}
@@ -184,30 +192,25 @@
 		\begin{itemize}
 			\item Small $h$ near steep slopes, large $h$ near flat points
 			% In model problem, lam(t) decreasing => function is flat
-			\item \textit{A posteriori} \textbf{estimate of error} is needed
-			\item Compute two-round solution with $\frac{h}{2}$, with single-round solution with $h$
+			\item A posteriori \textbf{estimate of error} is needed
+			\item Compare two-round solution computed with step $\frac{h}{2}$, with single-round solution computed with step $h$
 		\end{itemize}
 		\item No need for input of ``correct'' step
-		\item Computational gain
+		\item Computational gain %TODO is it true?
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame} %#10
-	\frametitle{Consistency of adaptive methods}
-	Forward Euler:
+	\frametitle{Error computation for adaptive methods}
 	\begin{itemize}
-		\item Truncation errors:
-		$$ e_h = h^2/2 y''(\xi), \qquad e_{h/2} = h^2/8 y''(\eta) \cdot 2 + o(h^2) $$
-		\item Error estimate:
-		$$ \abs{u_{h/2} - u_h} \simeq \abs{e_{h/2}} \simeq h^2/4 \abs{y''(\widehat\eta)}
-		+ o(h^2) \stackrel{\downarrow}{<} \frac{\varepsilon}{2}
-		\quad \text{(tolerance)} $$
-	\end{itemize}
-	\pause
-	Runge-Kutta:
-	\begin{itemize}
-		\item \dots %TODO!!! (RK consistency)
+		\item Relative error of infinity norm is used:
+		$$\frac{\norm{\uu_{h/2}-\uu_h}_\infty}{\norm{\uu_n}_\infty} <
+		\frac{\varepsilon}{2} \quad \text{(tolerance)}$$
+		\item This guaratees consistency ($\implies$ convergence)
+		\item At each iteration $h$ can be doubled, halved, or unchanged
+		\item $h_{min}$ and $h_{max}$ are required for some methods
+		% Adaptive IserNor in our case
 	\end{itemize}
 \end{frame}
 
@@ -222,7 +225,7 @@
 \begin{frame} %#12
 	\frametitle{Code structure}
 	\begin{center}
-		\includegraphics[scale=0.25]{etc/classes_full.png}
+		\includegraphics[width=0.45 \linewidth]{etc/classes_full.pdf}
 	\end{center}
 \end{frame}
 
@@ -232,11 +235,11 @@
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
 			\begin{center}
-				\includegraphics[width=0.5 \linewidth]{etc/classes_base.jpg}
+				\includegraphics[width=0.5 \linewidth]{etc/classes_full.pdf} %base
 			\end{center}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
-			\includegraphics[width=\linewidth]{etc/classes_plain.jpg}
+			\includegraphics[width=\linewidth]{etc/classes_full.pdf} %plain
 		\end{subfigure}
 	\end{figure}
 \end{frame}
@@ -244,19 +247,22 @@
 
 \begin{frame} %#14
 	\frametitle{Adaptive classes}
-	\includegraphics[width=\linewidth]{etc/classes_adaptive.jpg}
+	\centering
+	\includegraphics[width=\linewidth]{etc/classes_full.pdf} %adaptive
 \end{frame}
 
 
 \begin{frame} %#15
-	\frametitle{Dependences}
-	\includegraphics[width=\linewidth]{etc/headers.png}
+	\frametitle{Dependencies}
+	\centering
+	\includegraphics[width=\textwidth]{etc/headers.pdf}
 \end{frame}
 
 
 \begin{frame} %#16
 	\frametitle{Implementation choices}
 	\begin{itemize}
+		\item Seven test functions are provided
 		\item Separate FE class is much more efficient than RK specialized class:
 		% Moreover, the adaptive RK error is computed differently because there
 		% are some unknown (in the general case) quantities that need to be
@@ -276,8 +282,6 @@
 		\item Runs in parallel on 2 processors, each dealing with one indpendent 2-by-2 block
 		\item Fixed point algorithm was used for nonlinear equations
 	\end{itemize}
-	% TODO discussion on efficiency
-	\includegraphics[scale=0.2]{etc/test.jpg}
 \end{frame}
 
 
@@ -289,12 +293,33 @@
 
 
 \begin{frame} %#19
-	\frametitle{Results}
-	\includegraphics[scale=0.2]{etc/test.jpg}
+	\frametitle{Comparison between methods}
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{etc/results_test_4.png} \\
+		(components of test \#4)
+	\end{center}
 \end{frame}
 
 
 \begin{frame} %#20
+\frametitle{Comparison of Mean Square Errors}
+\begin{center}
+	\includegraphics[width=0.8\linewidth]{etc/test.jpg} \\
+	(components of test \#?) %TODO
+\end{center}
+\end{frame}
+
+
+\begin{frame} %#21
+	\frametitle{Trend of step in adaptive methods}
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{etc/step_history_7_adapHeun.png} \\
+		(test \#7, adaptive Heun method)
+	\end{center}	
+\end{frame}
+
+
+\begin{frame} %#22
 	\frametitle{Actual efficiency of parallelism}
 	Speedup is heavily dependent on the problem function:
 	\begin{figure}
@@ -312,7 +337,7 @@
 \end{frame}
 
 
-\begin{frame} %#21
+\begin{frame} %#23
 	\frametitle{Multiple run results}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -331,7 +356,7 @@
 \end{frame}
 
 
-\begin{frame} %#22
+\begin{frame} %#24
 	\frametitle{Workload distribution}
 	\begin{figure}
 		\begin{subfigure}{.5\textwidth}
@@ -350,7 +375,7 @@
 \end{frame}
 
 
-\begin{frame} %#23
+\begin{frame} %#25
 	\frametitle{A vectorial example}
 	\begin{itemize}
 		\item Efficiency still depends on the function

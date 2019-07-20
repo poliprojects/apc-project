@@ -2,7 +2,7 @@
 
 
 /// \param   argc   Number of arguments passed by command line
-void check_minimum_parameters_number(const int argc)
+void check_minimum_parameters_number( const int argc )
 {
     if( argc < 3 )
     {
@@ -10,7 +10,8 @@ void check_minimum_parameters_number(const int argc)
         "Missing mandatory parameters; at least test number and solver ID " <<
         "are required." << std::endl <<
         "Example: ./main 2 FE" << std::endl <<
-        "For more information, please refer to the README file." << std::endl;
+        "For more information, please refer to the README file." << std::endl
+        << "Aborting..." << std::endl;
         exit( 1 );
     }
 }

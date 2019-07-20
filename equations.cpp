@@ -44,6 +44,7 @@ Rnvector EquationFunction_6::operator() ( const double &t, Rnvector y ) const
         return y;
 }
 
+
 Rnvector EquationFunction_7::operator() ( const double &t, Rnvector y ) const
 {
         for( unsigned i = 0; i < y.size(); i++ )

@@ -10,7 +10,7 @@ for (( i=1; i<=$n; i++ )); do
 -------------------------"
 
     ../main $i FE
-    ../main $i RK4 # useless (TODO)
+    ../main $i RK4
     ../main $i RK4
     ../main $i Heun
     ../main $i RK

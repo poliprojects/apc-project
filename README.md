@@ -16,7 +16,7 @@ You will need a terminal to run the following commands.
 ### Usage
 * Run ```main``` or ```./main```, providing the following parameters:
     * number of the test function (see ```equations.hpp``` file):
-        [ 1, 2, 3, 4, 5, 6 ]
+        [ 1, 2, 3, 4, 5, 6, 7 ]
 	* solver identification code:
         [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
@@ -27,6 +27,8 @@ You will need a terminal to run the following commands.
     * minimum step size in adaptive methods [ positive double, default 0.005 ]
     * maximum step size in implicit adaptive methods
       [ positive double, default 0.5 ]
+* Running the program will display a summary of the problem data and of the
+    solver parameters, as well as the execution time
 * Note that the inital step needs not be an even divisor of the time interval;
     if it's not, the last step will be shortened so as to fit the remaining time
 * To execute the IserNor method in parallel (either the adaptive version or the
@@ -36,7 +38,8 @@ You will need a terminal to run the following commands.
     ```solution\_<#test>\_\<method>.txt```
 * Run with Matlab the ```check_solutions.m``` script directly from the
     ```test``` subfolder selecting the number of the test to see a plot of exact
-    vs computed solution
+    vs computed solution, as well as produce a plot for the mean square error
+    (the corresponding solution txt file is needed in the root folder)
 * Run on the terminal the ```time.sh``` script directly from the ```test```
     subfolder to compare time executions of both the sequential and the parallel
     version of the IserNor method on the tests number 4, 5, and 6. Information

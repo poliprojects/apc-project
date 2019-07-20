@@ -75,7 +75,7 @@ void AdaptiveRKSolver::print_solver_spec() const
     std::cout << "Starting h = " << h    << std::endl;
     std::cout << "Minimum h  = " << hmin << std::endl;
     if( method_name == "IserNor" )
-      std::cout << "Maximum h = " << hmax << '\n';
+        std::cout << "Maximum h = " << hmax << std::endl;
     std::cout << "Tolerance  = " << tol  << std::endl;
     std::cout << std::endl;
 }
