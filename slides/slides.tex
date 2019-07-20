@@ -85,7 +85,7 @@
 		\pause
 		\end{center}
 		\item $O(s n^2)$ if $f$ linear
-		\item Explicit if $[a_{ij}]_{ij}$ is lower triangular
+		\item Explicit if the upper triangular part of $[a_{ij}]_{ij}$ is null
 	\end{itemize}
 \end{frame}
 
@@ -121,8 +121,8 @@
 \begin{frame} %#06
 \frametitle{Convergence analysis for RK}
 	\begin{itemize}
-		\item \textbf{Convergence} $\to$ absolute error: $\norm{y_n - u_n} \simeq O(h^q)$
-		\item \textbf{Consistence} $\to$ truncation error: $\max_n \norm{\tau_n(h)} \simeq O(h^q)$
+		\item \textbf{Convergence} $\to$ absolute error: $\norm{\boldsymbol y (t_n) - \uu_n} \simeq O(h^q)$
+		\item \textbf{Consistence} $\to$ truncation error: $\max_n \norm{\boldsymbol \tau_n(h)} \simeq O(h^q)$
 		\item Under reasonable Lipschitz continuity assumptions on $\phi$, a single-step method which is consistent is also convergent
 		\pause
 		\item Runge-Kutta is consistent iff $\sum_i b_i = 1$ $\implies$ \textbf{convergent}
@@ -161,7 +161,7 @@
 \begin{frame} %#08
 	\frametitle{Error computation for adaptive methods}
 	\begin{itemize}
-		\item Relative error of infinity norm is used:
+		\item Relative error in infinity norm is used:
 		$$\frac{\norm{\uu_{h/2}-\uu_h}_\infty}{\norm{\uu_{n-1}}_\infty} <
 		\frac{\varepsilon}{2} \quad \text{(tolerance)}$$
 		\item This guaratees consistency ($\implies$ convergence)
@@ -228,7 +228,7 @@
 			\includegraphics[scale=0.3]{etc/FE_vs_RK.jpeg}
 		\end{center}	
 		\item Adaptive \texttt{single\_step()} class methods are not efficient
-				\item Fixed point algorithm was used for implicit methods
+				\item \textbf{Fixed point} algorithm was used for implicit methods
 	\end{itemize}
 \end{frame}
 
@@ -236,7 +236,7 @@
 \begin{frame} %#15
 	\frametitle{Parallel Iserles-Nørsett}
 	\begin{itemize}
-		\item Implicit method:
+		\item \textbf{Implicit} method:
 		\begin{center}
 			\begin{tabular}{c|cccc}
 				$\frac{1}{3}$ & $\frac{1}{3}$ & & & \\
@@ -248,8 +248,8 @@
 			\end{tabular}
 		\vspace{20pt}
 		\end{center}
-		\item Parellelization exploits block-diagonal structure of Butcher array
-		\item Runs in parallel on 2 processors, each dealing with one indpendent 2-by-2 block
+		\item Parellelization exploits \textbf{block-diagonal} structure of Butcher array
+		\item The method runs in parallel on \textbf{2 processors}, each dealing with one independent 2-by-2 block
 	\end{itemize}
 \end{frame}
 
@@ -274,13 +274,13 @@
 \frametitle{Comparison between methods}
 \begin{center}
 	\includegraphics[width=0.8\linewidth]{etc/MSE.png} \\
-	(logarithm of Mean Square Errors in the nodes)
+	(logarithm of relative Mean Square Errors in the nodes)
 \end{center}
 \end{frame}
 
 
 \begin{frame} %#19
-	\frametitle{Trend of step in adaptive methods}
+	\frametitle{Trend of step size in adaptive methods}
 	\begin{center}
 		\includegraphics[width=0.8\linewidth]{etc/step_history_7_adapHeun.png} \\
 		(test \#7, adaptive Heun method)
