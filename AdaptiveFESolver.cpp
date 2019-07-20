@@ -23,7 +23,7 @@ void AdaptiveFESolver::solve()
         Rnvector utemp = FESolver::single_step( tn, un, hn/2 );
         Rnvector uh2   = FESolver::single_step( tn+hn/2, utemp, hn/2 );
 
-        // Compute error in infinity norm
+        // Compute relative error in infinity norm
         Rnvector diff = abs( uh2 - uh1 );
         double error = *std::max_element( diff.cbegin(), diff.cend() ) /
             std::abs( *std::max_element( solution[n].cbegin(),
