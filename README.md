@@ -53,10 +53,12 @@ You will need a terminal to run the following commands.
 
 ## Customization
 ### Adding new equations
-1) Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
+* Add a new EquationFunction in the ```equations.cpp``` and ```equations.hpp```
     files
-2) In function ```initialize_data``` inside the ```RuntimeUtils.cpp``` file,
+* In function ```initialize_data``` inside the ```RuntimeUtils.cpp``` file,
     add the specifications of the new test
+* In function ```check_input_parameters``` inside the ```RuntimeUtils.cpp```
+    file, increase the value of ```n_tests``` by 1
 
 ### Adding new Runge-Kutta methods
 * To introduce a new Runge-Kutta method exploiting the RK or adapRK classes,

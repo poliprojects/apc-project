@@ -14,8 +14,8 @@ int main( int argc, char * argv[] )
     MPI_Comm_rank( MPI_COMM_WORLD, &rank );
     MPI_Comm_size( MPI_COMM_WORLD, &size );
 
-    // Checks if there are enough parameters to start the execution
-    check_minimum_parameters_number( argc );
+    // Checks if the input parameters are valid
+    check_input_parameters( argc, argv );
 
     // =========================================================================
     // INITIALIZATION OF TEST DEPENDENT DATA

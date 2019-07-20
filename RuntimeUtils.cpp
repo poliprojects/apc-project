@@ -2,18 +2,56 @@
 
 
 /// \param   argc   Number of arguments passed by command line
-void check_minimum_parameters_number( const int argc )
+/// \param   argv   Array of arguments passed by command line
+void check_input_parameters( const int argc, char * argv[] )
 {
+    // Total number of tests
+    int n_tests = 7;
+
     if( argc < 3 )
     {
         std::cerr <<
         "Missing mandatory parameters; at least test number and solver ID " <<
         "are required." << std::endl <<
         "Example: ./main 2 FE" << std::endl <<
-        "For more information, please refer to the README file." << std::endl
-        << "Aborting..." << std::endl;
+        "For more information, please refer to the README file." << std::endl <<
+        "Aborting..." << std::endl;
         exit( 1 );
     }
+
+    if( atoi( argv[1] ) <= 0 or atoi( argv[1] ) > n_tests )
+    {
+        std::cerr << "Unknown test number. Aborting..." <<  std::endl;
+        exit( 1 );
+    }
+
+    if( argc > 3 and atof( argv[3] ) <= 0 )
+        {
+            std::cerr << "Input step sizes must be positive. " <<
+            "Aborting..." << std::endl;
+            exit( 1 );
+        }
+    
+    if( argc > 4 and atof( argv[4] ) <= 0 )
+        {
+            std::cerr << "Tolerance value must be positive. " <<
+            "Aborting..." << std::endl;
+            exit( 1 );
+        }
+
+    if( argc > 5 and atof( argv[5] ) <= 0 )
+        {
+            std::cerr << "Input step sizes must be positive. " <<
+            "Aborting..." << std::endl;
+            exit( 1 );
+        }
+
+    if( argc > 6 and atof( argv[6] ) <= 0 )
+       {
+        std::cerr << "Input step sizes must be positive. " <<
+        "Aborting..." << std::endl;
+        exit( 1 );
+        }
 }
 
 
