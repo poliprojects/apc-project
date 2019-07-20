@@ -34,8 +34,6 @@ close all
 %  y(0) = 26^0.1
 
 
-
-
 Test = 4;
 
 available_methods = ...
@@ -172,6 +170,8 @@ for i = 1 : length( methods )
     MSE(i) = mean( errors.^2 );
 end
 
+
 figure(2)
 bar( categorical( methods ), MSE )
+ylabel( 'Mean squared nodal error' )
 set(gca,'YScale','log')
