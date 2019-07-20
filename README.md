@@ -44,6 +44,10 @@ You will need a terminal to run the following commands.
     subfolder to compare time executions of both the sequential and the parallel
     version of the IserNor method on the tests number 4, 5, and 6. Information
     will be saved into the ```timeres.txt``` file
+* Run on the terminal the ```testing_suite.sh``` script directly from the
+    ```test``` subfolder to execute the program with all available combinations
+    of solvers and example functions. The results will be saved in the
+    respective usual files
 
 ### Examples
 * ```./main 3 RK 0.2 1e-3```
