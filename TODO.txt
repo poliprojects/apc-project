@@ -1,4 +1,0 @@
-TODO LIST
-* Test all possible combinations of functions and solvers
-* Check all TODO in the slides
-* Checks on args in the main
