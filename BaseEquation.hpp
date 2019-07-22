@@ -20,7 +20,7 @@ class BaseEquation
         Rnvector x0;
 
         //! Dimension of the system (x0.size())
-        unsigned dimension;
+        std::size_t dimension;
 
     public:
         // Constructors
@@ -34,7 +34,7 @@ class BaseEquation
         double get_tin() const { return tin; };
         double get_tfin() const { return tfin; };
         Rnvector get_x0() const { return x0; };
-        unsigned get_dimension() const { return dimension; };
+        std::size_t get_dimension() const { return dimension; };
 
         // Setters
         void set_f( EquationFunction &fun ) { f = fun; };

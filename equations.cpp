@@ -5,13 +5,13 @@
 
 Rnvector EquationFunction_1::operator() ( const double &t, Rnvector y ) const
 {
-    return 5*y - 3;
+    return 5*y - 3 + 0*t;
 }
 
 
 Rnvector EquationFunction_2::operator() ( const double &t, Rnvector y ) const
 {
-    return (-1.0)*y;
+    return (-1.0)*y + 0*t;
 }
 
 
@@ -33,7 +33,7 @@ Rnvector EquationFunction_4::operator() ( const double &t, Rnvector y ) const
 
 Rnvector EquationFunction_5::operator() ( const double &t, Rnvector y ) const
 {
-    return (-16.0)*y;
+    return (-16.0)*y + 0*t;
 }
 
 

@@ -6,20 +6,21 @@
 FESolver::FESolver( double step, const BaseEquation &eq ):
     BaseSolver( step, eq )
 {
-    Nh = ceil( ( equation.get_tfin() - equation.get_tin() ) / h );
+    Nh = static_cast<unsigned int>( ceil( ( equation.get_tfin()
+        - equation.get_tin() ) / h ) );
 }
 
 
 /// \param   tn   Present time instant
 /// \param   un   Present value of the solution
-/// \param   h    Step size
+/// \param   hn    Step size
 /// \return  un1  Solution at the following time instant
 Rnvector FESolver::single_step( const double tn, const Rnvector &un,
-    const double h ) const
+    const double hn ) const
 {
     EquationFunction &f = equation.get_f();
     Rnvector f_eval = f( tn, un );
-    Rnvector un1 = un + h*f_eval;
+    Rnvector un1 = un + hn*f_eval;
     return un1;
 }
 

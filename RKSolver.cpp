@@ -13,10 +13,11 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
     assert( b.size() == c.size() && a.size() == a[0].size() &&
         b.size() == a.size() );
     // Set number of stages for every step
-    n_stages = b.size();
+    n_stages = static_cast<unsigned int>( b.size() );
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
-    Nh = ceil ( ( equation.get_tfin() - equation.get_tin() ) / h );
+    Nh = static_cast<unsigned int>( ceil ( ( equation.get_tfin()
+        - equation.get_tin() ) / h ) );
     // User defined version of RK (to be printed on screen)
     method_name = "User defined";
 }
@@ -32,7 +33,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         b = { 0.5, 0.5 };
         c = {   0,   1 };
         // Set number of stages for every step
-        n_stages = b.size();
+        n_stages = static_cast<unsigned int>( b.size() );
     }
 
     else if( name == "IserNor" )
@@ -47,7 +48,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         b = { 1.978094,  1.978094, -1.478094, -1.478093 };
         c = {     1/3.,      2/3.,  0.594788,  0.405212 };
         // Set number of stages for every step
-        n_stages = b.size();
+        n_stages = static_cast<unsigned int>( b.size() );
     }
 
     else if( name == "RK4" )
@@ -62,7 +63,7 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
         b = { 1/6., 1/3., 1/3., 1/6. };
         c = {    0,  0.5,  0.5,    1 };
         // Set number of stages for every step
-        n_stages = b.size();
+        n_stages = static_cast<unsigned int>( b.size() );
     }
 
     else
@@ -73,7 +74,8 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
 
     // Set total number of steps (known a priori only in RK; has no meaning in
     // adaptive case)
-    Nh = ( equation.get_tfin() - equation.get_tin() ) / h;
+    Nh = static_cast<unsigned int>( ( equation.get_tfin()
+        - equation.get_tin() ) / h );
     // Set the proper version name of RK (to be printed on screen)
     method_name = name;
 }
@@ -81,10 +83,10 @@ RKSolver::RKSolver( double step, const BaseEquation &eq,
 
 /// \param   tn   Present time instant
 /// \param   un   Present value of the solution
-/// \param   h    Step size
+/// \param   hn   Step size
 /// \return       Solution at the following time instant
 Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
-    const double h ) const
+    const double hn ) const
 {
     std::vector<Rnvector> K( n_stages ); // vector of K_i
     Rnvector un1 = un;
@@ -100,17 +102,17 @@ Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
         // K_i is defined implicitly ( A[i][i] != 0 )
         if( is_implicit( i ) )
         {
-            K[i] = fixed_point( f, tn, un, h, sum_aij_Kj, i );
+            K[i] = fixed_point( f, tn, un, hn, sum_aij_Kj, i );
             sum_aij_Kj = sum_aij_Kj + a[i][i] * K[i];
         }
 
         // K_i can be computed explicitly ( A[i][i] == 0 )
         else
-            K[i] = f( tn + c[i] * h, un + h * sum_aij_Kj );
+            K[i] = f( tn + c[i] * hn, un + hn * sum_aij_Kj );
     }
 
     for( unsigned i = 0; i < n_stages; i++ )
-        un1 = un1 + h * b[i] * K[i];
+        un1 = un1 + hn * b[i] * K[i];
 
     return un1;
 }
@@ -119,6 +121,7 @@ Rnvector RKSolver::single_step( const double tn, const Rnvector &un,
 /// \param   f           Right-hand side
 /// \param   tn          Present time instant
 /// \param   un          Present value of the solution
+/// \param   h_local     Step
 /// \param   sum_aij_Kj  Linear combination of explicit (already available) Ks
 /// \param   i           Index of the K to be computed by fixed point
 /// \return              K computed by fixed point
