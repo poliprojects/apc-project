@@ -64,11 +64,11 @@
 \begin{frame} %#04
 	\frametitle{Runge-Kutta methods}
 	\begin{itemize}
-		\item Family of \textbf{single-step} methods ($\uu_{n+1}$ depends directly only on $\uu_n$)
+		\item Family of \textbf{single-step} methods ($\uu_{k+1}$ depends directly only on $\uu_k$)
 		\item Weighted average of $s$ evaluations (\textbf{stages}) of $f$: \\[-20pt]
 		\begin{align*}
-			\uu_{n+1} = \uu_{n} + h \sum_{i=1}^s b_i \kk_i \quad \text{with} \\[-5pt]
-			\kk_i = f(t_0 + c_i h, \ \uu_n + \sum_{j=1}^s a_{ij} \kk_j)
+			\uu_{k+1} = \uu_{k} + h \sum_{i=1}^s b_i \kk_i \quad \text{with} \\[-5pt]
+			\kk_i = f(t_0 + c_i h, \ \uu_k + \sum_{j=1}^s a_{ij} \kk_j)
 		\end{align*}
 		\pause
 		\vspace{-22pt}
@@ -93,8 +93,8 @@
 \begin{frame} %#05
 	\frametitle{Examples of explicit RK variants}
 	\begin{itemize}
-		\item Forward Euler: $ a = 0, \ b = 1, \ c = 0 $
-		\item RK4: \\
+		\item Forward Euler: $ a = 0, \ b = 1, \ c = 0 $ % order 1
+		\item RK4: \\ % order 4
 		\begin{center}
 			\begin{tabular}{c|cccc}
 				$0$ & & & & \\
@@ -105,7 +105,7 @@
 				& $\frac 1 6$ & $\frac 1 3$ & $\frac 1 3$ & $\frac 1 6$
 				\end{tabular}
 		\end{center}
-		\item Heun:
+		\item Heun: % order 2
 		\begin{center}
 			\begin{tabular}{c|cc}
 				$0$ &     & \\
@@ -121,8 +121,8 @@
 \begin{frame} %#06
 \frametitle{Convergence analysis for RK}
 	\begin{itemize}
-		\item \textbf{Convergence} $\to$ absolute error: $\norm{\boldsymbol y (t_n) - \uu_n} \simeq O(h^q)$
-		\item \textbf{Consistence} $\to$ truncation error: $\max_n \norm{\boldsymbol \tau_n(h)} \simeq O(h^q)$
+		\item \textbf{Convergence} $\to$ absolute error: $\norm{\boldsymbol y (t_k) - \uu_k} \simeq O(h^q)$
+		\item \textbf{Consistence} $\to$ truncation error: $\max_k \norm{\boldsymbol \tau_k(h)} \simeq O(h^q)$
 		\item Under reasonable Lipschitz continuity assumptions on $\phi$, a single-step method which is consistent is also convergent
 		\pause
 		\item Runge-Kutta is consistent iff $\sum_i b_i = 1$ $\implies$ \textbf{convergent}
@@ -162,7 +162,7 @@
 	\frametitle{Error computation for adaptive methods}
 	\begin{itemize}
 		\item Relative error in infinity norm is used:
-		$$\frac{\norm{\uu_{h/2}-\uu_h}_\infty}{\norm{\uu_{n-1}}_\infty} <
+		$$\frac{\norm{\uu_{h/2}-\uu_h}_\infty}{\norm{\uu_{k-1}}_\infty} <
 		\frac{\varepsilon}{2} \quad \text{(tolerance)}$$
 		\item This guaratees consistency ($\implies$ convergence)
 		\item At each iteration $h$ can be doubled, halved, or unchanged
@@ -303,25 +303,10 @@
 			\includegraphics[width=\linewidth]{etc/test6_2.jpeg}
 		\end{subfigure}%
 	\end{figure}
-\end{frame}
-
-
-\begin{frame} %#21
-	\frametitle{Multiple run results}
-	\begin{figure}
-		\begin{subfigure}{.5\textwidth}
-			\subcaption*{Test \#5}
-			\includegraphics[width=\linewidth]{etc/test5_3.jpeg}
-		\end{subfigure}%
-		\begin{subfigure}{.5\textwidth}
-			\subcaption*{Test \#6}
-			\includegraphics[width=\linewidth]{etc/test6_3.jpeg}
-		\end{subfigure}
-	\end{figure}
 	\begin{center}
-		\vspace{16pt}
 		Why?
 	\end{center}
+	
 \end{frame}
 
 
