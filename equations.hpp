@@ -66,5 +66,11 @@ struct EquationFunction_7: public EquationFunction
     EquationFunction_7(): EquationFunction( "y'(t) = atan(5 - 5*t) * y(t)" ) {}
 };
 
+struct EquationFunction_8: public EquationFunction
+{
+    Rnvector operator()( const double &t, Rnvector y ) const override;
+    EquationFunction_8(): EquationFunction( "y'(t) = TODO" ) {}
+};
+
 
 #endif // EQUATIONS_HPP

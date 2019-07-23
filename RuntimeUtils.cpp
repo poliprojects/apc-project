@@ -6,7 +6,7 @@
 void check_input_parameters( const int argc, char * argv[] )
 {
     // Total number of tests
-    int n_tests = 7;
+    int n_tests = 8;
 
     if( argc < 3 )
     {
@@ -31,7 +31,7 @@ void check_input_parameters( const int argc, char * argv[] )
             "Aborting..." << std::endl;
             exit( 1 );
         }
-    
+
     if( argc > 4 and atof( argv[4] ) <= 0 )
         {
             std::cerr << "Tolerance value must be positive. " <<
@@ -148,6 +148,21 @@ void initialize_data(const int rank, char* test_number,
         initial_time = 0;
         final_time = 3;
         initial_condition.push_back( 1.385151685421242 ); // 26^0.1
+    }
+
+    // Test 8
+    else if ( strcmp(test_number, "8") == 0 )
+    {
+        if( rank == 0 )
+            std::cout << std::endl << "Running Test 8" << std::endl <<
+                std::endl;
+        fun_ptr = new EquationFunction_8;
+        initial_time = 0;
+        final_time = 500;
+        initial_condition.push_back( 4 );
+        initial_condition.push_back( 3 );
+        initial_condition.push_back( 2 );
+        initial_condition.push_back( 1 );
     }
 }
 
