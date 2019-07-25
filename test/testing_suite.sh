@@ -3,7 +3,7 @@
 # Run this script while in test folder!
 
 # Total number of test equations
-n=7
+n=8
 
 for (( i=1; i<=$n; i++ )); do
 

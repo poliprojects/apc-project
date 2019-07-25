@@ -41,7 +41,7 @@ close all
 % y(0) = 4 3 2 1
 
 
-Test = 4;
+Test = 8;
 
 available_methods = ...
     [ "FE","RK4","Heun","IserNor", ...                 % predefined RK
@@ -115,14 +115,20 @@ elseif( Test == 7 )
     u_ex = @(t) (3119084307157359*exp(log((5.*t - 5).^2 + 1)/10 - atan(...
         5*t - 5).*(t - 1))*exp(atan(5) - log(26)/10))/2251799813685248;
     u = u_ex( t );
+elseif( Test == 8 )
+    u_ex = @(t) 0.*t;
+    u = u_ex( t );
 end
 
 % Plot
 figure(1)
 hold on
 h = plot( t, u, 'color', [0,0,0] );
-set(get(get(h(1:n-1),'Annotation'),'LegendInformation'), ...
-    'IconDisplayStyle','off'); % To set legend properly
+if( Test == 8 )
+    xlim( [ 0, 16000 ] )
+end
+% set(get(get(h(1:0),'Annotation'),'LegendInformation'), ...
+%     'IconDisplayStyle','off'); % To set legend properly
 for i = 1 : length( methods )
     h = plot( tn{i}, un{i}, 'color', colors(i,:) );
     % Set legend properly
@@ -140,11 +146,11 @@ Legend{1} = 'Exact';
 for k = 2 : length(methods)+1
     Legend{k} = char( methods(k-1) );
 end
-legend(Legend)
+legend( Legend, 'location', 'bestoutside' )
 
 % Title and labels
 title( 'ODE solution' )
-xlabel( 'Time' )
+xlabel( 't' )
 ylabel( 'y(t)' )
 
 % Close all open files
