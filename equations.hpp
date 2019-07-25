@@ -69,7 +69,8 @@ struct EquationFunction_7: public EquationFunction
 struct EquationFunction_8: public EquationFunction
 {
     Rnvector operator()( const double &t, Rnvector y ) const override;
-    EquationFunction_8(): EquationFunction( "y'(t) = TODO" ) {}
+    EquationFunction_8(): EquationFunction(
+      "y1'(t) = sin( 2*pi/1000*t )\ny2'(t) = sin( 2*pi/2000*t )\ny3'(t) = sin( 2*pi/4000*t )\ny4'(t) = sin( 2*pi/8000*t )" ) {}
 };
 
 
