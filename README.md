@@ -16,7 +16,7 @@ You will need a terminal to run the following commands.
 ### Usage
 * Run ```main``` or ```./main```, providing the following parameters:
     * number of the test function (see ```equations.hpp``` file):
-        [ 1, 2, 3, 4, 5, 6, 7 ]
+        [ 1, 2, 3, 4, 5, 6, 7, 8 ]
 	* solver identification code:
         [ FE, Heun, RK4, IserNor, RK, adapFE, adapHeun, adapRK4, adapIserNor,
         adapRK ]
