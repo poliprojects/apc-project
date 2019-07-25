@@ -332,7 +332,7 @@
 
 
 \begin{frame} %#22
-	\frametitle{A parallel vectorial example}
+	\frametitle{A vectorial example}
 	\begin{itemize}
 		\item Efficiency still depends on the function
 		\item Here fixed point iterations are well-balanced among processors:
@@ -359,7 +359,7 @@
 \begin{frame} %#23
 	\frametitle{A high-dimensional example}
 	\begin{center}
-		Components of test \#8 ($\yy \in \RR^4$): \\[15pt]
+		Components of test \#8 \quad ($\yy \in \RR^4$): \\[15pt]
 		\includegraphics[width=0.75 \linewidth]{etc/results_test_8.png}
 	\end{center}
 \end{frame}
@@ -368,7 +368,17 @@
 \begin{frame} %#24
 	\frametitle{Multiple run results}
 	\begin{center}
-		\includegraphics[width=\linewidth]{etc/test8_3.jpeg}
+		\includegraphics[width=0.75 \linewidth]{etc/test_8_histogram.png} \\
+		{\color{red}  Mean: $5.206 \, s$, \quad SD: $0.227 \, s$} \\
+		{\color{blue} Mean: $7.045 \, s$, \quad SD: $0.200 \, s$}
+	\end{center}
+\end{frame}
+
+
+\begin{frame} %#25
+	\frametitle{Speedup}
+	\begin{center}
+		\includegraphics[width=0.8 \linewidth]{etc/test_8_speedup.png}
 	\end{center}
 \end{frame}
 
