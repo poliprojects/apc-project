@@ -109,7 +109,7 @@ void initialize_data(const int rank, char* test_number,
                 std::endl;
         fun_ptr = new EquationFunction_4;
         initial_time = 0;
-        final_time = 10;
+        final_time = 100;
         initial_condition.push_back( 1 );
         initial_condition.push_back( 1 );
     }
@@ -158,11 +158,11 @@ void initialize_data(const int rank, char* test_number,
                 std::endl;
         fun_ptr = new EquationFunction_8;
         initial_time = 0;
-        final_time = 500;
-        initial_condition.push_back( 4 );
-        initial_condition.push_back( 3 );
-        initial_condition.push_back( 2 );
-        initial_condition.push_back( 1 );
+        final_time = 16000;
+        initial_condition.push_back( 300 );
+        initial_condition.push_back( 200 );
+        initial_condition.push_back( 50 );
+        initial_condition.push_back( 0 );
     }
 }
 
