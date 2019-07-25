@@ -32,6 +32,13 @@ close all
 % Test 7:
 % y'(t) = atan( 5 * ( 1 - t ) ) * y   in [ 0, 3 ]
 %  y(0) = 26^0.1
+%
+% Test 8:
+% y1'(t) = ( 2*y1(t)           ) * sin(t) * exp(-t)
+% y2'(t) = ( 3*y2(t) - 2*y3(t) ) * sin(t) * exp(-t)
+% y3'(t) = ( 5*y3(t)           ) * sin(t) * exp(-t)
+% y4'(t) = (   y4(t)           ) * sin(t) * exp(-t)      in [0, 500]
+% y(0) = 4 3 2 1
 
 
 Test = 4;
